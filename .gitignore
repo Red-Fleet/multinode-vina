@@ -1,1 +1,8 @@
 AutoDock-Vina-develop
+
+# pycache stuff:
+**/__pycache__/
+
+# Flask stuff:
+instance/
+.webassets-cache
