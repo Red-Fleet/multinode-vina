@@ -5,8 +5,18 @@ from flask import Response, json
 
 @app.route('/register', methods = ['POST'])
 def register() -> Response:
-    username = request.form['username']
-    password_hash = request.form['password_hash']
+    """Used to register new user
+
+    Args: json input
+        username (str): username
+        password_hash (str): hash of password
+
+    Returns:
+        Response: return json contaning client_id and username
+    """
+    content = request.get_json()
+    username = content['username']
+    password_hash = content['password_hash']
     try:
         client_id = RegisterService.registerUser(username, password_hash)
         return Response(json.dumps({"client_id":client_id, "username":username}), status=201, mimetype='application/json')

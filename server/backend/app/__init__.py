@@ -6,8 +6,8 @@ from config import Config
 app = Flask(__name__)
 app.config.from_object(Config)
 
-db = SQLAlchemy(app)
+db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app.routes import register
-from app.models import user
+from app.routes import register_route, login_route
+from app.models import user, client
