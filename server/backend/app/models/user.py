@@ -1,4 +1,3 @@
-#from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from app import db
 import sqlalchemy as sqaly

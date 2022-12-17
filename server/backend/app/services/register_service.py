@@ -1,14 +1,16 @@
+import uuid
+import datetime
 from app import db, app
 from app.models.user import User
 from app.models.client import Client, ClientState
 from sqlalchemy.exc import IntegrityError
-import uuid
-import datetime
+
+
 
 class RegisterService:
-    
+
     @staticmethod
-    def registerUser(username:str, password_hash:str) -> str:
+    def registerUser(username: str, password_hash: str) -> str:
         """This method is used to insert a new user in database,
         user and client tables in database are updated.
 
@@ -24,20 +26,22 @@ class RegisterService:
         """
         if username == "":
             raise Exception("username cannot be null")
-        
+
         client_id = str(uuid.uuid4())
-        user = User(client_id=client_id, username=username, password_hash=password_hash)
-        client = Client(client_id=user.client_id, last_connected=datetime.datetime.now(), state=ClientState.idle)
-        
+        user = User(client_id=client_id, username=username,
+                    password_hash=password_hash)
+        client = Client(client_id=user.client_id,
+                        last_connected=datetime.datetime.now(), state=ClientState.IDLE)
+
         try:
-            db.session.add(user)
-            db.session.add(client)
-            db.session.commit()
-        except IntegrityError as e:
-            app.logger.error(e)
-            raise Exception("username taken") 
-        except Exception as e:
-            app.logger.error(e)
-            raise Exception("database error")
-            
+            db.session.add(user) 
+            db.session.add(client) 
+            db.session.commit() 
+        except IntegrityError as e: 
+            app.logger.error(e) 
+            raise Exception("username taken") from None
+        except Exception as e: 
+            app.logger.error(e) 
+            raise Exception("database error") from None
+
         return user.client_id
