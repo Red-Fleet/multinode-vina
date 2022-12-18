@@ -17,8 +17,9 @@ def register() -> Response:
     content = request.get_json()
     username = content['username']
     password_hash = content['password_hash']
+    name = content['name']
     try:
-        client_id = RegisterService.registerUser(username, password_hash)
+        client_id = RegisterService.registerUser(username, password_hash, name)
         return Response(json.dumps({"client_id":client_id, "username":username}), status=201, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')

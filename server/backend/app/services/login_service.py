@@ -24,7 +24,7 @@ class LoginService:
                 username=username, password_hash=password_hash).first()
         except Exception as e: 
             app.logger.error(e)
-            raise Exception("database error") from None
+            raise Exception("database error")
 
         if user is None:
             return None
