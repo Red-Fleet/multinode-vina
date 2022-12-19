@@ -7,7 +7,7 @@ class RequestState(enum.Enum):
     ACCEPTED: str = "ACCEPTED"
     DECLINED: str = "DECLINED"
 
-class RequestModel(db.Model):
+class Request(db.Model):
     request_to = sqaly.Column(sqaly.String(36), primary_key=True)
     request_from = sqaly.Column(sqaly.String(36), primary_key=True)
     last_connected = sqaly.Column(sqaly.DateTime())

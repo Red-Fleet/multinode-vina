@@ -16,7 +16,7 @@ class LoginService:
             Exception: exception is raised if cannot query the database
 
         Returns:
-            str: client id(if user is authenticated), None(if user is not authenticated)
+            str: user(if user is authenticated), None(if user is not authenticated)
         """
 
         try:
@@ -26,7 +26,5 @@ class LoginService:
             app.logger.error(e)
             raise Exception("database error")
 
-        if user is None:
-            return None
 
-        return user.client_id
+        return user

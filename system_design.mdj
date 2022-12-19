@@ -234,7 +234,7 @@
 									"font": "Arial;13;1",
 									"left": 272,
 									"top": 421,
-									"width": 150.64990234375,
+									"width": 193.26171875,
 									"height": 13,
 									"text": "Request"
 								},
@@ -260,7 +260,7 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 444,
-											"width": 140.64990234375,
+											"width": 183.26171875,
 											"height": 13
 										},
 										{
@@ -275,7 +275,7 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 459,
-											"width": 140.64990234375,
+											"width": 183.26171875,
 											"height": 13
 										},
 										{
@@ -290,22 +290,37 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 474,
-											"width": 140.64990234375,
+											"width": 183.26171875,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGFIaLDObTnkpo=",
+											"_parent": {
+												"$ref": "AAAAAAGE/LRDpfUJc2k="
+											},
+											"model": {
+												"$ref": "AAAAAAGFIaLC5LTk+bE="
+											},
+											"font": "Arial;13;0",
+											"left": 277,
+											"top": 489,
+											"width": 183.26171875,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 272,
 									"top": 439,
-									"width": 150.64990234375,
-									"height": 53
+									"width": 193.26171875,
+									"height": 68
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 272,
 							"top": 416,
-							"width": 150.64990234375,
-							"height": 76,
+							"width": 193.26171875,
+							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAGE/LRDpfUImkU="
 							},
@@ -973,6 +988,16 @@
 							},
 							"name": "state",
 							"type": "varcher",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGFIaLC5LTk+bE=",
+							"_parent": {
+								"$ref": "AAAAAAGE/LRDpfUFU4E="
+							},
+							"name": "last_updated",
+							"type": "timestamp",
 							"length": 0
 						}
 					]

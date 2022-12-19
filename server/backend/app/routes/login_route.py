@@ -3,7 +3,7 @@ from flask import request
 from app.services.login_service import LoginService
 from flask import Response, json
 
-@app.route('/login', methods = ['GET'])
+#@app.route('/login', methods = ['GET'])
 def login() -> Response:
     """Used to login new user
 

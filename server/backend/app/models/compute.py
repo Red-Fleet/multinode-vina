@@ -7,7 +7,7 @@ class ComputeState(enum.Enum):
     FINISHED: str = "FINISHED"
     ERROR: str = "ERROR"
 
-class ComputeModel(db.Model):
+class Compute(db.Model):
     compute_id = sqaly.Column(sqaly.String(36), primary_key=True)
     worker_id = sqaly.Column(sqaly.String(36))
     master_id = sqaly.Column(sqaly.String(36))

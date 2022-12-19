@@ -23,7 +23,6 @@ class MasterService:
                 'state': row[1].name, 
                 'name': User.query.with_entities(User.name).filter_by(client_id=row[0]).first()[0]} 
                 for row in result]
-            print(result)
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
