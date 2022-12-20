@@ -32,7 +32,7 @@ class RegisterService:
         user = User(client_id=client_id, username=username,
                     password_hash=password_hash, name=name)
         client = Client(client_id=user.client_id,
-                        last_connected=datetime.datetime.now(), state=ClientState.IDLE)
+                        last_connected=datetime.datetime.now(), state=ClientState.OFFLINE)
 
         try:
             db.session.add(user) 

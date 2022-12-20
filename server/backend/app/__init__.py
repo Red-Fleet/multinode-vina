@@ -10,7 +10,7 @@ db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from app.basic_authentication import auth
-from app.routes import register_route, login_route, master_route
+from app.routes import register_route, master_route, client_route
 from app.models import user, client
 
 @app.shell_context_processor
