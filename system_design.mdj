@@ -234,7 +234,7 @@
 									"font": "Arial;13;1",
 									"left": 272,
 									"top": 421,
-									"width": 193.26171875,
+									"width": 227.22802734375,
 									"height": 13,
 									"text": "Request"
 								},
@@ -260,7 +260,7 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 444,
-											"width": 183.26171875,
+											"width": 217.22802734375,
 											"height": 13
 										},
 										{
@@ -275,7 +275,7 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 459,
-											"width": 183.26171875,
+											"width": 217.22802734375,
 											"height": 13
 										},
 										{
@@ -290,7 +290,7 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 474,
-											"width": 183.26171875,
+											"width": 217.22802734375,
 											"height": 13
 										},
 										{
@@ -305,21 +305,21 @@
 											"font": "Arial;13;0",
 											"left": 277,
 											"top": 489,
-											"width": 183.26171875,
+											"width": 217.22802734375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 272,
 									"top": 439,
-									"width": 193.26171875,
+									"width": 227.22802734375,
 									"height": 68
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 272,
 							"top": 416,
-							"width": 193.26171875,
+							"width": 227.22802734375,
 							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAGE/LRDpfUImkU="
@@ -996,7 +996,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGE/LRDpfUFU4E="
 							},
-							"name": "last_updated",
+							"name": "state_update_time",
 							"type": "timestamp",
 							"length": 0
 						}
