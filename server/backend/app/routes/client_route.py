@@ -21,3 +21,22 @@ def updateState(state) -> Response:
     except Exception as e:
         app.logger.error(e)
         return Response(str(e), status=500, mimetype='application/json')
+
+
+@app.route('/client/request/reject/<master_id>', methods=['PUT'])
+@auth.login_required
+def rejectComputeRequest(master_id):
+    """Client can use api to reject compute request
+
+    Args:
+        master_id (_type_): client_id of master
+
+    Raises:
+        Exception: raise exception on error
+    """
+    try:
+        ClientService.rejectComputeRequest(master_id=master_id, worker_id=g.user.client_id)
+        return Response(status=200, mimetype='application/json')
+    except Exception as e:
+        app.logger.error(e)
+        return Response(str(e), status=500, mimetype='application/json')
