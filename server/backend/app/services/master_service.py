@@ -31,28 +31,28 @@ class MasterService:
         return result
 
     @staticmethod
-    def createRequest(request_from: str, request_to: str):
+    def createRequest(master_id: str, worker_id: str):
         """Add or update new entry in request db
 
         Args:
-            request_from (str): client_id of client from which request is comming
-            request_to (str): client_if of client to which request will be shared
+            master_id (str): client_id of master from which request is comming
+            worker_id (str): client_if of worker to which request will be shared
 
         Raises:
             Exception: Database Error
         """
         try:
-            request = Request.query.filter_by(request_from=request_from, request_to=request_to).first()
+            request = Request.query.filter_by(worker_id=worker_id, master_id=master_id).first()
             
             # create new request
             if request == None:
-                request = Request(request_from=request_from, request_to=request_to,
+                request = Request(worker_id=worker_id, master_id=master_id,
                                 state=RequestState.CREATED, state_update_time=datetime.datetime.now())
                 db.session.add(request)
             # update previous request
             else:
-                x = Request.query.filter_by(request_from=request_from, 
-                                    request_to=request_to).update(dict(state_update_time = datetime.datetime.now(), 
+                x = Request.query.filter_by(worker_id=worker_id, 
+                                    master_id=master_id).update(dict(state_update_time = datetime.datetime.now(), 
                                                                         state = RequestState.CREATED))
     
             db.session.commit()
