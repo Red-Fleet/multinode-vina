@@ -3,7 +3,7 @@ from flask import request
 from app.services.user_service import UserService
 from flask import Response, json
 
-@app.route('/register', methods = ['POST'])
+@app.route('/user/register', methods = ['POST'])
 def register() -> Response:
     """Used to register new user
 

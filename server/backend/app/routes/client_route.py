@@ -3,7 +3,7 @@ from flask import request
 from app.services.client_service import ClientService
 from flask import Response, json, g
 
-@app.route('/master/clients', methods = ['GET'])
+@app.route('/client/all', methods = ['GET'])
 @auth.login_required
 def getAllClients() -> Response:
     """Get all registered clients

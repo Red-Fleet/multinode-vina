@@ -5,7 +5,7 @@ from flask import Response, json, g
 
 
 
-@app.route('/master/request/<worker_id>', methods = ['POST'])
+@app.route('/request/create/<worker_id>', methods = ['POST'])
 @auth.login_required
 def createRequest(worker_id: str):
         """Create new Request
@@ -24,7 +24,7 @@ def createRequest(worker_id: str):
             app.logger.error(e)
             return Response(str(e), status=500, mimetype='application/json')
 
-@app.route('/client/request/reject/<master_id>', methods=['PUT'])
+@app.route('/request/reject/<master_id>', methods=['PUT'])
 @auth.login_required
 def rejectComputeRequest(master_id):
     """Client can use api to reject compute request
