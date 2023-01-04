@@ -27,28 +27,26 @@ class ClientService:
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
-        
+    
 
     @staticmethod
-    def rejectComputeRequest(master_id, worker_id):
-        """Reject Compute request from master
-
-        Args:
-            master_id (_type_): client_id of master
-            worker_id (_type_): client_id of worker
+    def getAllClients() -> list[dict]:
+        """ return all clients id, state and name
 
         Raises:
-            Exception: raise exception on error
+            Exception: database error
+
+        Returns:
+            list[dict]: list of dictonary containing client_id, state, name
         """
         try:
-            Request.query.filter_by(
-                master_id=master_id, 
-                worker_id=worker_id).update(
-                    dict(state=ClientState.fromStr(
-                        state_update_time = datetime.datetime.now(),
-                        state = RequestState.REJECTED
-                    )))
-            db.session.commit()
+            result = Client.query.with_entities(
+                Client.client_id, Client.state).all()
+            result = [{'client_id': row[0],
+                       'state': row[1].name,
+                       'name': User.query.with_entities(User.name).filter_by(client_id=row[0]).first()[0]}
+                      for row in result]
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
+        return result
