@@ -34,7 +34,51 @@ class RequestService:
             app.logger.error(e)
             raise Exception("Database Error")
 
-    
+    @staticmethod
+    def getMasterRequests(master_id: str)-> list[dict]:
+        """Returns all request created by master
+
+        Args:
+            master_id (str): client_id of master
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[dict]: list of dict contaning worker_id(client_id) and state of request
+        """
+        try:
+            result = Request.query.filter_by(master_id=master_id).with_entities(Request.worker_id, Request.state).all()
+            result = [{'worker_id':row[0], 'state': row[1].name} for row in result]
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")
+        
+        return result
+
+    @staticmethod
+    def getWorkerRequests(worker_id: str)-> list[dict]:
+        """Returns all request recived by a worker
+
+        Args:
+            worker_id (str): client_id of worker
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[dict]: list of dict contaning master_id(client_id) and state of request
+        """
+        try:
+            result = Request.query.filter_by(worker_id=worker_id).with_entities(Request.master_id, Request.state).all()
+            result = [{'master_id':row[0], 'state': row[1].name} for row in result]
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")
+        
+        return result
+
+
     @staticmethod
     def rejectComputeRequest(master_id, worker_id):
         """Reject Compute request from master

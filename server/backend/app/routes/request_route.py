@@ -24,6 +24,41 @@ def createRequest(worker_id: str):
             app.logger.error(e)
             return Response(str(e), status=500, mimetype='application/json')
 
+
+@app.route('/request/master', methods = ['GET'])
+@auth.login_required
+def getMasterRequests():
+        """Returns all request created by master
+
+        Raises:
+            Exception: Database Error
+        """
+
+        try:
+            result = RequestService.getMasterRequests(master_id=g.user.client_id)
+            return Response(json.dumps(result), status=200, mimetype='application/json')
+        except Exception as e:
+            app.logger.error(e)
+            return Response(str(e), status=500, mimetype='application/json')
+
+
+@app.route('/request/worker', methods = ['GET'])
+@auth.login_required
+def getWorkerRequests():
+        """Returns all request received by a worker
+
+        Raises:
+            Exception: Database Error
+        """
+
+        try:
+            result = RequestService.getWorkerRequests(worker_id=g.user.client_id)
+            return Response(json.dumps(result), status=200, mimetype='application/json')
+        except Exception as e:
+            app.logger.error(e)
+            return Response(str(e), status=500, mimetype='application/json')
+
+
 @app.route('/request/reject/<master_id>', methods=['PUT'])
 @auth.login_required
 def rejectComputeRequest(master_id):
