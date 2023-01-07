@@ -76,3 +76,22 @@ def rejectComputeRequest(master_id):
     except Exception as e:
         app.logger.error(e)
         return Response(str(e), status=500, mimetype='application/json')
+
+
+@app.route('/request/accept/<master_id>', methods=['PUT'])
+@auth.login_required
+def acceptComputeRequest(master_id):
+    """Client can use api to accept compute request
+
+    Args:
+        master_id (_type_): client_id of master
+
+    Raises:
+        Exception: raise exception on error
+    """
+    try:
+        RequestService.acceptComputeRequest(master_id=master_id, worker_id=g.user.client_id)
+        return Response(status=200, mimetype='application/json')
+    except Exception as e:
+        app.logger.error(e)
+        return Response(str(e), status=500, mimetype='application/json')

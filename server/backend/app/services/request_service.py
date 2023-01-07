@@ -102,3 +102,29 @@ class RequestService:
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
+
+    
+    @staticmethod
+    def acceptComputeRequest(master_id, worker_id):
+        """Accept Compute request from master
+
+        Args:
+            master_id (_type_): client_id of master
+            worker_id (_type_): client_id of worker
+
+        Raises:
+            Exception: raise exception on error
+        """
+        try:
+            result = Request.query.filter_by(
+                master_id=master_id, 
+                worker_id=worker_id).update(
+                    dict(
+                        state_update_time = datetime.datetime.now(),
+                        state = RequestState.ACCEPTED
+                    ))
+            db.session.commit()
+            
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")
