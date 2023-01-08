@@ -2,7 +2,7 @@ import uuid
 import datetime
 from app import db, app
 from app.models.compute import Compute, ComputeState
-from app.services.notification_service import WorkerNotification, MasterNotification
+from app.services.notification_service import Notification
 
 class ComputeService:
     
@@ -24,7 +24,7 @@ class ComputeService:
         
         try: 
             db.session.add(task)
-            WorkerNotification(compute_id=compute_id, worker_id=worker_id)
+            Notification.createWorkerNotification(compute_id=compute_id, worker_id=worker_id)
             db.session.commit()
         except Exception as e:
             app.logger.error(e)
@@ -53,3 +53,46 @@ class ComputeService:
             raise Exception("Database Error")
 
         return task
+
+    def updateResult(compute_id: str, result: str):
+        """Update result of compute request and notify master
+
+        Args:
+            compute_id (str): _description_
+            result (str): _description_
+
+        Raises:
+            Exception: _description_
+        """
+        try:
+            Compute.query.filter_by(compute_id=compute_id).update({'result':result, 'state': ComputeState.FINISHED})
+            
+            # getting master_id for sending notification
+            master_id = Compute.query.with_entities(Compute.master_id).filter_by(compute_id=compute_id).first()[0]
+
+            Notification.createMasterNotification(compute_id=compute_id, master_id=master_id)
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")
+        
+
+    def updateError(compute_id: str, error: str):
+        """Update error of compute request and notify master
+
+        Args:
+            compute_id (str): _description_
+            error (str): _description_
+
+        Raises:
+            Exception: _description_
+        """
+        try:
+            Compute.query.filter_by(compute_id=compute_id).update({'error':error, 'state': ComputeState.ERROR})
+            
+            # getting master_id for sending notification
+            master_id = Compute.query.with_entities(Compute.master_id).filter_by(compute_id=compute_id).first()[0]
+
+            Notification.createMasterNotification(compute_id=compute_id, master_id=master_id)
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")

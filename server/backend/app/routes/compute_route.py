@@ -57,3 +57,44 @@ def getComputeTaskUsingComputeId(compute_id) -> Response:
 
     return Response(json.dumps(result), status=200, mimetype='application/json')
 
+
+@app.route('/compute/result', methods = ['PUT'])
+@auth.login_required
+def updateResult():
+    """Api for uploading result of compute task, raw json should have compute_id and result
+
+
+    """
+    content = request.get_json()
+    if 'compute_id' not in content: return Response('compute_id not present', status=500, mimetype='application/json')
+    if 'result' not in content: return Response('result not present', status=500, mimetype='application/json')
+
+    compute_id = content['compute_id']
+    result = content['result']
+    try:
+        ComputeService.updateResult(compute_id=compute_id, result=result)
+        return Response(status=200)
+    except Exception as e:
+        app.logger.error(e)
+        return Response(str(e), status=500, mimetype='application/json')
+
+
+@app.route('/compute/error', methods = ['PUT'])
+@auth.login_required
+def updateError():
+    """Api for uploading error of compute task, raw json should have compute_id and result
+
+
+    """
+    content = request.get_json()
+    if 'compute_id' not in content: return Response('compute_id not present', status=500, mimetype='application/json')
+    if 'error' not in content: return Response('error not present', status=500, mimetype='application/json')
+
+    compute_id = content['compute_id']
+    error = content['error']
+    try:
+        ComputeService.updateError(compute_id=compute_id, error=error)
+        return Response(status=200)
+    except Exception as e:
+        app.logger.error(e)
+        return Response(str(e), status=500, mimetype='application/json')

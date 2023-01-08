@@ -17,7 +17,7 @@ class Compute(db.Model):
     result = sqaly.Column(sqaly.TEXT())
     last_updated = sqaly.Column(sqaly.DateTime())
     state = sqaly.Column(sqaly.Enum(ComputeState))
-    error = sqaly.Column(sqaly.String(1000))
+    error = sqaly.Column(sqaly.TEXT())
 
 
     
