@@ -6,7 +6,7 @@ from app.services.notification_service import NotificationService
 
 class ComputeService:
     
-    def createComputeTask(master_id:str, worker_id:str, target, ligands)-> str:
+    def createComputeTask(master_id:str, worker_id:str, target, ligands, target_name, ligands_name)-> str:
         """Create new compute task, function will also create notification of worker, and return compute_id
 
         Args:
@@ -20,7 +20,8 @@ class ComputeService:
         """
         compute_id = str(uuid.uuid4())
         task = Compute(compute_id=compute_id, master_id=master_id, worker_id=worker_id, 
-            target=target, ligands=ligands, state=ComputeState.CREATED, last_updated=datetime.datetime.now())
+            target=target, ligands=ligands, target_name=target_name, ligands_name=ligands_name,
+            state=ComputeState.CREATED, last_updated=datetime.datetime.now())
         
         try: 
             db.session.add(task)

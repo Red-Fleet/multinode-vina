@@ -25,8 +25,14 @@ def createComputeTask() -> Response:
     if 'ligands' not in content: return Response("ligands file not present", status=500, mimetype='application/json')
     ligands = content['ligands']
     
+    if 'target_name' not in content: target_name = ""
+    else : target_name = content['target_name']
+
+    if 'ligands_name' not in content: ligands_name = ""
+    else : ligands_name = content['ligands_name']
+
     try:
-        compute_id = ComputeService.createComputeTask(master_id=master_id, worker_id=worker_id, ligands=ligands, target=target)
+        compute_id = ComputeService.createComputeTask(master_id=master_id, worker_id=worker_id, ligands=ligands, target=target, target_name=target_name ,ligands_name=ligands_name)
         return Response(json.dumps({'compute_id':compute_id}),status=200, mimetype='application/json')
     except Exception as e:
         app.logger.error(e)
@@ -54,6 +60,8 @@ def getComputeTaskUsingComputeId(compute_id) -> Response:
     result['result'] = task.result
     result['state'] = task.state.name
     result['error'] = task.error
+    result['target_name'] = task.target_name
+    result['ligands_name'] = task.ligands_name
 
     return Response(json.dumps(result), status=200, mimetype='application/json')
 

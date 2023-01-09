@@ -57,7 +57,7 @@ class NotificationService:
             app.logger.error(e)
             raise Exception("Database Error")
     
-    def getMasterNotifications(master_id: str)-> list(MasterNotification):
+    def getMasterNotifications(master_id: str)-> list[MasterNotification]:
         """return notification of master and delete them from server
 
         Args:
@@ -82,7 +82,7 @@ class NotificationService:
         
         return results
 
-    def getWorkerNotifications(worker_id: str)-> list(WorkerNotification):
+    def getWorkerNotifications(worker_id: str)-> list[WorkerNotification]:
         """return notification of master and delete them from server
 
         Args:
