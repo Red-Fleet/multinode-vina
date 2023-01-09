@@ -2,7 +2,7 @@ import uuid
 import datetime
 from app import db, app
 from app.models.compute import Compute, ComputeState
-from app.services.notification_service import Notification
+from app.services.notification_service import NotificationService
 
 class ComputeService:
     
@@ -24,7 +24,7 @@ class ComputeService:
         
         try: 
             db.session.add(task)
-            Notification.createWorkerNotification(compute_id=compute_id, worker_id=worker_id)
+            NotificationService.createWorkerNotification(compute_id=compute_id, worker_id=worker_id)
             db.session.commit()
         except Exception as e:
             app.logger.error(e)
@@ -70,7 +70,7 @@ class ComputeService:
             # getting master_id for sending notification
             master_id = Compute.query.with_entities(Compute.master_id).filter_by(compute_id=compute_id).first()[0]
 
-            Notification.createMasterNotification(compute_id=compute_id, master_id=master_id)
+            NotificationService.createMasterNotification(compute_id=compute_id, master_id=master_id)
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
@@ -92,7 +92,7 @@ class ComputeService:
             # getting master_id for sending notification
             master_id = Compute.query.with_entities(Compute.master_id).filter_by(compute_id=compute_id).first()[0]
 
-            Notification.createMasterNotification(compute_id=compute_id, master_id=master_id)
+            NotificationService.createMasterNotification(compute_id=compute_id, master_id=master_id)
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
