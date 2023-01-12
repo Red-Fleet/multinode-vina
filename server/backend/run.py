@@ -1,3 +1,4 @@
 from app import app
 
-print("Running app")
+if __name__ == '__main__':
+    app.run(debug=False)
