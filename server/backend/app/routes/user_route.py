@@ -26,6 +26,7 @@ def register() -> Response:
 
 
 @app.route('/user/login', methods=['GET'])
+@auth.login_required
 def userLogin() -> Response:
     """Api will return user details
 
