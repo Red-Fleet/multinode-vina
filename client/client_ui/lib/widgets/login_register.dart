@@ -1,8 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:ui/models/server_model.dart';
 import 'dart:math';
+
+import 'package:ui/services/client_http_service.dart';
 
 class LoginRegister extends StatefulWidget {
   const LoginRegister({super.key});
@@ -18,6 +21,8 @@ class _LoginRegisterState extends State<LoginRegister> {
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
   bool obscurePassword = true;
+  bool disableLoginButton = false;
+  bool disableRegisterButton = false;
 
   @override
   void dispose() {
@@ -30,7 +35,7 @@ class _LoginRegisterState extends State<LoginRegister> {
   }
 
   void resetControllers() {
-    serverAddress.text = "https://";
+    serverAddress.text = "http://";
     username.text = "";
     name.text = "";
     password.text = "";
@@ -40,8 +45,28 @@ class _LoginRegisterState extends State<LoginRegister> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    serverAddress.text = "https://";
+    resetControllers();
   }
+
+  /// set server address in client backend
+  Future<void> setServerAddress() async{
+    final provModel = Provider.of<ServerModel>(context, listen: false);
+    final addr = serverAddress.text;
+    try{
+      final response = await ClientHttpService.setServerAddress({'address': addr});
+      if(response.statusCode==200 || response.statusCode==201){
+      provModel.serverAddress = addr;
+      }
+      else{
+        debugPrint("_LoginRegisterState.setServerAddress: statusCode=${response.statusCode}\nerror:${response.body}");
+      }
+    }
+    catch(e){
+      debugPrint(e.toString());
+    }
+  }
+
+  void login() async{}
 
   Widget getLoginWidget() {
     return Container(
@@ -118,8 +143,12 @@ class _LoginRegisterState extends State<LoginRegister> {
                   ),
                   textStyle: const TextStyle(fontSize: 20)),
               child: const Text("Login"),
-              onPressed: () {
-                print(serverAddress.text);
+              onPressed: () async{
+                if(disableLoginButton == true) return;
+                disableLoginButton = true;
+                
+                await setServerAddress();
+                disableLoginButton = false;
               },
             ),
           ),
@@ -257,6 +286,8 @@ class _LoginRegisterState extends State<LoginRegister> {
 
   @override
   Widget build(BuildContext context) {
+    disableLoginButton = false;
+    disableRegisterButton = false;
     return SingleChildScrollView(
       child: Container(
         alignment: Alignment.center,
