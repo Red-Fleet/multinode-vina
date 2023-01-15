@@ -4,9 +4,11 @@ from flask_migrate import Migrate
 from config import Config
 from app.models.server import Server
 from app.models.user import User
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config.from_object(Config)
+CORS(app)
 server = Server()
 user = User()
 
