@@ -34,10 +34,19 @@ def getUserDetails():
 def login():
     """Api is used to login user into server, username and password should be in post request
 
+    Args: json input
+        address (str): server address
+        username (str): username
+        password (str): hash of password
+        
     Returns:
         _type_: returns user details
     """
     content = request.get_json()
+    
+    if 'address' not in content: return Response("'address' not present in request", status=500)
+    server.address = content['address']
+    server.address_initialized = True
 
     if 'username' not in content: return Response("'username' not present", status=500)
     username = content['username']
@@ -66,6 +75,7 @@ def register() -> Response:
     """Used to register new user to server
 
     Args: json input
+        address (str): server address
         username (str): username
         password (str): hash of password
         name (str): name
@@ -74,6 +84,11 @@ def register() -> Response:
         Response: return json contaning client_id and username
     """
     content = request.get_json()
+
+    if 'address' not in content: return Response("'address' not present in request", status=500)
+    server.address = content['address']
+    server.address_initialized = True
+
     if 'username' not in content: Response("'username' is missing", status=500)
     username = content['username']
     
