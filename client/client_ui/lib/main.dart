@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ui/models/server_model.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/widgets/homepage.dart';
+import 'package:ui/widgets/main_screen.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -23,10 +23,9 @@ class _MultiNodeVinaState extends State<MultiNodeVina> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ServerModel()),
         ChangeNotifierProvider(create: (context) => UserModel())
       ],
-      child: const HomePage(),
+      child: const MainScreen(),
     );
   }
 }

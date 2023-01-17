@@ -1,10 +1,12 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:ui/models/server_model.dart';
+import 'package:ui/models/user_model.dart';
 import 'dart:math';
-
+import 'dart:convert';
 import 'package:ui/services/client_http_service.dart';
 
 class LoginRegister extends StatefulWidget {
@@ -46,27 +48,92 @@ class _LoginRegisterState extends State<LoginRegister> {
     // TODO: implement initState
     super.initState();
     resetControllers();
+    disableLoginButton = false;
+    disableRegisterButton = false;
   }
 
   /// set server address in client backend
-  Future<void> setServerAddress() async{
-    final provModel = Provider.of<ServerModel>(context, listen: false);
-    final addr = serverAddress.text;
-    try{
-      final response = await ClientHttpService.setServerAddress({'address': addr});
-      if(response.statusCode==200 || response.statusCode==201){
-      provModel.serverAddress = addr;
+  Future<void> loginUser() async {
+    final userModel = Provider.of<UserModel>(context, listen: false);
+    final messenger = ScaffoldMessenger.of(context);
+    final address = serverAddress.text;
+    final username = this.username.text;
+    final password = this.password.text;
+    //await Future.delayed(const Duration(seconds: 5));
+    try {
+      final body = json.encode(
+          {'address': address, 'username': username, 'password': password});
+
+      final response = await ClientHttpService.login(body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final userDetails = jsonDecode(response.body);
+        userModel.serverAddress = address;
+        userModel.username = username;
+        userModel.password = password;
+        userModel.clientId = userDetails['client_id'];
+        userModel.name = userDetails['name'];
+        userModel.isAuthenticated = true;
+      } else {
+        debugPrint(
+            "_LoginRegisterState.login(): statusCode=${response.statusCode}\nerror:${response.body}");
       }
-      else{
-        debugPrint("_LoginRegisterState.setServerAddress: statusCode=${response.statusCode}\nerror:${response.body}");
+
+      if (response.statusCode == 500) {
+        messenger.showSnackBar(const SnackBar(
+            content: Text('Server Address Error'),
+            duration: Duration(seconds: 3)));
       }
-    }
-    catch(e){
+      if (response.statusCode == 401) {
+        messenger.showSnackBar(const SnackBar(
+            content: Text('Incorrect Username or Password'),
+            duration: Duration(seconds: 3)));
+      }
+    } catch (e) {
+      messenger.showSnackBar(const SnackBar(
+            content: Text('Connection Error'),
+            duration: Duration(seconds: 3)));
       debugPrint(e.toString());
     }
   }
 
-  void login() async{}
+  Future<void> registerUser() async {
+    final userModel = Provider.of<UserModel>(context, listen: false);
+    final messenger = ScaffoldMessenger.of(context);
+    final address = serverAddress.text;
+    final username = this.username.text;
+    final password = this.password.text;
+    final name = this.name.text;
+    //await Future.delayed(const Duration(seconds: 5));
+    try {
+      final body = json.encode(
+          {'address': address, 'username': username, 'password': password, 'name': name});
+
+      final response = await ClientHttpService.register(body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final userDetails = jsonDecode(response.body);
+        userModel.serverAddress = address;
+        userModel.username = username;
+        userModel.password = password;
+        userModel.clientId = userDetails['client_id'];
+        userModel.name = name;
+        userModel.isAuthenticated = true;
+      } else {
+        debugPrint(
+            "_LoginRegisterState.login(): statusCode=${response.statusCode}\nerror:${response.body}");
+      }
+
+      if (response.statusCode == 500) {
+        messenger.showSnackBar(const SnackBar(
+            content: Text('Server Address Error'),
+            duration: Duration(seconds: 3)));
+      }
+    } catch (e) {
+      messenger.showSnackBar(const SnackBar(
+            content: Text('Connection Error'),
+            duration: Duration(seconds: 3)));
+      debugPrint(e.toString());
+    }
+  }
 
   Widget getLoginWidget() {
     return Container(
@@ -142,13 +209,35 @@ class _LoginRegisterState extends State<LoginRegister> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   textStyle: const TextStyle(fontSize: 20)),
-              child: const Text("Login"),
-              onPressed: () async{
-                if(disableLoginButton == true) return;
-                disableLoginButton = true;
-                
-                await setServerAddress();
-                disableLoginButton = false;
+              child: disableLoginButton == true
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text("Login"),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        SizedBox(
+                            height: 15,
+                            width: 15,
+                            child: CircularProgressIndicator())
+                      ],
+                    )
+                  : const Text("Login"),
+              onPressed: () async {
+                if (disableLoginButton == true) return;
+                setState(() {
+                  disableLoginButton = true;
+                });
+
+                await loginUser();
+
+                setState(() {
+                  disableLoginButton = false;
+                });
               },
             ),
           ),
@@ -257,9 +346,35 @@ class _LoginRegisterState extends State<LoginRegister> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   textStyle: const TextStyle(fontSize: 20)),
-              child: const Text("Register"),
-              onPressed: () {
-                print(serverAddress.text);
+              child: disableRegisterButton == true
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text("Register"),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        SizedBox(
+                            height: 15,
+                            width: 15,
+                            child: CircularProgressIndicator())
+                      ],
+                    )
+                  : const Text("Register"),
+              onPressed: () async{
+                if (disableRegisterButton == true) return;
+                setState(() {
+                  disableRegisterButton = true;
+                });
+
+                await registerUser();
+
+                setState(() {
+                  disableRegisterButton = false;
+                });
               },
             ),
           ),
@@ -286,8 +401,6 @@ class _LoginRegisterState extends State<LoginRegister> {
 
   @override
   Widget build(BuildContext context) {
-    disableLoginButton = false;
-    disableRegisterButton = false;
     return SingleChildScrollView(
       child: Container(
         alignment: Alignment.center,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ui/models/user_model.dart';
 import 'package:ui/widgets/login_register.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,12 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Multinode Vina"),
-        backgroundColor: Colors.black,
-      ),
-      body: LoginRegister(),
-    );
+    return Text("logined");
   }
 }
