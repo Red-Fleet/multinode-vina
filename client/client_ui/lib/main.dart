@@ -8,6 +8,7 @@ void main() {
   runApp(const MaterialApp(
     title: "Multinode Vina",
     home: MultiNodeVina(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -19,6 +20,7 @@ class MultiNodeVina extends StatefulWidget {
 }
 
 class _MultiNodeVinaState extends State<MultiNodeVina> {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

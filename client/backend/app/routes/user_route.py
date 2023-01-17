@@ -21,8 +21,12 @@ def getUserDetails():
     """Return user details
 
     Returns:
-        _type_: _description_
+        json: if user is authenticated (username, name, password, client_id) else response code 401
     """
+
+    if user.isAuthenticated == False:
+        return Response("Unauthorized Access", status=401)
+
     result = {}
     result['username'] = user.username
     result['name'] = user.name
@@ -38,7 +42,7 @@ def login():
         address (str): server address
         username (str): username
         password (str): hash of password
-        
+
     Returns:
         _type_: returns user details
     """

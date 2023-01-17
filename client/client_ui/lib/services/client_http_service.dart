@@ -7,6 +7,7 @@ class ClientHttpService{
   // api for storing server address in client
   static const String loginApi = "user/login";
   static const String registerApi = "user/register";
+  static const String userDetailsApi = "user/details";
   static const Map<String, String> headers = {
     "Content-Type": "application/json",
     // "Access-Control-Allow-Origin": "*",
@@ -20,6 +21,10 @@ class ClientHttpService{
 
   static Future<http.Response> register(var body){
     return http.post(Uri.parse('$clientAddress/$registerApi'), body: body, headers: headers);
+  }
+
+  static Future<http.Response> getUserDetails(){
+    return http.get(Uri.parse('$clientAddress/$userDetailsApi'), headers: headers);
   }
 
   // static Future<http.Response> login(String server){
