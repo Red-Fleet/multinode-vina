@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
-import 'package:ui/widgets/homepage.dart';
 import 'package:ui/widgets/main_screen.dart';
 
 void main() {

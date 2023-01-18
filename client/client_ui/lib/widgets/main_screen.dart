@@ -4,10 +4,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/services/client_http_service.dart';
-import 'package:ui/widgets/homepage.dart';
 import 'package:ui/widgets/login_register.dart';
+import 'package:ui/widgets/master_page.dart';
 import 'package:ui/widgets/user_avatar.dart';
 import 'dart:convert';
+
+import 'package:ui/widgets/worker_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -87,9 +89,10 @@ class _MainScreenState extends State<MainScreen> {
                               selected: masterSeleted,
                               selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
                               title: const Center(child: Text("Master", style:TextStyle(color: Colors.white))), onTap: (){
-                                setState(() {
-                                  masterSeleted = true;
-                                });
+                                  setState(() {
+                                    masterSeleted = true;
+                                  });
+                                  Navigator.pop(context);
                             },),
                             const SizedBox(height: 10,),
                              ListTile(
@@ -97,9 +100,10 @@ class _MainScreenState extends State<MainScreen> {
                               selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
                               hoverColor: const Color.fromARGB(43, 255, 255, 255),
                               title: const Center(child: Text("Worker", style:TextStyle(color: Colors.white))), onTap: (){
-                                setState(() {
-                                  masterSeleted = false;
-                                });
+                                  setState(() {
+                                    masterSeleted = false;
+                                  });
+                                  Navigator.pop(context);
                              },),
                           ],
                       ),
@@ -107,7 +111,7 @@ class _MainScreenState extends State<MainScreen> {
                   : null,
           body: Provider.of<UserModel>(context, listen: true).isAuthenticated ==
                   true
-              ? const HomePage()
+              ? (masterSeleted?const MasterPage(): const WorkerPage())
               : const LoginRegister(),
         ));
   }
