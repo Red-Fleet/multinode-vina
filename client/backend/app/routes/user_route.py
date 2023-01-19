@@ -1,7 +1,7 @@
 from app import app, user, server
 from flask import Response, json
 from flask import request
-from app.services.server_service import ServerService
+from app.http_services.server_http_service import ServerHttpService
 
 @app.route('/user/isauth', methods=['GET'])
 def isUserAuthenticated():
@@ -58,7 +58,7 @@ def login():
     if 'password' not in content: return Response("'password' not present", status=500)
     password = content['password']
     try:
-        result = ServerService.loginToServer(username=username, password=password)
+        result = ServerHttpService.loginToServer(username=username, password=password)
     except Exception as e:
         if str(e) == "Unauthorized Access": return Response(str(e), status=401)
         return Response(str(e), status=500)
@@ -103,7 +103,7 @@ def register() -> Response:
     name = content['name']
 
     try:
-        client_id = ServerService.registerToServer(username=username, password=password, name=name)
+        client_id = ServerHttpService.registerToServer(username=username, password=password, name=name)
         user.username = username
         user.client_id = client_id
         user.isAuthenticated = True

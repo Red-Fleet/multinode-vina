@@ -1,7 +1,12 @@
-from app import server
+from app import server, app
 import requests
 
-class ServerService:
+class ServerHttpService:
+    @staticmethod
+    def isHttpError(status_code: int)->bool:
+        if status_code<200 or status_code>299:
+            return True
+        return False
 
     @staticmethod
     def loginToServer(username:str, password: str):
@@ -14,10 +19,13 @@ class ServerService:
         Returns:
             dict: username, name, client_id
         """
-        response = requests.get(server.address+"/user/login", auth=(username, password))
-        
-        if response.status_code <200 or response.status_code>299:
-            raise Exception(response.text)
+        try:
+            response = requests.get(server.address+"/user/login", auth=(username, password))
+            if ServerHttpService.isHttpError(response.status_code):
+                raise Exception(str(response.status_code)+", "+str(response.text))
+        except Exception as e:
+            app.logger.error(e)
+            raise e
 
         return response.json()
 
@@ -40,10 +48,16 @@ class ServerService:
         data['username'] = username
         data['password_hash'] = password
         data['name'] = name
-        response = requests.post(server.address+"/user/register", json=data)
-        
-        if response.status_code==500:
-            raise Exception(str(response.text))
+
+        try:
+            response = requests.post(server.address+"/user/register", json=data)
+            if ServerHttpService.isHttpError(response.status_code):
+                raise Exception(str(response.status_code)+", "+str(response.text))
+        except Exception as e:
+            app.logger.error("")
+
         
         return response.json()['client_id']
+
+    #def createRequest():
 

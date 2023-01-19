@@ -12,7 +12,7 @@ class MasterPage extends StatefulWidget {
 
 class MasterPageState extends State<MasterPage> {
   var selectedTab = 0; // index of selected tab
-  final tabs = ["Clients", "Worker"];
+  final tabs = ["All Clients", "Worker"];
 
   void changeSelectedTab(int index){
     setState(() {
