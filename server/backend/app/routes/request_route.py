@@ -5,18 +5,21 @@ from flask import Response, json, g
 
 
 
-@app.route('/request/create/<worker_id>', methods = ['POST'])
+@app.route('/request/create', methods = ['POST'])
 @auth.login_required
 def createRequest(worker_id: str):
         """Create new Request
 
-        Args:
-            master_id (str): client_id of worker to which request will be shared
+        Args(json):
+            worker_id (str): client_id of worker to which request will be shared
 
         Raises:
             Exception: Database Error
         """
+        content = request.get_json()
 
+        if 'worker_id' not in content: return Response('worker_id not present', status=500)
+        worker_id = content['worker_id']
         try:
             RequestService.newRequest(master_id=g.user.client_id, worker_id=worker_id)
             return Response(status=200, mimetype='application/json')
@@ -59,17 +62,22 @@ def getWorkerRequests():
             return Response(str(e), status=500, mimetype='application/json')
 
 
-@app.route('/request/reject/<master_id>', methods=['PUT'])
+@app.route('/request/reject', methods=['PUT'])
 @auth.login_required
-def rejectComputeRequest(master_id):
+def rejectComputeRequest():
     """Client can use api to reject compute request
 
-    Args:
-        master_id (_type_): client_id of master
+    Args(json):
+        master_id (str): client_id of master
 
     Raises:
         Exception: raise exception on error
     """
+    content = request.get_json()
+
+    if 'master_id' not in content: return Response('master_id not present', status=500)
+    master_id = content['master_id']
+
     try:
         RequestService.rejectComputeRequest(master_id=master_id, worker_id=g.user.client_id)
         return Response(status=200, mimetype='application/json')
@@ -78,17 +86,22 @@ def rejectComputeRequest(master_id):
         return Response(str(e), status=500, mimetype='application/json')
 
 
-@app.route('/request/accept/<master_id>', methods=['PUT'])
+@app.route('/request/accept', methods=['PUT'])
 @auth.login_required
-def acceptComputeRequest(master_id):
+def acceptComputeRequest():
     """Client can use api to accept compute request
 
-    Args:
-        master_id (_type_): client_id of master
+    Args(json):
+        master_id (str): client_id of master
 
     Raises:
         Exception: raise exception on error
     """
+    content = request.get_json()
+
+    if 'master_id' not in content: return Response('master_id not present', status=500)
+    master_id = content['master_id']
+
     try:
         RequestService.acceptComputeRequest(master_id=master_id, worker_id=g.user.client_id)
         return Response(status=200, mimetype='application/json')
