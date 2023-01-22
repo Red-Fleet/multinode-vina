@@ -14,5 +14,5 @@ class AutomatedMasterRequestService:
     @staticmethod
     def printThread():
         with app.app_context():
-            MasterRequestService.createRequest(client_id="id1", worker_id="wd1")
-        
+            #MasterRequestService.createRequest(client_id="id1", worker_id="wd1")
+            pass

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
-import 'package:ui/widgets/main_screen.dart';
+import 'package:ui/screens/main_screen.dart';
 
 void main() {
   runApp(const MaterialApp(

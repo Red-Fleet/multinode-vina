@@ -4,12 +4,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/services/client_http_service.dart';
-import 'package:ui/widgets/login_register.dart';
-import 'package:ui/widgets/master_page.dart';
+import 'package:ui/screens/login_register.dart';
+import 'package:ui/screens/master_page.dart';
 import 'package:ui/widgets/user_avatar.dart';
 import 'dart:convert';
 
-import 'package:ui/widgets/worker_page.dart';
+import 'package:ui/screens/worker_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

@@ -3,16 +3,16 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ui/widgets/custon_chips.dart';
 
-class MasterPage extends StatefulWidget {
-  const MasterPage({super.key});
+class WorkerPage extends StatefulWidget {
+  const WorkerPage({super.key});
 
   @override
-  State<MasterPage> createState() => MasterPageState();
+  State<WorkerPage> createState() => _WorkerPageState();
 }
 
-class MasterPageState extends State<MasterPage> {
+class _WorkerPageState extends State<WorkerPage> {
   var selectedTab = 0; // index of selected tab
-  final tabs = ["All Clients", "Worker"];
+  final tabs = ["sdfsdf"];
 
   void changeSelectedTab(int index){
     setState(() {
@@ -34,7 +34,7 @@ class MasterPageState extends State<MasterPage> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
-            padding:const EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 30),
+            padding:const EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 10),
             child: Row(
               children:toolBar,
             ),

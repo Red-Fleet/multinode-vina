@@ -8,6 +8,8 @@ class ClientHttpService{
   static const String loginApi = "user/login";
   static const String registerApi = "user/register";
   static const String userDetailsApi = "user/details";
+  static const String getAllClientsApi = "client/all";
+
   static const Map<String, String> headers = {
     "Content-Type": "application/json",
     // "Access-Control-Allow-Origin": "*",
@@ -27,6 +29,9 @@ class ClientHttpService{
     return http.get(Uri.parse('$clientAddress/$userDetailsApi'), headers: headers);
   }
 
+  static Future<http.Response> getAllClients(){
+    return http.get(Uri.parse('$clientAddress/$getAllClientsApi'), headers: headers);
+  }
   // static Future<http.Response> login(String server){
   //   return null;
   // }

@@ -58,7 +58,7 @@ def login():
     if 'password' not in content: return Response("'password' not present", status=500)
     password = content['password']
     try:
-        result = ServerHttpService.loginToServer(username=username, password=password)
+        result = ServerHttpService.loginToServer(server_addr=server.address, username=username, password=password)
     except Exception as e:
         if str(e) == "Unauthorized Access": return Response(str(e), status=401)
         return Response(str(e), status=500)
@@ -103,7 +103,7 @@ def register() -> Response:
     name = content['name']
 
     try:
-        client_id = ServerHttpService.registerToServer(username=username, password=password, name=name)
+        client_id = ServerHttpService.registerToServer(server_addr=server.address, username=username, password=password, name=name)
         user.username = username
         user.client_id = client_id
         user.isAuthenticated = True
@@ -113,3 +113,17 @@ def register() -> Response:
         return Response(str(e), status= 500)
     
     return Response(json.dumps({"client_id":client_id, "username":username, "name":name}), status=201, mimetype='application/json')
+
+@app.route('/client/all', methods = ['GET'])
+def getAllClients():
+    """return all clients details
+
+    Returns:
+        _type_: json contaning client_id, status, name
+    """
+    try:
+        result = ServerHttpService.getAllClients()
+    except Exception as e:
+        return Response(str(e), status = 500)
+    
+    return Response(json.dumps(result), status=200, mimetype='application/json')

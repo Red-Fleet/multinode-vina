@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:ui/screens/all_clients_screen.dart';
 import 'package:ui/widgets/custon_chips.dart';
 
-class WorkerPage extends StatefulWidget {
-  const WorkerPage({super.key});
+class MasterPage extends StatefulWidget {
+  const MasterPage({super.key});
 
   @override
-  State<WorkerPage> createState() => _WorkerPageState();
+  State<MasterPage> createState() => MasterPageState();
 }
 
-class _WorkerPageState extends State<WorkerPage> {
+class MasterPageState extends State<MasterPage> {
   var selectedTab = 0; // index of selected tab
-  final tabs = ["sdfsdf"];
+  final tabs = ["All Clients", "Worker"];
 
   void changeSelectedTab(int index){
     setState(() {
       selectedTab = index;
     });
+  }
+
+  Widget getTabBody(){
+    if(selectedTab==0){
+      return const AllClientScreen();
+    }
+
+    return Container();
   }
 
   @override
@@ -31,15 +40,20 @@ class _WorkerPageState extends State<WorkerPage> {
     }
     return Column(
       children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding:const EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 30),
-            child: Row(
-              children:toolBar,
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding:const EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 15),
+              child: Row(
+                children:toolBar,
+              ),
             ),
           ),
-        )
+        ),
+
+        getTabBody()
       ],
     );
   }

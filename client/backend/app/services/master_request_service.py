@@ -1,7 +1,7 @@
 from app.models.master_request import MasterRequest, MasterRequestState, MasterRequestDto
 import datetime
 from app import db, app
-
+from app.http_services.server_http_request_service import ServerHttpRequestService
 class MasterRequestService:
 
     @staticmethod
@@ -17,6 +17,7 @@ class MasterRequestService:
         """
         try:
             request = MasterRequest(client_id=client_id, worker_id=worker_id, create_time=datetime.datetime.now(), request_state=MasterRequestState.CREATED)
+            ServerHttpRequestService.createRequest(master_id=client_id, worker_id=worker_id)
             db.session.add(request)
             db.session.commit()
         except Exception as e:

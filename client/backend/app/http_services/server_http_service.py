@@ -1,15 +1,10 @@
-from app import server, app
+from app import app, server, user
 import requests
-
+from app.http_services.http_error import HttpError
 class ServerHttpService:
-    @staticmethod
-    def isHttpError(status_code: int)->bool:
-        if status_code<200 or status_code>299:
-            return True
-        return False
 
     @staticmethod
-    def loginToServer(username:str, password: str):
+    def loginToServer(server_addr: str, username:str, password: str):
         """Methods connects client to server and gets user details 
 
         Args:
@@ -20,8 +15,8 @@ class ServerHttpService:
             dict: username, name, client_id
         """
         try:
-            response = requests.get(server.address+"/user/login", auth=(username, password))
-            if ServerHttpService.isHttpError(response.status_code):
+            response = requests.get(server_addr+"/user/login", auth=(username, password))
+            if HttpError.isHttpError(response.status_code):
                 raise Exception(str(response.status_code)+", "+str(response.text))
         except Exception as e:
             app.logger.error(e)
@@ -30,7 +25,7 @@ class ServerHttpService:
         return response.json()
 
     @staticmethod
-    def registerToServer(username:str, password:str, name: str)-> str:
+    def registerToServer(server_addr: str, username:str, password:str, name: str)-> str:
         """Method will return client_id
 
         Args:
@@ -50,14 +45,31 @@ class ServerHttpService:
         data['name'] = name
 
         try:
-            response = requests.post(server.address+"/user/register", json=data)
-            if ServerHttpService.isHttpError(response.status_code):
+            response = requests.post(server_addr+"/user/register", json=data)
+            if HttpError.isHttpError(response.status_code):
                 raise Exception(str(response.status_code)+", "+str(response.text))
         except Exception as e:
-            app.logger.error("")
-
+            app.logger.error(e)
+            raise e
         
         return response.json()['client_id']
 
-    #def createRequest():
 
+    def getAllClients()-> dict:
+        """return all clients details
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            dict: client_id, status, name
+        """
+        try:
+            response = requests.get(server.address+"/client/all", auth=(user.username, user.password))
+            if HttpError.isHttpError(response.status_code):
+                raise Exception(str(response.status_code)+", "+str(response.text))
+        except Exception as e:
+            app.logger.error(e)
+            raise e
+
+        return response.json()
