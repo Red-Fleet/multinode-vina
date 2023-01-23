@@ -2,10 +2,16 @@ from app import app, server, user
 import requests
 from app.http_services.http_error import HttpError
 
-class ServerHttpRequestService:
+class ServerHttpConnectionRequestService:
+    """This class is used by client for connecting with server
+
+    Raises:
+        Exception: _description_
+        e: _description_
+    """
     @staticmethod
-    def createRequest(master_id:str, worker_id: str):
-        """This method creates new request on server
+    def createConnectionRequest(master_id:str, worker_id: str):
+        """This method creates new connection request on server
 
         Args:
             master_id (str): _description_

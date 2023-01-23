@@ -1,13 +1,13 @@
 import threading
 import time
-from app.services.master_request_service import MasterRequestService
+from app.services.master_connection_request_service import MasterRequestService
 from app import app
 
-class AutomatedMasterRequestService:
+class AutomatedMasterConnectionRequestService:
     @staticmethod
     def start():
         print("AutomatedMasterRequestService: started")
-        x = threading.Thread(target=AutomatedMasterRequestService.printThread)
+        x = threading.Thread(target=AutomatedMasterConnectionRequestService.printThread)
         x.start()
 
 
