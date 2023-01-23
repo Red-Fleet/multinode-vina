@@ -19,6 +19,7 @@ class ClientDetailsTile extends StatelessWidget {
             Row(children: [const Text("Status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(status)],)
           ],
         ),
+        trailing: SelectionContainer.disabled(child: ElevatedButton(child: Text("Connect"), onPressed: (){})),
       ),
     );
   }

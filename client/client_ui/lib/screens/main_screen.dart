@@ -52,67 +52,69 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Multinode Vina"),
-          backgroundColor: Colors.black,
-          leading: Provider.of<UserModel>(context, listen: true).isAuthenticated ==
-                      true?IconButton(
-            onPressed: () {
-              if (_drawerscaffoldkey.currentState!.isDrawerOpen) {
-                //if drawer is open, then close the drawer
-                Navigator.pop(context);
-              } else {
-                _drawerscaffoldkey.currentState!.openDrawer();
-                //if drawer is closed then open the drawer.
-              }
-            },
-            icon: const Icon(Icons.menu),
-          ):null,
-          actions:
-              Provider.of<UserModel>(context, listen: true).isAuthenticated ==
-                      true
-                  ? [const UserAvatar()]
-                  : [],
-        ),
-        body: Scaffold(
-          key: _drawerscaffoldkey,
-          drawer:
-              Provider.of<UserModel>(context, listen: true).isAuthenticated ==
-                      true
-                  ? Drawer(
-                    backgroundColor: Colors.black,
-                      child: ListView(
-                        children: [
-                            const SizedBox(height: 40,),
-                            ListTile(hoverColor: const Color.fromARGB(43, 255, 255, 255),
-                              selected: masterSeleted,
-                              selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
-                              title: const Center(child: Text("Master", style:TextStyle(color: Colors.white))), onTap: (){
-                                  setState(() {
-                                    masterSeleted = true;
-                                  });
-                                  Navigator.pop(context);
-                            },),
-                            const SizedBox(height: 10,),
-                             ListTile(
-                              selected: !masterSeleted,
-                              selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
-                              hoverColor: const Color.fromARGB(43, 255, 255, 255),
-                              title: const Center(child: Text("Worker", style:TextStyle(color: Colors.white))), onTap: (){
-                                  setState(() {
-                                    masterSeleted = false;
-                                  });
-                                  Navigator.pop(context);
-                             },),
-                          ],
-                      ),
-                  )
-                  : null,
-          body: Provider.of<UserModel>(context, listen: true).isAuthenticated ==
-                  true
-              ? (masterSeleted?const MasterPage(): const WorkerPage())
-              : const LoginRegister(),
-        ));
+    return SelectionArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Multinode Vina"),
+            backgroundColor: Colors.black,
+            leading: Provider.of<UserModel>(context, listen: true).isAuthenticated ==
+                        true?IconButton(
+              onPressed: () {
+                if (_drawerscaffoldkey.currentState!.isDrawerOpen) {
+                  //if drawer is open, then close the drawer
+                  Navigator.pop(context);
+                } else {
+                  _drawerscaffoldkey.currentState!.openDrawer();
+                  //if drawer is closed then open the drawer.
+                }
+              },
+              icon: const Icon(Icons.menu),
+            ):null,
+            actions:
+                Provider.of<UserModel>(context, listen: true).isAuthenticated ==
+                        true
+                    ? [const UserAvatar()]
+                    : [],
+          ),
+          body: Scaffold(
+            key: _drawerscaffoldkey,
+            drawer:
+                Provider.of<UserModel>(context, listen: true).isAuthenticated ==
+                        true
+                    ? Drawer(
+                      backgroundColor: Colors.black,
+                        child: ListView(
+                          children: [
+                              const SizedBox(height: 40,),
+                              ListTile(hoverColor: const Color.fromARGB(43, 255, 255, 255),
+                                selected: masterSeleted,
+                                selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
+                                title: const Center(child: Text("Master", style:TextStyle(color: Colors.white))), onTap: (){
+                                    setState(() {
+                                      masterSeleted = true;
+                                    });
+                                    Navigator.pop(context);
+                              },),
+                              const SizedBox(height: 10,),
+                               ListTile(
+                                selected: !masterSeleted,
+                                selectedTileColor: const Color.fromARGB(138, 255, 255, 255),
+                                hoverColor: const Color.fromARGB(43, 255, 255, 255),
+                                title: const Center(child: Text("Worker", style:TextStyle(color: Colors.white))), onTap: (){
+                                    setState(() {
+                                      masterSeleted = false;
+                                    });
+                                    Navigator.pop(context);
+                               },),
+                            ],
+                        ),
+                    )
+                    : null,
+            body: Provider.of<UserModel>(context, listen: true).isAuthenticated ==
+                    true
+                ? (masterSeleted?const MasterPage(): const WorkerPage())
+                : const LoginRegister(),
+          )),
+    );
   }
 }
