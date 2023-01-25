@@ -1,6 +1,6 @@
 import threading
 import time
-from app.services.master_connection_request_service import MasterRequestService
+from app.services.master_connection_request_service import MasterConnectionRequestService
 from app import app
 
 class AutomatedMasterConnectionRequestService:

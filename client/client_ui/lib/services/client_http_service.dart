@@ -29,10 +29,4 @@ class ClientHttpService{
     return http.get(Uri.parse('$clientAddress/$userDetailsApi'), headers: headers);
   }
 
-  static Future<http.Response> getAllClients(){
-    return http.get(Uri.parse('$clientAddress/$getAllClientsApi'), headers: headers);
-  }
-  // static Future<http.Response> login(String server){
-  //   return null;
-  // }
 }

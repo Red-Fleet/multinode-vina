@@ -4,8 +4,8 @@ import time
 
 def runAutomatedServices():
     with app.app_context():
-        from app.automates_services.automated_master_request_service import AutomatedMasterRequestService
-        AutomatedMasterRequestService.start()
+        from app.automates_services.automated_master_request_service import AutomatedMasterConnectionRequestService
+        AutomatedMasterConnectionRequestService.start()
 
 if __name__ == '__main__':
     x = threading.Thread(target=runAutomatedServices)

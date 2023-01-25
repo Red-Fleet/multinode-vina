@@ -1,15 +1,14 @@
-from app.models.master_connection_request import MasterConnectionRequest, MasterConnectionRequestState, MasterConnectionRequestDto
 import datetime
-from app import db, app
+from app import db, app, user
 from app.http_services.server_http_connection_request_service import ServerHttpConnectionRequestService
 
 
 class MasterConnectionRequestService:
-    """Class is used to create new 'connection request', will update client and server database
+    """Class is used to create new 'connection request', will update server database
 
     """
     @staticmethod
-    def createConnectionRequest(client_id:str, worker_id:str):
+    def createConnectionRequest(worker_id:str):
         """Create new connection request
 
         Args:
@@ -20,48 +19,31 @@ class MasterConnectionRequestService:
             e: _description_
         """
         try:
-            request = MasterConnectionRequest(client_id=client_id, worker_id=worker_id, create_time=datetime.datetime.now(), request_state=MasterConnectionRequestState.CREATED)
-            ServerHttpConnectionRequestService.createConnectionRequest(master_id=client_id, worker_id=worker_id)
-            db.session.add(request)
-            db.session.commit()
+            ServerHttpConnectionRequestService.createConnectionRequest(master_id=user.client_id, worker_id=worker_id)
         except Exception as e:
             app.logger.error(e)
             raise e
-    
-    def getAllConnectionRequestUsingClient(client_id:str)->list[MasterConnectionRequestDto]:
-        """get all requests created by client
+
+    @staticmethod
+    def getAllConnectionRequest()->list:
+        """get all connection requests created by client from server
 
         Args:
-            client_id (str): _description_
+            client_id (str): master_id(client who created connecton request)
 
         Raises:
             e: _description_
 
         Returns:
-            list[MasterRequestDto]: _description_
+            list: list contaning dict of worker_id and status
         """
         try:
-            result = MasterConnectionRequest.query.filter_by(client_id=client_id).all()
-            dtos = [MasterConnectionRequestDto.getDtoFromModel(e) for e in result]
+            result = ServerHttpConnectionRequestService.getAllConnectionRequests(master_id=user.client_id)
         except Exception as e:
             app.logger.error(e)
             raise e
 
-        return dtos
+        return result
     
-    def deleteRequestUsingId(id:int):
-        """delete entry using id
-
-        Args:
-            id (int): _description_
-
-        Raises:
-            e: _description_
-        """
-        try:
-            MasterConnectionRequest.query.filter_by(id=id).delete()
-        except Exception as e:
-            app.logger.error(e)
-            raise e
 
     

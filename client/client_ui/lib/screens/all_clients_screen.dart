@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/services/client_http_service.dart';
+import 'package:ui/services/master_http_service.dart';
 import 'package:ui/widgets/client_details_tile.dart';
 import 'dart:convert';
 
@@ -57,9 +58,8 @@ class _AllClientScreenState extends State<AllClientScreen> {
   /// Get client details from backend
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
-    await Future.delayed(const Duration(seconds: 1));
     try {
-      final response = await ClientHttpService.getAllClients();
+      final response = await MasterHttpService.getAllClients();
       if (response.statusCode == 200) {
         List<dynamic> result = jsonDecode(response.body);
         for (var e in result) {
@@ -131,6 +131,41 @@ class _AllClientScreenState extends State<AllClientScreen> {
     searchFlag = false;
 
     return true;
+  }
+
+  /// This method is used to create new connection request
+  void createConnectionRequest(String workerId) async{
+    final messenger = ScaffoldMessenger.of(context);
+    try{
+      var body = json.encode({
+        "worker_id": workerId
+      });
+      final response = await MasterHttpService.createConnectionRequest(body);
+      
+      if(response.statusCode != 201){
+        debugPrint(
+            "_AllClientScreenState.createConnectionRequest(): statusCode=${response.statusCode}\nerror:${response.body}");
+        
+        messenger.showSnackBar(const SnackBar(
+            content: Text('Backend Error'),
+            duration: Duration(seconds: 3)));
+      }
+      else{
+         messenger.showSnackBar(const SnackBar(
+            content: Text('Connection Request Sent'),
+            duration: Duration(seconds: 3)));
+      }
+
+
+    }
+    catch(e){
+      debugPrint(e.toString());
+
+      messenger.showSnackBar(const SnackBar(
+            content: Text('Error'),
+            duration: Duration(seconds: 3)));
+    }
+
   }
 
   @override
@@ -207,6 +242,7 @@ class _AllClientScreenState extends State<AllClientScreen> {
                 clientId: client.clientId,
                 name: client.name,
                 status: client.state,
+                notifyParent: createConnectionRequest,
               ),
             ));
           }

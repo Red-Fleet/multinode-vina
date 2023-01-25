@@ -24,9 +24,10 @@ class RequestService:
                 db.session.add(request)
             # update previous request
             else:
-                x = Request.query.filter_by(worker_id=worker_id, 
-                                    master_id=master_id).update(dict(state_update_time = datetime.datetime.now(), 
-                                                                        state = RequestState.CREATED))
+                # only update request if its status is created of rejected
+                if request.state == RequestState.CREATED or request.state == RequestState.REJECTED:
+                    request.state = RequestState.CREATED
+                    request.state_update_time = datetime.datetime.now()
     
             db.session.commit()
 

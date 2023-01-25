@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ClientDetailsTile extends StatelessWidget {
   final String clientId;
   final String name;
   final String status;
-  const ClientDetailsTile({super.key, required this.clientId, required this.name, required this.status});
+  final Function(String) notifyParent;
+  const ClientDetailsTile({super.key, required this.clientId, required this.name, required this.status, required this.notifyParent});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,9 @@ class ClientDetailsTile extends StatelessWidget {
             Row(children: [const Text("Status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(status)],)
           ],
         ),
-        trailing: SelectionContainer.disabled(child: ElevatedButton(child: Text("Connect"), onPressed: (){})),
+        trailing: SelectionContainer.disabled(child: ElevatedButton(child: Text("Connect"), onPressed: (){
+          notifyParent(clientId);
+        })),
       ),
     );
   }

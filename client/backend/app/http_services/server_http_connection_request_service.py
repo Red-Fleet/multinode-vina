@@ -25,10 +25,28 @@ class ServerHttpConnectionRequestService:
         data['master_id'] = master_id
         data['worker_id'] = worker_id
 
-        try:
-            response = requests.post(server.address+"/request/create", json=data, auth=(user.username, user.password))
-            if HttpError.isHttpError(response.status_code):
-                raise Exception(str(response.status_code)+", "+str(response.text))
-        except Exception as e:
-            app.logger.error(e)
-            raise e
+        response = requests.post(server.address+"/request/create", json=data, auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+
+    @staticmethod
+    def getAllConnectionRequests(master_id: str):
+        """return all connection request created by master
+
+        Args:
+            master_id (str): client_id of client who created the request
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list: list contaning dict of worker_id and status
+        """
+        body = {}
+        body['master_id'] = master_id
+        response = requests.get(server.address+"/request/all", json=body, auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+
+        return response.json()

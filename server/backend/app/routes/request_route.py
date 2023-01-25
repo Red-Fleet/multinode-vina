@@ -7,7 +7,7 @@ from flask import Response, json, g
 
 @app.route('/request/create', methods = ['POST'])
 @auth.login_required
-def createRequest(worker_id: str):
+def createRequest():
         """Create new Request
 
         Args(json):
