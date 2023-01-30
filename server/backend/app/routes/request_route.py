@@ -62,7 +62,13 @@ def getWorkerRequests():
             return Response(str(e), status=500, mimetype='application/json')
 
 @app.route('request/delete', method=['PUT'])
+@auth.login_required
 def deleteRequest():
+    """delete request created by master (will only update status of request)
+
+    Args(json):
+            worker_id (str): client_id of worker to whom request will be shared
+    """
     content = request.get_json()
     if 'worker_id' not in content: return Response('worker_id not present', status=500)
     worker_id = content['worker_id']

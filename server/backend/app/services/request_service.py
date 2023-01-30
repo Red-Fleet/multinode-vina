@@ -62,7 +62,7 @@ class RequestService:
 
         Args:
             master_id (str): client_id of client who created the request
-            worker_id (str): cleint_id of client for whome request id created
+            worker_id (str): cleint_id of client for whom request id created
 
         Raises:
             Exception: _description_
