@@ -61,6 +61,15 @@ def getWorkerRequests():
             app.logger.error(e)
             return Response(str(e), status=500, mimetype='application/json')
 
+@app.route('request/delete', method=['PUT'])
+def deleteRequest():
+    content = request.get_json()
+    if 'worker_id' not in content: return Response('worker_id not present', status=500)
+    worker_id = content['worker_id']
+    try:
+        RequestService.deleteMasterRequest(master_id=g.user.client_id, worker_id=worker_id)
+    except Exception as e:
+        return Response(str(e), status=500)
 
 @app.route('/request/reject', methods=['PUT'])
 @auth.login_required

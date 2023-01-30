@@ -4,9 +4,14 @@ import sqlalchemy as sqaly
 
 
 class RequestState(enum.Enum):
+    # new request is created by master
     CREATED: str = "CREATED"
+    # request is accepted by worker
     ACCEPTED: str = "ACCEPTED"
+    # request is rejected by worker
     REJECTED: str = "REJECTED"
+    # request is deleted by master
+    DELETED: str = "DELETED"
 
 
 class Request(db.Model):
