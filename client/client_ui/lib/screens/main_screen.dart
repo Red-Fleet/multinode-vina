@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/services/client_http_service.dart';
 import 'package:ui/screens/login_register.dart';
-import 'package:ui/screens/master_page.dart';
+import 'package:ui/screens/master/master_page.dart';
 import 'package:ui/widgets/user_avatar.dart';
 import 'dart:convert';
 

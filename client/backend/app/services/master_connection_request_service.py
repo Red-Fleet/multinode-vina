@@ -38,12 +38,28 @@ class MasterConnectionRequestService:
             list: list contaning dict of worker_id and status
         """
         try:
-            result = ServerHttpConnectionRequestService.getAllConnectionRequests(master_id=user.client_id)
+            result = ServerHttpConnectionRequestService.getAllConnectionRequests()
         except Exception as e:
             app.logger.error(e)
             raise e
 
         return result
+
+
+    @staticmethod
+    def deleteConnectionRequest(worker_id: str):
+        """delete connection request
+
+        Args:
+            worker_id (str): client_id of worker
+
+        """
+        try:
+            ServerHttpConnectionRequestService.deleteMasterRequest(worker_id=worker_id)
+
+        except Exception as e:
+            app.logger.error(e)
+            raise e
     
 
     

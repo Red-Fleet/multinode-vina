@@ -10,8 +10,6 @@ class RequestState(enum.Enum):
     ACCEPTED: str = "ACCEPTED"
     # request is rejected by worker
     REJECTED: str = "REJECTED"
-    # request is deleted by master
-    DELETED: str = "DELETED"
 
 
 class Request(db.Model):

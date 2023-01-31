@@ -61,10 +61,10 @@ def getWorkerRequests():
             app.logger.error(e)
             return Response(str(e), status=500, mimetype='application/json')
 
-@app.route('request/delete', method=['PUT'])
+@app.route('/request', method=['DELETE'])
 @auth.login_required
 def deleteRequest():
-    """delete request created by master (will only update status of request)
+    """delete request created by master
 
     Args(json):
             worker_id (str): client_id of worker to whom request will be shared

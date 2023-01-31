@@ -30,11 +30,8 @@ class ServerHttpConnectionRequestService:
             raise Exception(str(response.status_code)+", "+str(response.text))
 
     @staticmethod
-    def getAllConnectionRequests(master_id: str):
-        """return all connection request created by master
-
-        Args:
-            master_id (str): client_id of client who created the request
+    def getAllConnectionRequests():
+        """return all connection request created by current user
 
         Raises:
             Exception: _description_
@@ -42,11 +39,28 @@ class ServerHttpConnectionRequestService:
         Returns:
             list: list contaning dict of worker_id and status
         """
-        body = {}
-        body['master_id'] = master_id
-        response = requests.get(server.address+"/request/all", json=body, auth=(user.username, user.password))
+        response = requests.get(server.address+"/request/master", auth=(user.username, user.password))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
 
+        return response.json()
+
+    @staticmethod
+    def deleteMasterRequest(worker_id: str):
+        """delete connection request 
+
+        Args:
+            worker_id (str): client_id of worker
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            _type_: server response
+        """
+        response = requests.delete(server.address+"/request", auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
         return response.json()

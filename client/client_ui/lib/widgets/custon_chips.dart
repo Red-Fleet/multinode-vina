@@ -12,17 +12,19 @@ class CustomChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionChip(
-          onPressed: (){
-            notifyParent(index);
-          },
-          elevation:5,
-          //shape: StadiumBorder(side: BorderSide()),
-          label: Text(
-            label,
-            style: const TextStyle(
-                color: Colors.black),
-          ),
-          backgroundColor: selected ? Color.fromARGB(80, 0, 0, 0) : Colors.transparent);
+    return SelectionContainer.disabled(
+      child: ActionChip(
+            onPressed: (){
+              notifyParent(index);
+            },
+            elevation:5,
+            //shape: StadiumBorder(side: BorderSide()),
+            label: Text(
+              label,
+              style: const TextStyle(
+                  color: Colors.black),
+            ),
+            backgroundColor: selected ? Color.fromARGB(80, 0, 0, 0) : Colors.transparent),
+    );
   }
 }

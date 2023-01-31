@@ -5,17 +5,16 @@ import 'package:provider/provider.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/services/client_http_service.dart';
 import 'package:ui/services/master_http_service.dart';
-import 'package:ui/widgets/client_details_tile.dart';
 import 'dart:convert';
 
-class AllClientScreen extends StatefulWidget {
-  const AllClientScreen({super.key});
+class AllClientTab extends StatefulWidget {
+  const AllClientTab({super.key});
 
   @override
-  State<AllClientScreen> createState() => _AllClientScreenState();
+  State<AllClientTab> createState() => _AllClientTabState();
 }
 
-class _AllClientScreenState extends State<AllClientScreen> {
+class _AllClientTabState extends State<AllClientTab> {
   /// client details from backend will be stored here
   List<ClientDetails> clientDetailsList = [];
 
@@ -72,7 +71,7 @@ class _AllClientScreenState extends State<AllClientScreen> {
         return true;
       } else {
         debugPrint(
-            "_AllClientScreenState.getData(): statusCode=${response.statusCode}\nerror:${response.body}");
+            "_AllClientTabState.getData(): statusCode=${response.statusCode}\nerror:${response.body}");
         return false;
       }
     } catch (e) {
@@ -144,7 +143,7 @@ class _AllClientScreenState extends State<AllClientScreen> {
       
       if(response.statusCode != 201){
         debugPrint(
-            "_AllClientScreenState.createConnectionRequest(): statusCode=${response.statusCode}\nerror:${response.body}");
+            "_AllClientTabState.createConnectionRequest(): statusCode=${response.statusCode}\nerror:${response.body}");
         
         messenger.showSnackBar(const SnackBar(
             content: Text('Backend Error'),
@@ -265,9 +264,40 @@ class _AllClientScreenState extends State<AllClientScreen> {
   }
 }
 
+/// class used by AllClientTab for storing client details
 class ClientDetails {
   late String name;
   late String clientId;
   late String state;
   bool isCurrentClient = false;
+}
+
+/// class used by AllClientTab for showing client details
+class ClientDetailsTile extends StatelessWidget {
+  final String clientId;
+  /// name of client
+  final String name;
+  /// status of client
+  final String status;
+  /// notify parent when connect button is pressed
+  final Function(String) notifyParent;
+  const ClientDetailsTile({super.key, required this.clientId, required this.name, required this.status, required this.notifyParent});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Row(children: [const Text("Name:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(name)],),
+        subtitle: Column(
+          children: [
+            Row(children: [const Text("Client Id:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientId)],),
+            Row(children: [const Text("Status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(status)],)
+          ],
+        ),
+        trailing: SelectionContainer.disabled(child: ElevatedButton(child: const Text("Connect"), onPressed: (){
+          notifyParent(clientId);
+        })),
+      ),
+    );
+  }
 }

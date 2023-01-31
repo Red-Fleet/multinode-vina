@@ -58,7 +58,7 @@ class RequestService:
         return result
     
     def deleteMasterRequest(master_id: str, worker_id: str):
-        """This method will update state of request request to 'DELETED'
+        """Delete Request created by master
 
         Args:
             master_id (str): client_id of client who created the request
@@ -68,8 +68,7 @@ class RequestService:
             Exception: _description_
         """
         try:
-            request:Request = Request.query.filter_by(master_id=master_id, worker_id=worker_id).first()
-            request.state = RequestState.DELETED
+            Request.query.filter_by(master_id=master_id, worker_id=worker_id).delete()
             db.session.commit()
         except Exception as e:
             app.logger.error(e)

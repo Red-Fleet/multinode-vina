@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:ui/screens/all_clients_screen.dart';
+import 'package:ui/screens/master/all_clients_tab.dart';
+import 'package:ui/screens/master/connected_clients.dart';
+import 'package:ui/screens/master/connection_requests.dart';
 import 'package:ui/widgets/custon_chips.dart';
 
 class MasterPage extends StatefulWidget {
@@ -13,7 +15,7 @@ class MasterPage extends StatefulWidget {
 
 class MasterPageState extends State<MasterPage> {
   var selectedTab = 0; // index of selected tab
-  final tabs = ["All Clients", "Worker"];
+  final tabs = ["All Clients", "Connection Requests","Connected Clients"];
 
   void changeSelectedTab(int index){
     setState(() {
@@ -23,7 +25,13 @@ class MasterPageState extends State<MasterPage> {
 
   Widget getTabBody(){
     if(selectedTab==0){
-      return const AllClientScreen();
+      return const AllClientTab();
+    }
+    if(selectedTab == 1){
+      return const ConnectionRequests();
+    }
+    if(selectedTab==2){
+      return const ConnectedClients();
     }
 
     return Container();

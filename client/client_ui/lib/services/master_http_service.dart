@@ -21,4 +21,9 @@ class MasterHttpService{
   static Future<http.Response> createConnectionRequest(var body){
     return http.post(Uri.parse('$clientAddress/master/connectionrequest/create'), headers: headers, body: body);
   }
+
+  /// get all connection requests of master
+  static Future<http.Response> getAllConnectionRequests(){
+    return http.get(Uri.parse('$clientAddress/master/connectionrequest'), headers: headers);
+  }
 }
