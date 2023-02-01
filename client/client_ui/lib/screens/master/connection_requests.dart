@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:ui/services/client_http_service.dart';
 import 'package:ui/services/master_http_service.dart';
 import 'dart:convert';
 
@@ -30,7 +31,10 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
   late bool sortOnNameFlag;
 
   /// sort clients based on state
-  late bool sortOnStateFlag;
+  late bool sortOnClientStateFlag;
+
+  /// sort client based of state of request
+  late bool sortOnRequestStateFlag;
 
   /// sort clients based on clientId
   late bool sortOnClientIdFlag;
@@ -39,13 +43,24 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
   late bool searchFlag;
   TextEditingController searchController = TextEditingController();
 
+  /// reset all flags
+  void resetFlags(){
+    getDetailsFromBackendFlag = false;
+    sortOnNameFlag = false;
+    sortOnClientIdFlag = false;
+    sortOnClientStateFlag = false;
+    sortOnRequestStateFlag = false;
+    searchFlag = false;
+  }
+
   @override
   void initState() {
     super.initState();
     getDetailsFromBackendFlag = true;
     sortOnNameFlag = true;
     sortOnClientIdFlag = false;
-    sortOnStateFlag = false;
+    sortOnClientStateFlag = false;
+    sortOnRequestStateFlag = false;
     searchFlag = false;
   }
 
@@ -55,10 +70,11 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
     super.dispose();
   }
 
-  /// Get client details from backend
+  /// Get client details to whom connection request was send
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
     try {
+      /// fetching all requests created by client
       final response = await MasterHttpService.getAllConnectionRequests();
       clientDetailsList = [];
       if (response.statusCode == 200) {
@@ -66,9 +82,22 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
         for (var e in result) {
           ClientDetails client = ClientDetails();
           client.clientId = e['worker_id'];
-          client.requestStatus = e['state'];
-          client.clientStatus = "";
-          client.name = "";
+          client.requestState = e['state'];
+          /// fecthing all client details to whom request was shared
+          final clientDetailsResponse = await ClientHttpService.getCientDetails({'client_id':client.clientId});
+          if(clientDetailsResponse.statusCode == 200){
+            /// client details received
+            var clientDetails = jsonDecode(clientDetailsResponse.body);
+            client.clientState = clientDetails['state'];
+            client.name = clientDetails['name'];
+          }
+          else{
+            /// if cannot fetch client details
+            debugPrint(clientDetailsResponse.body);
+            client.clientState = "error";
+            client.name = "error";
+          }
+          
           clientDetailsList.add(client);
         }
         return true;
@@ -97,6 +126,7 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
       visibleClientDetailsList.add(e);
     }
 
+    /// sorting start
     if (sortOnClientIdFlag) {
       visibleClientDetailsList.sort((a, b) => a.clientId.toLowerCase().compareTo(b.clientId.toLowerCase()));
     }
@@ -105,10 +135,17 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
       visibleClientDetailsList.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     }
 
-    if (sortOnStateFlag) {
-      visibleClientDetailsList.sort((a, b) => a.clientStatus.toLowerCase().compareTo(b.clientStatus.toLowerCase()));
+    if (sortOnClientStateFlag) {
+      visibleClientDetailsList.sort((a, b) => a.clientState.toLowerCase().compareTo(b.clientState.toLowerCase()));
     }
 
+    if (sortOnRequestStateFlag) {
+      visibleClientDetailsList.sort((a, b) => a.requestState.toLowerCase().compareTo(b.requestState.toLowerCase()));
+    }
+
+    // sorting ends
+
+    /// searching
     if (searchFlag) {
       List<ClientDetails> searchedClients = [];
 
@@ -206,25 +243,27 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
           var dropdownButton = DropdownButton(items: const [
             DropdownMenuItem(value: "name",child: Text("Name"),),
             DropdownMenuItem(value: "clientId",child: Text("Client Id"),),
-            DropdownMenuItem(value: "state",child: Text("State"),),
+            DropdownMenuItem(value: "clientState",child: Text("Client Status"),),
+            DropdownMenuItem(value: "requestState",child: Text("Request Status"),),
           ],
           value: sortOnNameFlag?"name":(sortOnClientIdFlag?"clientId":"state"),
            onChanged: (val){
             setState(() {
-              if(val == "name"){
-              sortOnClientIdFlag = false;
+            if(val == "name"){
+              resetFlags();
               sortOnNameFlag = true;
-              sortOnStateFlag = false;
             }
             else if(val == "clientId"){
+              resetFlags();
               sortOnClientIdFlag = true;
-              sortOnNameFlag = false;
-              sortOnStateFlag = false;
             }
-            else if(val == "state"){
-              sortOnClientIdFlag = false;
-              sortOnNameFlag = false;
-              sortOnStateFlag = true;
+            else if(val == "clientState"){
+              resetFlags();
+              sortOnClientStateFlag = true;
+            }
+            else if(val == "requestState"){
+              resetFlags();
+              sortOnRequestStateFlag = true;
             }
             });
 
@@ -269,8 +308,8 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
 class ClientDetails {
   late String name;
   late String clientId;
-  late String clientStatus;
-  late String requestStatus;
+  late String clientState;
+  late String requestState;
   bool isCurrentClient = false;
 }
 
@@ -289,8 +328,8 @@ class ClientDetailsTile extends StatelessWidget {
         subtitle: Column(
           children: [
             Row(children: [const Text("Client Id:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.clientId)],),
-            Row(children: [const Text("Client Status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.clientStatus)],),
-            Row(children: [const Text("Request status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.requestStatus)],)
+            Row(children: [const Text("Client Status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.clientState)],),
+            Row(children: [const Text("Request status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.requestState)],)
           ],
         ),
         trailing: SelectionContainer.disabled(child: ElevatedButton(child: const Text("Connect"), onPressed: (){

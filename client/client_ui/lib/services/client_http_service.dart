@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 
 class ClientHttpService{
   // clientAddress stores address of client
-  static const String clientAddress = "http://127.0.0.1:7000";
+  static const String clientAddress = "http://127.0.0.1:7000"; /// change this
 
   // api for storing server address in client
   static const String loginApi = "user/login";
@@ -29,4 +29,14 @@ class ClientHttpService{
     return http.get(Uri.parse('$clientAddress/$userDetailsApi'), headers: headers);
   }
 
+  /// fetch all clients present on server
+  static Future<http.Response> getAllClients(){
+    return http.get(Uri.parse('$clientAddress/client/all'), headers: headers);
+  }
+
+  /// fetch all detrails of single client present on server
+  static Future<http.Response> getCientDetails(var queryParameters){
+    var path = Uri.http(clientAddress.replaceAll('http://', ''), '/client/details', queryParameters);
+    return http.get(path, headers: headers);
+  }
 }

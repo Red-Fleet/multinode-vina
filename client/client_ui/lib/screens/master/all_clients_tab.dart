@@ -58,7 +58,7 @@ class _AllClientTabState extends State<AllClientTab> {
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
     try {
-      final response = await MasterHttpService.getAllClients();
+      final response = await ClientHttpService.getAllClients();
       if (response.statusCode == 200) {
         List<dynamic> result = jsonDecode(response.body);
         for (var e in result) {
@@ -203,7 +203,7 @@ class _AllClientTabState extends State<AllClientTab> {
           var dropdownButton = DropdownButton(items: const [
             DropdownMenuItem(value: "name",child: Text("Name"),),
             DropdownMenuItem(value: "clientId",child: Text("Client Id"),),
-            DropdownMenuItem(value: "state",child: Text("State"),),
+            DropdownMenuItem(value: "state",child: Text("Status"),),
           ],
           value: sortOnNameFlag?"name":(sortOnClientIdFlag?"clientId":"state"),
            onChanged: (val){

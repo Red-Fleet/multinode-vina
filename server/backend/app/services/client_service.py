@@ -42,6 +42,7 @@ class ClientService:
         try:
             result = Client.query.with_entities(
                 Client.client_id, Client.state).all()
+            
             result = [{'client_id': row[0],
                        'state': row[1].name,
                        'name': User.query.with_entities(User.name).filter_by(client_id=row[0]).first()[0]}
@@ -49,4 +50,37 @@ class ClientService:
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
+        return result
+
+    @staticmethod
+    def getClientDetails(client_id: str) -> dict:
+        """return client details like name, state
+
+        Args:
+            client_id (str): client_id of client/user
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            dict: dictonary contaning name, client_id, state
+        """
+        try:
+            state:str = Client.query.with_entities(
+                Client.state
+            ).filter_by(client_id=client_id).first()[0].name
+            
+            name: str = User.query.with_entities(
+                User.name
+            ).filter_by(client_id=client_id).first()[0]
+            result = {
+                'client_id': client_id,
+                'state': state,
+                'name': name
+            }
+
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("Database Error")
+
         return result

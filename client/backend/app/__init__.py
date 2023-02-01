@@ -17,7 +17,7 @@ user = User()
 db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app.routes import home_route, server_route, user_route, master_connection_request_route
+from app.routes import home_route, server_route, user_route, master_connection_request_route, client_route
 # @app.shell_context_processor
 # def make_shell_context():
 #     return {'db': db, 'user': user, 'client': client, 'request': request}

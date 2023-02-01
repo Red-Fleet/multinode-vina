@@ -57,6 +57,7 @@ class RequestService:
         
         return result
     
+    @staticmethod
     def deleteMasterRequest(master_id: str, worker_id: str):
         """Delete Request created by master
 

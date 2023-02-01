@@ -39,4 +39,22 @@ def updateState(state) -> Response:
         app.logger.error(e)
         return Response(str(e), status=500, mimetype='application/json')
 
+@app.route('/client/details', methods = ['GET'])
+@auth.login_required
+def getClientDetails():
+    """return client details
+    Args(json):
+        client_id: client_id of client
 
+    Returns:
+        json: details of client - client_id, name, state
+    """
+    content = request.get_json()
+    if 'client_id' not in content: return Response("'client_id' not found", status=500)
+    client_id = content['client_id']
+    try:
+        result = ClientService.getClientDetails(client_id=client_id)
+    except Exception as e:
+        return Response(str(e), status=500)
+    
+    return Response(json.dumps(result), status=200)

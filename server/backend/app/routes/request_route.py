@@ -61,7 +61,7 @@ def getWorkerRequests():
             app.logger.error(e)
             return Response(str(e), status=500, mimetype='application/json')
 
-@app.route('/request', method=['DELETE'])
+@app.route('/request', methods=['DELETE'])
 @auth.login_required
 def deleteRequest():
     """delete request created by master
@@ -76,6 +76,8 @@ def deleteRequest():
         RequestService.deleteMasterRequest(master_id=g.user.client_id, worker_id=worker_id)
     except Exception as e:
         return Response(str(e), status=500)
+    
+    return Response(status=200)
 
 @app.route('/request/reject', methods=['PUT'])
 @auth.login_required

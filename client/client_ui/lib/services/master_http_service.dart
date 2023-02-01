@@ -11,11 +11,6 @@ class MasterHttpService{
     // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
     };
 
-
-  /// fetch all clients present on server
-  static Future<http.Response> getAllClients(){
-    return http.get(Uri.parse('$clientAddress/client/all'), headers: headers);
-  }
   
   /// create connection request, body should have worker_id
   static Future<http.Response> createConnectionRequest(var body){

@@ -55,21 +55,3 @@ class ServerHttpService:
         return response.json()['client_id']
 
 
-    def getAllClients()-> dict:
-        """return all clients details
-
-        Raises:
-            Exception: _description_
-
-        Returns:
-            dict: client_id, status, name
-        """
-        try:
-            response = requests.get(server.address+"/client/all", auth=(user.username, user.password))
-            if HttpError.isHttpError(response.status_code):
-                raise Exception(str(response.status_code)+", "+str(response.text))
-        except Exception as e:
-            app.logger.error(e)
-            raise e
-
-        return response.json()

@@ -114,16 +114,3 @@ def register() -> Response:
     
     return Response(json.dumps({"client_id":client_id, "username":username, "name":name}), status=201, mimetype='application/json')
 
-@app.route('/client/all', methods = ['GET'])
-def getAllClients():
-    """return all clients details
-
-    Returns:
-        _type_: json contaning client_id, status, name
-    """
-    try:
-        result = ServerHttpService.getAllClients()
-    except Exception as e:
-        return Response(str(e), status = 500)
-    
-    return Response(json.dumps(result), status=200, mimetype='application/json')

@@ -34,7 +34,7 @@ def createConnectionRequest():
     
     return Response(status=201)
 
-@app.route('master/connectionrequest', method=['DELETE'])
+@app.route('/master/connectionrequest', methods=['DELETE'])
 def deleteConnectionRequest():
     """Delete Connection request
 
