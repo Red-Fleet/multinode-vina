@@ -59,8 +59,8 @@ class ServerHttpConnectionRequestService:
         Returns:
             _type_: server response
         """
-        response = requests.delete(server.address+"/request", auth=(user.username, user.password))
+        body = {'worker_id': worker_id}
+        response = requests.delete(server.address+"/request", json=body,  auth=(user.username, user.password))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
-        return response.json()

@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class MasterHttpService{
   // clientAddress stores address of client
@@ -15,6 +16,12 @@ class MasterHttpService{
   /// create connection request, body should have worker_id
   static Future<http.Response> createConnectionRequest(var body){
     return http.post(Uri.parse('$clientAddress/master/connectionrequest/create'), headers: headers, body: body);
+  }
+
+  /// delete connection request
+  static Future<http.Response> deleteConnectionRequest(String workerId){
+    var body = jsonEncode({'worker_id': workerId});
+    return http.delete(Uri.parse('$clientAddress/master/connectionrequest'), headers: headers, body: body);
   }
 
   /// get all connection requests of master

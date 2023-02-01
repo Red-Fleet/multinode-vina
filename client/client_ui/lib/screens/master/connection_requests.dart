@@ -43,15 +43,6 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
   late bool searchFlag;
   TextEditingController searchController = TextEditingController();
 
-  /// reset all flags
-  void resetFlags(){
-    getDetailsFromBackendFlag = false;
-    sortOnNameFlag = false;
-    sortOnClientIdFlag = false;
-    sortOnClientStateFlag = false;
-    sortOnRequestStateFlag = false;
-    searchFlag = false;
-  }
 
   @override
   void initState() {
@@ -172,18 +163,15 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
     return true;
   }
 
-  /// This method is used to create new connection request
-  void createConnectionRequest(String workerId) async{
+  /// This method is used to delete connection request from server
+  void deleteConnectionRequest(String workerId) async{
     final messenger = ScaffoldMessenger.of(context);
     try{
-      var body = json.encode({
-        "worker_id": workerId
-      });
-      final response = await MasterHttpService.createConnectionRequest(body);
+      final response = await MasterHttpService.deleteConnectionRequest(workerId=workerId);
       
-      if(response.statusCode != 201){
+      if(response.statusCode != 200){
         debugPrint(
-            "_AllClientTabState.createConnectionRequest(): statusCode=${response.statusCode}\nerror:${response.body}");
+            "statusCode=${response.statusCode}\nerror:${response.body}");
         
         messenger.showSnackBar(const SnackBar(
             content: Text('Backend Error'),
@@ -191,8 +179,12 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
       }
       else{
          messenger.showSnackBar(const SnackBar(
-            content: Text('Connection Request Sent'),
+            content: Text('Connection Request Deleted'),
             duration: Duration(seconds: 3)));
+        
+        setState(() {
+          getDetailsFromBackendFlag = true;
+        });
       }
 
 
@@ -246,23 +238,23 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
             DropdownMenuItem(value: "clientState",child: Text("Client Status"),),
             DropdownMenuItem(value: "requestState",child: Text("Request Status"),),
           ],
-          value: sortOnNameFlag?"name":(sortOnClientIdFlag?"clientId":"state"),
+          value: sortOnNameFlag?"name":(sortOnClientIdFlag?"clientId":(sortOnClientStateFlag?"clientState":"requestState")),
            onChanged: (val){
             setState(() {
+            sortOnNameFlag = false;
+            sortOnClientIdFlag = false;
+            sortOnClientStateFlag = false;
+            sortOnRequestStateFlag = false;
             if(val == "name"){
-              resetFlags();
               sortOnNameFlag = true;
             }
             else if(val == "clientId"){
-              resetFlags();
               sortOnClientIdFlag = true;
             }
             else if(val == "clientState"){
-              resetFlags();
               sortOnClientStateFlag = true;
             }
             else if(val == "requestState"){
-              resetFlags();
               sortOnRequestStateFlag = true;
             }
             });
@@ -281,7 +273,7 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
               padding: EdgeInsets.only(left: sidePad, right: sidePad),
               child: ClientDetailsTile(
                 clientDetails: client,
-                notifyParent: createConnectionRequest,
+                deleteButtonNotifyParent: deleteConnectionRequest,
               ),
             ));
           }
@@ -316,9 +308,9 @@ class ClientDetails {
 /// class used by ConnectionRequests for showing client details
 class ClientDetailsTile extends StatelessWidget {
   final ClientDetails clientDetails;
-  /// notify parent when remove button is pressed
-  final Function(String) notifyParent;
-  const ClientDetailsTile({super.key, required this.clientDetails, required this.notifyParent});
+  /// notify parent when delete button is pressed
+  final Function(String) deleteButtonNotifyParent;
+  const ClientDetailsTile({super.key, required this.clientDetails, required this.deleteButtonNotifyParent});
 
   @override
   Widget build(BuildContext context) {
@@ -332,8 +324,8 @@ class ClientDetailsTile extends StatelessWidget {
             Row(children: [const Text("Request status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.requestState)],)
           ],
         ),
-        trailing: SelectionContainer.disabled(child: ElevatedButton(child: const Text("Connect"), onPressed: (){
-          notifyParent(clientDetails.clientId);
+        trailing: SelectionContainer.disabled(child: ElevatedButton(child: const Text("Delete"), style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),onPressed: (){
+          deleteButtonNotifyParent(clientDetails.clientId);
         })),
       ),
     );
