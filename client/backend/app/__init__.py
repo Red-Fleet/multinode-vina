@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from config import Config
 from app.models.server import Server
 from app.models.user import User
+from app.models.worker_connection import WorkerConnection
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -12,10 +13,13 @@ CORS(app)
 db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# stores address of server
 server = Server()
+# stores details of logined user
 user = User()
-db:SQLAlchemy = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# stores of current worker is connected to how many master
+worker_connection = WorkerConnection()
+
 
 from app.routes import home_route, server_route, user_route, master_connection_request_route, client_route
 # @app.shell_context_processor

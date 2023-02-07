@@ -64,3 +64,19 @@ class ServerHttpConnectionRequestService:
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
+
+    @staticmethod
+    def getWorkerConnectionRequests():
+        """return all connection request of worker
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list: list contaning dict of master_id and status
+        """
+        response = requests.get(server.address+"/request", auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()
