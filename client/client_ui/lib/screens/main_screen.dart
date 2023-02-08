@@ -9,7 +9,7 @@ import 'package:ui/screens/master/master_page.dart';
 import 'package:ui/widgets/user_avatar.dart';
 import 'dart:convert';
 
-import 'package:ui/screens/worker_page.dart';
+import 'package:ui/screens/worker/worker_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

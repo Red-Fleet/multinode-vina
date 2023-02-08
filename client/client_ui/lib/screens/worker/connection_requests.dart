@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/services/client_http_service.dart';
-import 'package:ui/services/master_http_service.dart';
 import 'dart:convert';
+
+import 'package:ui/services/worker_http_service.dart';
 
 class ConnectionRequests extends StatefulWidget {
   const ConnectionRequests({super.key});
@@ -57,18 +58,18 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
     super.dispose();
   }
 
-  /// Get client details to whom connection request was send
+  /// Get client details who send connection request to current user
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
     try {
-      /// fetching all requests created by client
-      final response = await MasterHttpService.getAllConnectionRequests();
+      /// fetching all requests for worker
+      final response = await WorkerHttpService.getAllConnectionRequests();
       clientDetailsList = [];
       if (response.statusCode == 200) {
         List<dynamic> result = jsonDecode(response.body);
         for (var e in result) {
           ClientDetails client = ClientDetails();
-          client.clientId = e['worker_id'];
+          client.clientId = e['master_id'];
           client.requestState = e['state'];
           /// fecthing all client details to whom request was shared
           final clientDetailsResponse = await ClientHttpService.getCientDetails({'client_id':client.clientId});
@@ -84,13 +85,14 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
             client.clientState = "error";
             client.name = "error";
           }
-          
-          clientDetailsList.add(client);
+          if(client.requestState != "REJECTED"){
+            clientDetailsList.add(client);
+          }
         }
         return true;
       } else {
         debugPrint(
-            "_AllClientTabState.getData(): statusCode=${response.statusCode}\nerror:${response.body}");
+            "statusCode=${response.statusCode}\nerror:${response.body}");
         return false;
       }
     } catch (e) {
@@ -159,11 +161,11 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
     return true;
   }
 
-  /// This method is used to delete connection request from server
-  void deleteConnectionRequest(String workerId) async{
+  /// This method is used to reject connection request
+  void rejectConnectionRequest(String workerId) async{
     final messenger = ScaffoldMessenger.of(context);
     try{
-      final response = await MasterHttpService.deleteConnectionRequest(workerId=workerId);
+      final response = await WorkerHttpService.rejectConnectionRequest(workerId);
       
       if(response.statusCode != 200){
         debugPrint(
@@ -175,7 +177,43 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
       }
       else{
          messenger.showSnackBar(const SnackBar(
-            content: Text('Connection Request Deleted'),
+            content: Text('Connection Request Rejected'),
+            duration: Duration(seconds: 3)));
+        
+        setState(() {
+          getDetailsFromBackendFlag = true;
+        });
+      }
+
+
+    }
+    catch(e){
+      debugPrint(e.toString());
+
+      messenger.showSnackBar(const SnackBar(
+            content: Text('Error'),
+            duration: Duration(seconds: 3)));
+    }
+
+  }
+
+  /// This method is used to reject connection request
+  void acceptConnectionRequest(String workerId) async{
+        final messenger = ScaffoldMessenger.of(context);
+    try{
+      final response = await WorkerHttpService.acceptConnectionRequest(workerId);
+      
+      if(response.statusCode != 200){
+        debugPrint(
+            "statusCode=${response.statusCode}\nerror:${response.body}");
+        
+        messenger.showSnackBar(const SnackBar(
+            content: Text('Backend Error'),
+            duration: Duration(seconds: 3)));
+      }
+      else{
+         messenger.showSnackBar(const SnackBar(
+            content: Text('Connection Request Accepted'),
             duration: Duration(seconds: 3)));
         
         setState(() {
@@ -269,7 +307,8 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
               padding: EdgeInsets.only(left: sidePad, right: sidePad),
               child: ClientDetailsTile(
                 clientDetails: client,
-                deleteButtonNotifyParent: deleteConnectionRequest,
+                rejectButtonNotifyParent: rejectConnectionRequest,
+                acceptButtonNotifyParent: acceptConnectionRequest,
               ),
             ));
           }
@@ -283,7 +322,7 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
                 ),
               );
             } else {
-              return Text("error");
+              return const Text("error");
             }
           } else {
             return const CircularProgressIndicator();
@@ -304,10 +343,30 @@ class ClientDetails {
 /// class used by ConnectionRequests for showing client details
 class ClientDetailsTile extends StatelessWidget {
   final ClientDetails clientDetails;
-  /// notify parent when delete button is pressed
-  final Function(String) deleteButtonNotifyParent;
-  const ClientDetailsTile({super.key, required this.clientDetails, required this.deleteButtonNotifyParent});
+  /// notify parent when reject/delete button is pressed
+  final Function(String) rejectButtonNotifyParent;
+  /// notify parent when accept button is pressed
+  final Function(String) acceptButtonNotifyParent;
+  const ClientDetailsTile({super.key, required this.clientDetails,required this.acceptButtonNotifyParent,  required this.rejectButtonNotifyParent});
 
+  Widget getTrailing(){
+    if(clientDetails.requestState == "CREATED"){
+      return Wrap(children: [
+        ElevatedButton(style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),onPressed: (){
+          rejectButtonNotifyParent(clientDetails.clientId);
+        }, child: const Text("Reject")),
+        const SizedBox(width: 10,),
+        ElevatedButton(style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)),onPressed: (){
+          acceptButtonNotifyParent(clientDetails.clientId);
+        }, child: const Text("Accept"))
+
+      ],);
+    }
+
+    return ElevatedButton(style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),onPressed: (){
+          rejectButtonNotifyParent(clientDetails.clientId);
+        }, child: const Text("Reject"));
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -320,9 +379,7 @@ class ClientDetailsTile extends StatelessWidget {
             Row(children: [const Text("Request status:", style: TextStyle(fontWeight: FontWeight.bold),), const SizedBox(width: 10,), Text(clientDetails.requestState)],)
           ],
         ),
-        trailing: SelectionContainer.disabled(child: ElevatedButton(child: const Text("Delete"), style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),onPressed: (){
-          deleteButtonNotifyParent(clientDetails.clientId);
-        })),
+        trailing: SelectionContainer.disabled(child: getTrailing(), ),
       ),
     );
   }

@@ -75,8 +75,38 @@ class ServerHttpConnectionRequestService:
         Returns:
             list: list contaning dict of master_id and status
         """
-        response = requests.get(server.address+"/request", auth=(user.username, user.password))
+        response = requests.get(server.address+"/request/worker", auth=(user.username, user.password))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
         return response.json()
+
+    @staticmethod
+    def acceptConnectionRequest(master_id):
+        """used by worker to accept connection request of master 
+
+        Args:
+            master_id: client_id of master whose connection request client is accepting
+
+        Raises:
+            Exception: _description_
+        """
+        body = {'master_id': master_id}
+        response = requests.put(server.address+"/request/accept", json=body, auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+
+    @staticmethod
+    def rejectConnectionRequest(master_id):
+        """used by worker to reject connection request of master 
+
+        Args:
+            master_id: client_id of master whose connection request client is rejecting
+
+        Raises:
+            Exception: _description_
+        """
+        body = {'master_id': master_id}
+        response = requests.put(server.address+"/request/reject", json=body, auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))

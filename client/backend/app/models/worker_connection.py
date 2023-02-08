@@ -41,7 +41,7 @@ class WorkerConnection:
         """
         return master_id in self._connections
     
-    def getMaster(self)-> list:
+    def getMasters(self)-> list:
         """return list of master_id
 
         Returns:
