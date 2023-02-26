@@ -22,6 +22,7 @@ worker_connection = WorkerConnection()
 
 
 from app.routes import home_route, server_route, user_route, master_connection_request_route, client_route, worker_connection_request_route
+from app.db_models import master_compute, master_compute_ligand, master_compute_target
 # @app.shell_context_processor
 # def make_shell_context():
 #     return {'db': db, 'user': user, 'client': client, 'request': request}
