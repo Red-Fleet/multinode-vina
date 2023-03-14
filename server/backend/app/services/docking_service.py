@@ -1,7 +1,6 @@
 import uuid
 import datetime
 from app import db, app
-from app.models.compute import Compute, ComputeState
 from app.services.notification_service import NotificationService
 from app.models.docking import Docking, DockingState
 from flask import json
@@ -18,10 +17,10 @@ class DockingService:
         try: 
             db.session.add(dock)
             for worker in worker_ids:
-                NotificationService.createWorkerNotification(compute_id=docking_id, worker_id=worker)
+                NotificationService.createWorkerNotification(docking_id=docking_id, worker_id=worker)
             db.session.commit()
         except Exception as e:
             app.logger.error(e)
-            raise Exception("Database Error")
+            raise Exception("DockingService: Database Error")
         
         return docking_id
