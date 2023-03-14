@@ -14,7 +14,7 @@ def getMasterNotifications():
 
     try:
         result = NotificationService.getMasterNotifications(master_id=master_id)
-        result = [{'compute_id': noti.compute_id} for noti in result]
+        result = [{'docking_id': noti.docking_id} for noti in result]
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
     
@@ -31,7 +31,7 @@ def getWorkerNotifications():
 
     try:
         result = NotificationService.getWorkerNotifications(worker_id=worker_id)
-        result = [{'compute_id': noti.compute_id} for noti in result]
+        result = [{'docking_id': noti.docking_id} for noti in result]
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
     

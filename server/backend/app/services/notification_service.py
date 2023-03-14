@@ -4,22 +4,22 @@ from app import db, app
 from app.models.notification import WorkerNotification, MasterNotification
 
 class NotificationService:
-    def createWorkerNotification(compute_id:str, worker_id:str):
+    def createWorkerNotification(docking_id:str, worker_id:str):
         """Used to create notification for worker
 
         Args:
-            compute_id (str): _description_
+            docking_id (str): _description_
             worker_id (str): client_id of worker
 
         Raises:
             Exception: _description_
         """
         try:
-            notification = WorkerNotification.query.filter_by(compute_id=compute_id).first()
+            notification = WorkerNotification.query.filter_by(docking_id=docking_id).first()
 
             #create new Notification
             if notification == None:
-                notification = WorkerNotification(compute_id=compute_id, worker_id=worker_id, create_time=datetime.datetime.now())
+                notification = WorkerNotification(docking_id=docking_id, worker_id=worker_id, create_time=datetime.datetime.now())
                 db.session.add(notification)
             # update previous notification
             else:
@@ -31,22 +31,22 @@ class NotificationService:
             raise Exception("Database Error")
 
     
-    def createMasterNotification(compute_id:str, master_id:str):
+    def createMasterNotification(docking_id:str, master_id:str):
         """Used to create notification for master
 
         Args:
-            compute_id (str): _description_
+            docking_id (str): _description_
             master_id (str): client_id of worker
 
         Raises:
             Exception: _description_
         """
         try:
-            notification = MasterNotification.query.filter_by(compute_id=compute_id).first()
+            notification = MasterNotification.query.filter_by(docking_id=docking_id).first()
 
             #create new Notification
             if notification == None:
-                notification = MasterNotification(compute_id=compute_id, master_id=master_id, create_time=datetime.datetime.now())
+                notification = MasterNotification(docking_id=docking_id, master_id=master_id, create_time=datetime.datetime.now())
                 db.session.add(notification)
             # update previous notification
             else:
