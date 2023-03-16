@@ -4,12 +4,14 @@ from app import db, app
 from app.models.notification import WorkerNotification, MasterNotification
 
 class NotificationService:
-    def createWorkerNotification(docking_id:str, worker_id:str):
+    @staticmethod
+    def createWorkerNotification(docking_id:str, worker_id:str, commit=True):
         """Used to create notification for worker
 
         Args:
             docking_id (str): _description_
             worker_id (str): client_id of worker
+            commit (boolean): only commit transaction if commit is set to true
 
         Raises:
             Exception: _description_
@@ -25,7 +27,8 @@ class NotificationService:
             else:
                 notification.create_date = datetime.datetime.now()
             
-            db.session.commit()
+            if commit == True:
+                db.session.commit()
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")

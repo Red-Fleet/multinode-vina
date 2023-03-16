@@ -11,7 +11,7 @@ migrate = Migrate(app, db)
 
 from app.basic_authentication import auth
 from app.routes import request_route, user_route, client_route, compute_route, notification_route, docking_route
-from app.models import user, client, request, notification, compute, docking
+from app.models import user, client, request, notification, compute, docking, ligands
 
 @app.shell_context_processor
 def make_shell_context():

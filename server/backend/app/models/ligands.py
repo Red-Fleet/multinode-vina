@@ -8,6 +8,6 @@ class LigandState(enum.Enum):
     NOT_COMPUTED: str = "NOT_COMPUTED"
 
 class Ligands(db.Model):
-    ligands_id = sqaly.Column(sqaly.String(36), primary_key=True)
+    ligand_id = sqaly.Column(sqaly.String(36), primary_key=True)
     ligand = sqaly.Column(sqaly.TEXT())
     state = sqaly.Column(sqaly.Enum(LigandState))

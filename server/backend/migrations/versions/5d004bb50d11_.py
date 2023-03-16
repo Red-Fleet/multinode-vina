@@ -1,16 +1,16 @@
 """empty message
 
-Revision ID: 6f6afd688854
+Revision ID: 5d004bb50d11
 Revises: 
-Create Date: 2023-03-14 11:57:59.113610
+Create Date: 2023-03-16 10:33:10.240043
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+from app.models.docking import ListType
 
 # revision identifiers, used by Alembic.
-revision = '6f6afd688854'
+revision = '5d004bb50d11'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('worker_ids', sa.JSON(), nullable=True),
     sa.Column('target', sa.TEXT(), nullable=True),
     sa.Column('target_name', sa.String(length=1000), nullable=True),
-    sa.Column('ligand_ids', sa.JSON(), nullable=True),
+    sa.Column('ligand_ids', ListType(), nullable=True),
     sa.Column('ligands_name', sa.String(length=1000), nullable=True),
     sa.Column('last_updated', sa.DateTime(), nullable=True),
     sa.Column('state', sa.Enum('CREATED', 'STARTED', 'FINISHED', 'ERROR', name='dockingstate'), nullable=True),
@@ -53,6 +53,12 @@ def upgrade():
     with op.batch_alter_table('docking', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_docking_master_id'), ['master_id'], unique=False)
 
+    op.create_table('ligands',
+    sa.Column('ligand_id', sa.String(length=36), nullable=False),
+    sa.Column('ligand', sa.TEXT(), nullable=True),
+    sa.Column('state', sa.Enum('COMPUTED', 'NOT_COMPUTED', name='ligandstate'), nullable=True),
+    sa.PrimaryKeyConstraint('ligand_id')
+    )
     op.create_table('master_notification',
     sa.Column('docking_id', sa.String(length=36), nullable=False),
     sa.Column('master_id', sa.String(length=36), nullable=False),
@@ -112,6 +118,7 @@ def downgrade():
         batch_op.drop_index(batch_op.f('ix_master_notification_master_id'))
 
     op.drop_table('master_notification')
+    op.drop_table('ligands')
     with op.batch_alter_table('docking', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_docking_master_id'))
 

@@ -28,4 +28,17 @@ class MasterHttpService{
   static Future<http.Response> getAllConnectionRequests(){
     return http.get(Uri.parse('$clientAddress/master/connectionrequest'), headers: headers);
   }
+
+  /// initiate docking
+  static Future<http.Response> initiateDocking({required String target, required String targetName, required String ligands, required String ligandsName, required List<String> workerIds}){
+    var body = json.encode({
+      "target": target,
+      "target_name": targetName,
+      "ligands": ligands,
+      "ligands_name": ligandsName,
+      "worker_ids": workerIds
+    });
+
+    return http.post(Uri.parse('$clientAddress/master/docking/create'), headers: headers, body: body);
+  }
 }
