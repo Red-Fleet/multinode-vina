@@ -35,7 +35,7 @@ class Docking(db.Model):
     worker_ids = sqaly.Column(ListType) # array of worker_ids
     target = sqaly.Column(sqaly.TEXT())
     target_name = sqaly.Column(sqaly.String(1000))
-    ligand_ids = sqaly.Column(ListType) # array of ligand_ids
+    compute_ids = sqaly.Column(ListType) # array of ligand_ids
     ligands_name = sqaly.Column(sqaly.String(1000))
     last_updated = sqaly.Column(sqaly.DateTime())
     state = sqaly.Column(sqaly.Enum(DockingState))

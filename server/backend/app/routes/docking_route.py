@@ -40,3 +40,22 @@ def createDocking() -> Response:
     
 
 
+@app.route('/docking/computes', methods = ['GET'])
+@auth.login_required
+def getComputes() -> Response:
+    
+    content = request.get_json()
+    master_id = g.user.client_id
+    
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    docking_id = content['docking_id']
+
+    if 'count' not in content: return Response("count not present", status=500, mimetype='application/json')
+    count = content['count']
+
+    try:
+        result = DockingService.getComputes(docking_id=docking_id, num=count)
+        return Response(json.dumps(result),status=200, mimetype='application/json')
+    except Exception as e:
+        app.logger.error(e)
+        return Response(str(e), status=500, mimetype='application/json')

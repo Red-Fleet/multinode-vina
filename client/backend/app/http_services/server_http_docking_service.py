@@ -28,3 +28,17 @@ class ServerHttpDockingService:
         
 
         return response.json()["docking_id"]
+    
+    @staticmethod
+    def getComputes(docking_id: str, count: int):
+        body = {
+            "docking_id": docking_id,
+            "count": count
+        }
+
+        response = requests.get(server.address+"/docking/computes", json=body,auth=(user.username, user.password))
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+
+        return response.json()
