@@ -3,10 +3,10 @@ import time
 from app.http_services.server_http_notification_service import ServerHttpNotificationService
 from app import app, user
 import time
-from app.automates_services.automated_docking_service import AutomatedDockingService
+from app.services.docking_service import DockingService
 
 class AutomatedNotificationService:
-    dockings = []
+
     @staticmethod
     def start():
         print("AutomatedNotificationService: started")
@@ -31,7 +31,7 @@ class AutomatedNotificationService:
                 docking_ids = [x['docking_id'] for x in result]
                 if len(docking_ids) >= 1:
                     for docking_id in docking_ids:
-                        AutomatedNotificationService.dockings.append(AutomatedDockingService(docking_id=docking_id))
+                        DockingService(docking_id=docking_id)
                 
                 else:
                     time.sleep(30)

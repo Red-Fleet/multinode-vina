@@ -4,6 +4,7 @@ from app import db, app
 from app.models.compute import Compute, ComputeState
 from app.services.notification_service import NotificationService
 
+#delete this
 class ComputeService:
     
     def createComputeTask(master_id:str, worker_id:str, target, ligands, target_name, ligands_name)-> str:

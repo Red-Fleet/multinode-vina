@@ -18,4 +18,9 @@ def make_shell_context():
     return {'db': db, 'user': user, 'client': client, 'request': request}
 
 
+# Initialize Services
+from app.services.docking_service import DockingService
+
+with app.app_context():
+    DockingService.initDockingService()
 

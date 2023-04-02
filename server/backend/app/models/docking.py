@@ -24,7 +24,6 @@ class ListType(sqaly.TypeDecorator):
     cache_ok = True
 
 class DockingState(enum.Enum):
-    CREATED: str = "CREATED"
     STARTED: str = "STARTED"
     FINISHED: str = "FINISHED"
     ERROR: str = "ERROR"
