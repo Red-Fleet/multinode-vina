@@ -103,7 +103,27 @@ class DockingService:
             raise Exception("database error")
         
 
-    
+    def getDockingTarget(docking_id: str)->str:
+        """returns target pdbqt using docking_id
+
+        Args:
+            docking_id (str): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            str: target
+        """
+        try:
+            result = Docking.query.with_entities(Docking.target).filter_by(docking_id=docking_id).first()
+
+        except Exception as e: 
+            app.logger.error(e)
+            raise Exception("database error")
+        
+        return result[0]
+        
     @staticmethod
     def getComputes(docking_id: str, num: int)-> dict:
         return DockingService.dockings[docking_id].getComputes(num)

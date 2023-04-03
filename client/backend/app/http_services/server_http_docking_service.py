@@ -42,3 +42,28 @@ class ServerHttpDockingService:
         
 
         return response.json()
+    
+    @staticmethod
+    def getDockingTarget(docking_id:str) -> str:
+        """returns target pdbqt using docking_id
+
+        Args:
+            docking_id (str): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            str: target
+        """
+        body = {
+            "docking_id": docking_id
+        }
+
+        response = requests.get(server.address+"/docking/target", json=body, auth=(user.username, user.password))
+
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()['target']
+

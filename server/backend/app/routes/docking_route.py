@@ -59,3 +59,19 @@ def getComputes() -> Response:
     except Exception as e:
         app.logger.error(e)
         return Response(str(e), status=500, mimetype='application/json')
+    
+
+@app.route('/docking/target', methods = ['GET'])
+@auth.login_required
+def getDockingTarget() -> Response:
+    content = request.get_json()
+
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    docking_id = content['docking_id']
+
+    try:
+        target = DockingService.getDockingTarget(docking_id=docking_id)
+        result = {"target": target}
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')

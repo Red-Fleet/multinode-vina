@@ -16,11 +16,11 @@ class DockingService:
         DockingService.dockings[docking_id] = system
         DockingService.docking_lock.release()
 
-    def __init__(self, docking_id):
-        self.docking_id = docking_id
-        with app.app_context():
-            thr = threading.Thread(target=self.startDockingThread)
-            thr.start()
+    # def __init__(self, docking_id):
+    #     self.docking_id = docking_id
+    #     with app.app_context():
+    #         thr = threading.Thread(target=self.startDockingThread)
+    #         thr.start()
     
     def startDockingThread(self):
         while True:

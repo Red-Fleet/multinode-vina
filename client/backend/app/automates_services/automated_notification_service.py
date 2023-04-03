@@ -27,11 +27,14 @@ class AutomatedNotificationService:
                     time.sleep(30)
                     continue
                 # check notification
-                result = ServerHttpNotificationService.getWorkerNotifications()
-                docking_ids = [x['docking_id'] for x in result]
-                if len(docking_ids) >= 1:
-                    for docking_id in docking_ids:
-                        DockingService(docking_id=docking_id)
-                
-                else:
-                    time.sleep(30)
+                try:
+                    result = ServerHttpNotificationService.getWorkerNotifications()
+                    docking_ids = [x['docking_id'] for x in result]
+                    if len(docking_ids) >= 1:
+                        for docking_id in docking_ids:
+                            DockingService.startDocking(docking_id=docking_id)
+                    
+                    else:
+                        time.sleep(30)
+                except Exception as e:
+                    app.logger.error(e)
