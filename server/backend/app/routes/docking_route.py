@@ -8,7 +8,7 @@ import os
 @app.route('/docking/create', methods = ['POST'])
 @auth.login_required
 def createDocking() -> Response:
-    """Create new docking task, POST request should have  worker_ids, ligands and target in json body
+    """Create new docking task, POST request should have  worker_ids, ligands, target, params in json body
 
     Returns:
         Response: docking_id
@@ -24,6 +24,9 @@ def createDocking() -> Response:
     
     if 'ligands' not in content: return Response("ligands file not present", status=500, mimetype='application/json')
     ligands = content['ligands']
+
+    if 'params' not in content: return Response("params not present", status=500, mimetype='application/json')
+    params = content['params']
     
     if 'target_name' not in content: target_name = ""
     else : target_name = content['target_name']
@@ -32,7 +35,7 @@ def createDocking() -> Response:
     else : ligands_name = content['ligands_name']
 
     try:
-        docking_id = DockingService.createDock(master_id=master_id, worker_ids=worker_ids, ligands=ligands, target=target, target_name=target_name ,ligands_name=ligands_name)
+        docking_id = DockingService.createDock(master_id=master_id, worker_ids=worker_ids, ligands=ligands, target=target, target_name=target_name ,ligands_name=ligands_name, params=params)
         return Response(json.dumps({'docking_id':docking_id}),status=200, mimetype='application/json')
     except Exception as e:
         app.logger.error(e)
@@ -72,6 +75,32 @@ def getDockingTarget() -> Response:
     try:
         target = DockingService.getDockingTarget(docking_id=docking_id)
         result = {"target": target}
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+
+
+@app.route('/docking/details', methods = ['GET'])
+@auth.login_required
+def getDockingDetails() -> Response:
+    """returns target pdbqt, master_id, params(parameters of vina) using docking_id
+
+        Args:
+            docking_id (str): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            json: containing target, master_id, params
+    """
+    content = request.get_json()
+
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    docking_id = content['docking_id']
+
+    try:
+        result = DockingService.getDockingTarget(docking_id=docking_id)
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')

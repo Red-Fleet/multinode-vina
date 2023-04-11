@@ -40,7 +40,7 @@ class DockingService:
             
 
     @staticmethod
-    def createDock(target: str, target_name:str, ligands: list[str], ligands_name: str, master_id: str, worker_ids:list[str]):
+    def createDock(target: str, target_name:str, ligands: list[str], ligands_name: str, master_id: str, worker_ids:list[str], params):
         """Method will add a new entry in docking table and add new comptues in compute table for every ligand.
         Method will notify workers using WorkerNotification class.
         Method will create and store a new instance of DockingSystem.
@@ -52,6 +52,7 @@ class DockingService:
             ligands_name (str): _description_
             master_id (str): _description_
             worker_ids (list[str]): _description_
+            params: json
 
         Raises:
             Exception: _description_
@@ -72,7 +73,7 @@ class DockingService:
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
             target=target, compute_ids=compute_ids, target_name=target_name, ligands_name=ligands_name,
-            state=DockingState.STARTED, last_updated=datetime.datetime.now())
+            state=DockingState.STARTED, last_updated=datetime.datetime.now(), params=params)
         
         try: 
             db.session.add(dock)
@@ -95,12 +96,31 @@ class DockingService:
         return docking_id
     
     @staticmethod
-    def getDockingDetails(docking_id: str):
+    def getDockingDetails(docking_id: str)->dict:
+        """returns target pdbqt, master_id, parameters of vina using docking_id
+
+        Args:
+            docking_id (str): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            dict: containing target, master_id, params
+        """
         try:
-            dock = Docking.query.with_entities(Docking.master_id, Docking.target).filter_by(docking_id=docking_id).first()
+            result = Docking.query.with_entities(Docking.master_id, Docking.target, Docking.params).filter_by(docking_id=docking_id).first()
         except Exception as e: 
             app.logger.error(e)
             raise Exception("database error")
+        
+        dock = {
+            "master_id": result[0],
+            "target": result[1],
+            "params": result[2]
+        }
+
+        return dock
         
 
     def getDockingTarget(docking_id: str)->str:

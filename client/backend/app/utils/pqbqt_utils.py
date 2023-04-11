@@ -25,7 +25,7 @@ class PdbqtUtils:
                 if curr_ligand != "":
                     ligands.append(curr_ligand)
                     curr_ligand = ""
-            else:
+            elif line != "":
                 # save line in current ligand
                 curr_ligand += line + "\n"
 

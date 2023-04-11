@@ -31,6 +31,18 @@ class ServerHttpDockingService:
     
     @staticmethod
     def getComputes(docking_id: str, count: int):
+        """return list of dict contaning compute_id and ligands
+
+        Args:
+            docking_id (str): _description_
+            count (int): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            _type_: _description_
+        """
         body = {
             "docking_id": docking_id,
             "count": count

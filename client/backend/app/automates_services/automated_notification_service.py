@@ -4,6 +4,7 @@ from app.http_services.server_http_notification_service import ServerHttpNotific
 from app import app, user
 import time
 from app.services.docking_service import DockingService
+import os
 
 class AutomatedNotificationService:
 
@@ -38,3 +39,4 @@ class AutomatedNotificationService:
                         time.sleep(30)
                 except Exception as e:
                     app.logger.error(e)
+                    time.sleep(30)
