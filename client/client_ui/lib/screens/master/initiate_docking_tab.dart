@@ -1,11 +1,14 @@
 import 'dart:html';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/services/client_http_service.dart';
 import 'package:ui/services/master_http_service.dart';
 import 'dart:convert';
+
+import 'package:ui/utils.dart';
 
 class InitiateDockingTab extends StatefulWidget {
   const InitiateDockingTab({super.key});
@@ -48,6 +51,15 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   /// ligand file
   String ligandFileName = "";
   FileUploadInputElement ligandFileInput = FileUploadInputElement();
+
+  /// scoring function, default value vina
+  String paramScoringFunction = "vina";
+
+  /// input for number of cpu, default is 0
+  TextEditingController paramCpuController = TextEditingController(text: "0");
+
+  /// input for number of Random seed, default is 0
+  TextEditingController paramRandomSeedController = TextEditingController(text: "0");
 
   /// submit button
   late bool disableSubmitButton;
@@ -97,6 +109,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   @override
   void dispose() {
     searchController.dispose();
+    paramCpuController.dispose();
     super.dispose();
   }
 
@@ -246,6 +259,12 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
 
     setState(() {
       disableSubmitButton = false;
+    });
+  }
+
+  void handleParamScoringFunctionChange(String? value) {
+    setState(() {
+      paramScoringFunction = value!;
     });
   }
 
@@ -422,6 +441,97 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
       ),
     );
 
+    /// card for vina options
+    Card vinaOptions = Card(
+      color: Colors.white,
+      elevation: 2,
+      shadowColor: Colors.blue,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          Row(
+            children: <Widget>[
+              const Expanded(
+                child: Text(
+                  "Scoring Function:",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  title: const Text("Vina"),
+                  value: "vina",
+                  groupValue: paramScoringFunction,
+                  onChanged: handleParamScoringFunctionChange,
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  title: const Text("Vinardo"),
+                  value: "vinardo",
+                  groupValue: paramScoringFunction,
+                  onChanged: handleParamScoringFunctionChange,
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  title: const Text("AD4"),
+                  value: "ad4",
+                  groupValue: paramScoringFunction,
+                  onChanged: handleParamScoringFunctionChange,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              const Text(
+                "Number of CPU to use (Default 0: use all of them): ",
+                style: TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                child: SizedBox(
+                  width: 100, 
+                  child: TextField(
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ], // Only numbers can be entered
+                      controller: paramCpuController,
+                      decoration: const InputDecoration(
+                        isDense: true,
+                      )),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 10,),
+          Row(
+            children: [
+              const Text(
+                "Random seed (Default 0: ramdomly choosed): ",
+                style: TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                child: SizedBox(
+                  width: 100, 
+                  child: TextField(
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ], // Only numbers can be entered
+                      controller: paramRandomSeedController,
+                      decoration: const InputDecoration(
+                        isDense: true,
+                      )),
+                ),
+              )
+            ],
+          )
+        ]),
+      ),
+    );
+
     return Expanded(
       child: ListView(
         children: [
@@ -434,6 +544,11 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
             padding:
                 EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
             child: targetFileWidget,
+          ),
+          Padding(
+            padding:
+                EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
+            child: vinaOptions,
           ),
           Padding(
             padding:
@@ -487,7 +602,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                 screenWidth * 0.4, 10, screenWidth * 0.4, 0),
             child: OutlinedButton(
               onPressed: () {
-                if(disableSubmitButton == true) return;
+                if (disableSubmitButton == true) return;
 
                 setState(() {
                   disableSubmitButton = true;
