@@ -52,14 +52,22 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   String ligandFileName = "";
   FileUploadInputElement ligandFileInput = FileUploadInputElement();
 
+  //////// params ////////////////////////////
   /// scoring function, default value vina
   String paramScoringFunction = "vina";
-
   /// input for number of cpu, default is 0
   TextEditingController paramCpuController = TextEditingController(text: "0");
-
-  /// input for number of Random seed, default is 0
+  /// input for Random seed, default is 0
   TextEditingController paramRandomSeedController = TextEditingController(text: "0");
+  /// input for exhaustiveness, default is 8
+  TextEditingController paramExhaustivenessController = TextEditingController(text: "8");
+  /// input for number of pose (n_poses), default is 20
+  TextEditingController paramNPosesController = TextEditingController(text:"20");
+  /// input for Minimal RMSD, default is 1.0
+  TextEditingController paramMinimalRMSDController = TextEditingController(text:"1.0");
+  /// input for Maximum evaluations, default is 0
+  TextEditingController paramMaximumEvaluationsController = TextEditingController(text:"0");
+
 
   /// submit button
   late bool disableSubmitButton;
@@ -113,6 +121,77 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     super.dispose();
   }
 
+  /////////// Vaidations ////////////////////
+  String? paramCpuValidator(String? val){
+    if(paramCpuController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    return null;
+  }
+
+  String? paramRandomSeedValidators(String? val){
+    if(paramRandomSeedController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    return null;
+  }
+  
+  String? paramExhaustivenessValidators(String? val){
+    if(paramExhaustivenessController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isInteger(paramExhaustivenessController.text)==false || getInteger(paramExhaustivenessController.text)! < 1){
+      return "Must be greater than 0";
+    }
+
+    return null;
+  }
+
+  String? paramNPosesValidators(String? val){
+    if(paramNPosesController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isInteger(paramNPosesController.text)==false || getInteger(paramNPosesController.text)! < 1){
+      return "Must be greater than 0";
+    }
+
+    return null;
+  }
+
+  String? paramMinimalRMSDValidators(String? val){
+    if(paramMinimalRMSDController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramMinimalRMSDController.text)==false){
+      return "Must be a number";
+    }
+
+    if(getDouble(paramMinimalRMSDController.text)! <= 0){
+      return "Must be greater than 0";
+    }
+
+    return null;
+  }
+
+  String? paramMaximumEvaluationsValidators(String? val){
+    if(paramMaximumEvaluationsController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isInteger(paramMaximumEvaluationsController.text)==false || getInteger(paramMaximumEvaluationsController.text)! < 0){
+      return "Must be positive";
+    }
+
+    return null;
+  }
+
+
+  
   /// Get client details to whom connection request was send
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
@@ -441,7 +520,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
       ),
     );
 
-    /// card for vina options
+    /// card for vina params
     Card vinaOptions = Card(
       color: Colors.white,
       elevation: 2,
@@ -483,6 +562,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
               ),
             ],
           ),
+          // number of cpu
           Row(
             children: [
               const Text(
@@ -493,19 +573,22 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                 padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
                 child: SizedBox(
                   width: 100, 
-                  child: TextField(
+                  child: TextFormField(
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
                       ], // Only numbers can be entered
                       controller: paramCpuController,
                       decoration: const InputDecoration(
                         isDense: true,
-                      )),
+                      ),
+                      validator: paramCpuValidator,
+                      autovalidateMode: AutovalidateMode.always,),
                 ),
               )
             ],
           ),
           const SizedBox(height: 10,),
+          /// random seed
           Row(
             children: [
               const Text(
@@ -516,22 +599,150 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                 padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
                 child: SizedBox(
                   width: 100, 
-                  child: TextField(
+                  child: TextFormField(
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
                       ], // Only numbers can be entered
                       controller: paramRandomSeedController,
                       decoration: const InputDecoration(
                         isDense: true,
-                      )),
+                      ),
+                      validator: paramRandomSeedValidators,
+                      autovalidateMode: AutovalidateMode.always,),
                 ),
               )
             ],
-          )
+          ),
         ]),
       ),
     );
 
+    /// card for docking params
+    Card dockingOptions = Card(
+      color: Colors.white,
+      elevation: 2,
+      shadowColor: Colors.blue,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          Row(children: [
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Exhaustiveness: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  child: SizedBox(
+                    width: 150, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
+                        controller: paramExhaustivenessController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramExhaustivenessValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+          Expanded(
+            child: Row(
+              children: [
+                const Text(
+                  "Number of Poses: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  child: SizedBox(
+                    width: 150, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
+                        controller: paramNPosesController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramNPosesValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+            ),
+          ),
+          
+          ],),
+
+          Row(children: [
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Minimal RMSD: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  child: SizedBox(
+                    width: 150, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramMinimalRMSDController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramMinimalRMSDValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+          Expanded(
+            child: Row(
+              children: [
+                const Text(
+                  "Maximum evaluations: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+                  child: SizedBox(
+                    width: 150, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ], // Only numbers can be entered
+                        controller: paramMaximumEvaluationsController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramMaximumEvaluationsValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+            ),
+          ),
+          
+          ],)
+        
+        
+        ]),
+      ),
+    );
+
+    
     return Expanded(
       child: ListView(
         children: [
@@ -549,6 +760,11 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
             padding:
                 EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
             child: vinaOptions,
+          ),
+          Padding(
+            padding:
+                EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
+            child: dockingOptions,
           ),
           Padding(
             padding:
