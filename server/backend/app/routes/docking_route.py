@@ -24,15 +24,30 @@ def createDocking() -> Response:
     
     if 'ligands' not in content: return Response("ligands file not present", status=500, mimetype='application/json')
     ligands = content['ligands']
-
-    if 'params' not in content: return Response("params not present", status=500, mimetype='application/json')
-    params = content['params']
     
     if 'target_name' not in content: target_name = ""
     else : target_name = content['target_name']
 
     if 'ligands_name' not in content: ligands_name = ""
     else : ligands_name = content['ligands_name']
+
+    params = dict()
+
+    if 'scoring_function' in content: params['scoring_function'] = content['scoring_function']
+    if 'cpu_num' in content: params['cpu_num'] = content['cpu_num']
+    if 'random_seed' in content: params['random_seed'] = content['random_seed']
+    if 'exhaustiveness' in content: params['exhaustiveness'] = content['exhaustiveness']
+    if 'n_poses' in content: params['n_poses'] = content['n_poses']
+    if 'min_rmsd' in content: params['min_rmsd'] = content['min_rmsd']
+    if 'max_evals' in content: params['max_evals'] = content['max_evals']
+    if 'center_x' in content: params['center_x'] = content['center_x']
+    if 'center_y' in content: params['center_y'] = content['center_y']
+    if 'center_z' in content: params['center_z'] = content['center_z']
+    if 'box_size_x' in content: params['box_size_x'] = content['box_size_x']
+    if 'box_size_y' in content: params['box_size_y'] = content['box_size_y']
+    if 'box_size_z' in content: params['box_size_z'] = content['box_size_z']
+    if 'grid_spacing' in content: params['grid_spacing'] = content['grid_spacing']
+
 
     try:
         docking_id = DockingService.createDock(master_id=master_id, worker_ids=worker_ids, ligands=ligands, target=target, target_name=target_name ,ligands_name=ligands_name, params=params)
@@ -100,7 +115,7 @@ def getDockingDetails() -> Response:
     docking_id = content['docking_id']
 
     try:
-        result = DockingService.getDockingTarget(docking_id=docking_id)
+        result = DockingService.getDockingDetails(docking_id=docking_id)
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')

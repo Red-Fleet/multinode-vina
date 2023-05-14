@@ -40,7 +40,14 @@ class DockingService:
             
 
     @staticmethod
-    def createDock(target: str, target_name:str, ligands: list[str], ligands_name: str, master_id: str, worker_ids:list[str], params):
+    def createDock(target: str, 
+                   target_name:str, 
+                   ligands: list[str], 
+                   ligands_name: str, 
+                   master_id: str, 
+                   worker_ids:list[str],
+                   params: dict
+                   ):
         """Method will add a new entry in docking table and add new comptues in compute table for every ligand.
         Method will notify workers using WorkerNotification class.
         Method will create and store a new instance of DockingSystem.
@@ -52,7 +59,7 @@ class DockingService:
             ligands_name (str): _description_
             master_id (str): _description_
             worker_ids (list[str]): _description_
-            params: json
+            params: dict
 
         Raises:
             Exception: _description_
@@ -64,11 +71,10 @@ class DockingService:
         docking_id = str(uuid.uuid4())
         computes: list[Compute] = []
         compute_ids:list[str] = []
-        #print(type(target), type(target_name), type(ligands), type(ligands_name), type(master_id), type(worker_ids))
+        
         for ligand in ligands:
             compute_id = str(uuid.uuid4())
             compute_ids.append(compute_id)
-            pass
             computes.append(Compute(compute_id=compute_id, ligand=ligand, state=ComputeState.NOT_COMPUTED))
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
@@ -88,6 +94,7 @@ class DockingService:
             app.logger.error(e)
             raise Exception("DockingService: Database Error")
         
+        # creating docking system for this ligand
         docking_system = DockingSystem(docking_id)
         DockingService.docking_lock.acquire()
         DockingService.dockings[docking_id] = docking_system

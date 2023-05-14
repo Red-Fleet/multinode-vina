@@ -16,6 +16,7 @@ class DockingSystem:
 
         self.worker_ids = [] # for storing ids of workers
         self.master_id: str = None # for storing id of master
+        self.params = dict() # for storing different parameters used while docking like scoring function, grid size etc.
 
         self.readDockingDetailsFromDBThread = Thread(target=self.readDockingDetailsFromDB)
         self.readDockingDetailsFromDBThread.start()
@@ -26,8 +27,8 @@ class DockingSystem:
     def readDockingDetailsFromDB(self):
         """Method will first get all compute_ids from docking table using docking_id, and then
         get compute status to initialize computed, uncomputed ids.
-        Note: all computing ids will be considered as uncomputed.
         Method will notify all workers of the docking
+        Note: all computing ids will be considered as uncomputed.
         """
         with app.app_context():
             try:

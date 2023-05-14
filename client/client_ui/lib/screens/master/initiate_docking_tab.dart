@@ -67,7 +67,21 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   TextEditingController paramMinimalRMSDController = TextEditingController(text:"1.0");
   /// input for Maximum evaluations, default is 0
   TextEditingController paramMaximumEvaluationsController = TextEditingController(text:"0");
-
+  /// input for center x coordinate
+  TextEditingController paramCenterXController = TextEditingController();
+  /// input for center y coordinate
+  TextEditingController paramCenterYController = TextEditingController();
+  /// input for center z coordinate
+  TextEditingController paramCenterZController = TextEditingController();
+  /// input for size x 
+  TextEditingController paramSizeXController = TextEditingController();
+  /// input for size y
+  TextEditingController paramSizeYController = TextEditingController();
+  /// input for size z 
+  TextEditingController paramSizeZController = TextEditingController();
+  /// input for grid spacing default: 0.375
+  TextEditingController paramSpacingController = TextEditingController(text:"0.375");
+  
 
   /// submit button
   late bool disableSubmitButton;
@@ -89,26 +103,39 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
 
     /// Add an event listener to the input element
     targetFileInput.onChange.listen((e) {
-      if (targetFileInput.files != null) {
+      if (targetFileInput.files != null && targetFileInput.files!.isNotEmpty) {
         // Get the selected file
         File file = targetFileInput.files!.first;
         setState(() {
           targetFileName = file.name;
         });
       }
+      else{
+        setState(() {
+          targetFileName = "";
+        });
+      }
     });
 
     /// initializing ligandFileInput for uploading ligand pdbqt
-    ligandFileInput.multiple = false;
+    ligandFileInput.multiple = true;
     ligandFileInput.accept = '.pdbqt';
 
     /// Add an event listener to the input element
     ligandFileInput.onChange.listen((e) {
-      if (ligandFileInput.files != null) {
+      if (ligandFileInput.files != null && ligandFileInput.files!.isNotEmpty) {
         // Get the selected file
         File file = ligandFileInput.files!.first;
+        String fileNames = "";
+        for(file in ligandFileInput.files!) fileNames += file.name + ", ";
+        if(fileNames.isNotEmpty) fileNames = fileNames.substring(0, fileNames.length-2); 
         setState(() {
-          ligandFileName = file.name;
+          ligandFileName = fileNames;
+        });
+      }
+      else{
+        setState(() {
+          ligandFileName = "";
         });
       }
     });
@@ -116,8 +143,21 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
 
   @override
   void dispose() {
+    /// dispose all controllers
     searchController.dispose();
     paramCpuController.dispose();
+    paramRandomSeedController.dispose();
+    paramExhaustivenessController.dispose();
+    paramNPosesController.dispose();
+    paramMinimalRMSDController.dispose();
+    paramMaximumEvaluationsController.dispose();
+    paramCenterXController.dispose();
+    paramCenterYController.dispose();
+    paramCenterZController.dispose();
+    paramSizeXController.dispose();
+    paramSizeYController.dispose();
+    paramSizeZController.dispose();
+    paramSpacingController.dispose();
     super.dispose();
   }
 
@@ -190,6 +230,93 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     return null;
   }
 
+  String? paramCenterXControllerValidators(String? val){
+    if(paramCenterXController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramCenterXController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramCenterYControllerValidators(String? val){
+    if(paramCenterYController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramCenterYController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramCenterZControllerValidators(String? val){
+    if(paramCenterZController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramCenterZController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramSizeXControllerValidators(String? val){
+    if(paramSizeXController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramSizeXController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramSizeYControllerValidators(String? val){
+    if(paramSizeYController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramSizeYController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramSizeZControllerValidators(String? val){
+    if(paramSizeZController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramSizeZController.text)==false){
+      return "Must be number";
+    }
+
+    return null;
+  }
+
+  String? paramSpacingControllerValidators(String? val){
+    if(paramSpacingController.text.isEmpty){
+      return 'Can\'t be empty';
+    }
+
+    if(isDouble(paramSpacingController.text)==false){
+      return "Must be number";
+    }
+
+    if(getDouble(paramSpacingController.text)!<= 0){
+      return "Must be greater than 0";
+    }
+
+    return null;
+  }
 
   
   /// Get client details to whom connection request was send
@@ -230,7 +357,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
         return true;
       } else {
         debugPrint(
-            "_AllClientTabState.getData(): statusCode=${response.statusCode}\nerror:${response.body}");
+            "getClientDetailsFromBackend: statusCode=${response.statusCode}\nerror:${response.body}");
         return false;
       }
     } catch (e) {
@@ -315,12 +442,16 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     await targetFileReader.onLoad.first;
     String targetFileContent = targetFileReader.result as String;
 
-    File ligandFile = ligandFileInput.files!.first;
-    final ligandFileReader = FileReader();
+    List<String> ligandFileContents = [];
+    for(var ligandFile in ligandFileInput.files!){
+      var ligandFileReader = FileReader();
 
-    ligandFileReader.readAsText(ligandFile);
-    await ligandFileReader.onLoad.first;
-    String ligandFileContent = ligandFileReader.result as String;
+      ligandFileReader.readAsText(ligandFile);
+      await ligandFileReader.onLoad.first;
+      ligandFileContents.add(ligandFileReader.result as String);
+    }
+    
+    
 
     List<String> workerIds = [];
     for (int i = 0; i < clientDetailsList.length; i++) {
@@ -328,17 +459,37 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
         workerIds.add(clientDetailsList[i].clientId);
       }
     }
-
+    
+    try{
     final response = await MasterHttpService.initiateDocking(
         target: targetFileContent,
         targetName: targetFile.name,
-        ligands: ligandFileContent,
-        ligandsName: ligandFile.name,
+        ligands: ligandFileContents,
+        cpuNum: getInteger(paramCpuController.text)!,
+        randomSeed: getInteger(paramRandomSeedController.text)!,
+        scoringFunction: paramScoringFunction,
+        exhaustiveness: getInteger(paramExhaustivenessController.text)!,
+        maximumEvaluations: getInteger(paramMaximumEvaluationsController.text)!,
+        minimalRMSD: getDouble(paramMinimalRMSDController.text)!,
+        nPoses: getInteger(paramNPosesController.text)!,
+        centerX: getDouble(paramCenterXController.text)!,
+        centerY: getDouble(paramCenterYController.text)!,
+        centerZ: getDouble(paramCenterZController.text)!,
+        sizeX: getDouble(paramSizeXController.text)!,
+        sizeY: getDouble(paramSizeYController.text)!,
+        sizeZ: getDouble(paramSizeZController.text)!,
+        gridSpacing: getDouble(paramSpacingController.text)!,
         workerIds: workerIds);
 
-    setState(() {
+        
+    }
+    finally{
+          setState(() {
       disableSubmitButton = false;
     });
+
+    }
+
   }
 
   void handleParamScoringFunctionChange(String? value) {
@@ -500,8 +651,15 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
             children: [
               const Text("Upload Ligands PDBQT:  ",
                   style: TextStyle(fontSize: 16)),
-              Text(ligandFileName),
-              const Spacer(),
+              Expanded(
+                //width: 100,
+                child: SingleChildScrollView(
+            
+            //for horizontal scrolling
+            scrollDirection: Axis.horizontal,
+            child: Text(ligandFileName)),
+              ),
+              //const Spacer(),
               SelectionContainer.disabled(
                 child: IconButton(
                   icon: const Icon(Icons.upload_file),
@@ -742,7 +900,214 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
       ),
     );
 
-    
+    /// card for center, size, spacing
+    Card centerSizeSpacingCard = Card(
+      color: Colors.white,
+      elevation: 2,
+      shadowColor: Colors.blue,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          /// Center Position
+          Row(children: [
+            const Expanded(child: Text("Center Position (Angstrom)", style: TextStyle(fontSize: 16),)),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "X: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramCenterXController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramCenterXControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Y: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramCenterYController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramCenterYControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Z: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramCenterZController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramCenterZControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+
+          ],),
+          /// Size
+          Row(children: [
+            const Expanded(child: Text("Box Size (Angstrom)", style: TextStyle(fontSize: 16),)),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "X: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramSizeXController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramSizeXControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Y: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramSizeYController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramSizeYControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Z: ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramSizeZController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramSizeZControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+            
+          ],),
+          /// grid spacing
+          Row(children: [
+            Expanded(
+              child: Row(
+              children: [
+                const Text(
+                  "Grid Spacing (default: 0.375): ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: SizedBox(
+                    width: 100, 
+                    child: TextFormField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                        ], // Only numbers can be entered
+                        controller: paramSpacingController,
+                        decoration: const InputDecoration(
+                          isDense: true,
+                        ),
+                        validator: paramSpacingControllerValidators,
+                        autovalidateMode: AutovalidateMode.always,),
+                  ),
+                )
+              ],
+                      ),
+            ),
+          ],)
+
+        ]),
+      ),
+    );
+
     return Expanded(
       child: ListView(
         children: [
@@ -765,6 +1130,11 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
             padding:
                 EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
             child: dockingOptions,
+          ),
+          Padding(
+            padding:
+                EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 0),
+            child: centerSizeSpacingCard,
           ),
           Padding(
             padding:
@@ -818,6 +1188,21 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                 screenWidth * 0.4, 10, screenWidth * 0.4, 0),
             child: OutlinedButton(
               onPressed: () {
+                /// check for validation
+                if(paramCpuValidator(null)!=null ||
+                paramNPosesValidators(null) != null ||
+                paramRandomSeedValidators(null) != null ||
+                paramExhaustivenessValidators(null) != null ||
+                paramSizeXControllerValidators(null) != null ||
+                paramSizeYControllerValidators(null) != null ||
+                paramSizeZControllerValidators(null) != null ||
+                paramCenterXControllerValidators(null) != null ||
+                paramCenterYControllerValidators(null) != null ||
+                paramCenterZControllerValidators(null) != null ||
+                paramMinimalRMSDValidators(null) != null ||
+                paramSpacingControllerValidators(null) != null ||
+                paramMaximumEvaluationsValidators(null) != null 
+                ) return;
                 if (disableSubmitButton == true) return;
 
                 setState(() {

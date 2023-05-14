@@ -17,10 +17,10 @@ class PdbqtUtils:
         curr_ligand = ""
         
         for line in lines:
-            if "MODEL" == line[0:5]:
+            if "MODEL" in line:
                 # start of new ligand file
                 curr_ligand = ""
-            elif "ENDMDL" == line[0:6]:
+            elif "ENDMDL" in line:
                 # end of current ligand, save it, if not empty
                 if curr_ligand != "":
                     ligands.append(curr_ligand)

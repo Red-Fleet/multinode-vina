@@ -7,13 +7,17 @@ class MasterDockingService:
     """MasterDockingService class is used by master to create, view, update, delete dockings
     """
     @staticmethod
-    def createDock(target: str, target_name:str, ligands: str, ligands_name: str, worker_ids:list[str]):
+    def createDock(docking_details: dict):
         try:
             # splitting pdbqt
-            splitted_ligands = PdbqtUtils.splitIntoLigands(ligands)
-            dockin_id = ServerHttpDockingService.createDocking(target=target, ligands=splitted_ligands, target_name=target_name, ligands_name=ligands_name, worker_ids=worker_ids)
+            splitted_ligands = []
+            for ligands in docking_details['ligands']:
+                splitted_ligands += PdbqtUtils.splitIntoLigands(ligands)
+
+            docking_details['ligands'] = splitted_ligands
+            docking_id = ServerHttpDockingService.createDocking(docking_details)
         except Exception as e:
             app.logger.error(e)
             raise e
         
-        return dockin_id
+        return docking_id

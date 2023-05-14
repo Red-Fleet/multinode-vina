@@ -30,12 +30,42 @@ class MasterHttpService{
   }
 
   /// initiate docking
-  static Future<http.Response> initiateDocking({required String target, required String targetName, required String ligands, required String ligandsName, required List<String> workerIds}){
+  static Future<http.Response> initiateDocking({required String target, 
+  required String targetName, 
+  required List<String> ligands, 
+  required String scoringFunction,
+  required int cpuNum,
+  required int randomSeed,
+  required int exhaustiveness,
+  required int nPoses,
+  required double minimalRMSD,
+  required int maximumEvaluations,
+  required double centerX,
+  required double centerY,
+  required double centerZ,
+  required double sizeX,
+  required double sizeY,
+  required double sizeZ,
+  required double gridSpacing,
+  required List<String> workerIds}){
     var body = json.encode({
       "target": target,
       "target_name": targetName,
       "ligands": ligands,
-      "ligands_name": ligandsName,
+      "scoring_function": scoringFunction,
+      "cpu_num": cpuNum,
+      "random_seed": randomSeed,
+      "exhaustiveness": exhaustiveness,
+      "n_poses": nPoses,
+      "min_rmsd": minimalRMSD,
+      "max_evals": maximumEvaluations,
+      "center_x": centerX,
+      "center_y": centerY,
+      "center_z": centerZ,
+      "box_size_x": sizeX,
+      "box_size_y": sizeY,
+      "box_size_z": sizeZ,
+      "grid_spacing": gridSpacing,
       "worker_ids": workerIds
     });
 
