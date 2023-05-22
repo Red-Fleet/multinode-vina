@@ -9,8 +9,8 @@ from threading import Lock
 from app.system.docking_system import DockingSystem
 
 class DockingService:
-    dockings = dict() # contains all docking result
-    docking_lock = Lock()
+    dockings: dict[str, DockingSystem] = dict() # contains all docking result
+    docking_lock: Lock = Lock()
 
     @staticmethod
     def initDockingService():
@@ -154,3 +154,36 @@ class DockingService:
     @staticmethod
     def getComputes(docking_id: str, num: int)-> dict:
         return DockingService.dockings[docking_id].getComputes(num)
+    
+    @staticmethod
+    def saveComputeResult(docking_id: str, computes: list):
+        try:
+            DockingService.dockings[docking_id].saveResults(computes)
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("database error")
+        
+    @staticmethod
+    def getDockingStatus(docking_id: str)-> dict[str, int]:
+        """returns dictonary contaning total of computing, computed, uncomputed and error computes
+
+        Args:
+            docking_id (str): _description_
+
+        Returns:
+            dict[str, int]: _description_
+        """
+        return DockingService.dockings[docking_id].getDockingStatus()
+    
+    @staticmethod
+    def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
+        """return result and state of compute 
+
+        Args:
+            docking_id (str): _description_
+            compute_id (str): _description_
+
+        Returns:
+            dict[str, str]: dict contaning compute_id, state and result
+        """
+        return DockingService.dockings[docking_id].getComputeResult(compute_id=compute_id)

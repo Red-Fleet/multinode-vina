@@ -4,6 +4,7 @@ from app import app, db
 from app.models.docking import Docking
 from app.models.compute import Compute, ComputeState
 from app.services.notification_service import NotificationService
+from sqlalchemy import case
 
 class DockingSystem:
     def __init__(self, docking_id: str):
@@ -52,7 +53,7 @@ class DockingSystem:
                         if compute[1] == ComputeState.COMPUTED: self.computed_ids.append(compute[0])
                         elif compute[1] == ComputeState.NOT_COMPUTED: self.un_computed_ids.append(compute[0])
                         elif compute[1] == ComputeState.COMPUTING: self.un_computed_ids.add(compute[0]) # computing_ids are considered as uncomputed
-                        elif compute[1] == ComputeState.ERROR: self.error_ids.append(compute[0])
+                        else: self.error_ids.append(compute[0])
                 except Exception as e:
                     app.logger.error(e)
                 finally:
@@ -107,12 +108,22 @@ class DockingSystem:
         return computes
 
     def saveResults(self, computes):
+        """save compute result in database
+
+        Args:
+            computes (_type_): _description_
+        """
         compute_ids = [compute["compute_id"] for compute in computes]
+
         # save in database
         Compute.query.filter(Compute.compute_id.in_(compute_ids)).update(
-            {Compute.result: db.case(computes, value=Compute.result)}
+            {
+                Compute.result: db.case({compute["compute_id"]: compute["result"] for compute in computes}, value=Compute.compute_id),
+                Compute.state: case({compute["compute_id"]: "COMPUTED" for compute in computes}, value=Compute.compute_id)
+            }
         )
 
+        db.session.commit()
         try:
             self.lock.acquire()
             for id in compute_ids:
@@ -123,3 +134,36 @@ class DockingSystem:
             app.logger.error(e)
         finally:
             self.lock.release()
+
+    def getDockingStatus(self)-> dict[str, int]:
+        """returns dictonary contaning total of computing, computed, uncomputed and error computes
+
+        Returns:
+            dict[str, int]: _description_
+        """
+        result = {
+            ComputeState.COMPUTING.name: len(self.computing_ids),
+            ComputeState.COMPUTED.name: len(self.computed_ids),
+            ComputeState.NOT_COMPUTED.name: len(self.un_computed_ids),
+            ComputeState.ERROR.name: len(self.error_ids)
+        }
+
+        return result
+    
+    def getComputeResult(self, compute_id: str)->dict[str, str]:
+        """return result and state of compute 
+
+        Args:
+            compute_id (str): str
+
+        Returns:
+            dict[str, str]: dict contaning compute_id, state and result
+        """
+        data = Compute.query.with_entities(Compute.state, Compute.result).filter_by(compute_id= compute_id).first()
+        result = {
+            "compute_id": compute_id,
+            "state": data[0],
+            "result": data[1]
+        }
+
+        return result

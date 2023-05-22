@@ -119,3 +119,42 @@ def getDockingDetails() -> Response:
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
+    
+@app.route('/docking/computes/result', methods = ['POST'])
+@auth.login_required
+def saveComputeResult()->Response:
+    content = request.get_json()
+
+    if 'computes' not in content: return Response("computes not present", status=500, mimetype='application/json')
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.saveComputeResult(docking_id=content["docking_id"], computes=content['computes'])
+        return Response(status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+    
+@app.route('/docking/status', methods = ['GET'])
+@auth.login_required
+def getDockingStatus()->Response:
+    content = request.get_json()
+
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.getDockingStatus(docking_id=content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+    
+
+@app.route('/docking/compute/result', methods = ['GET'])
+@auth.login_required
+def getComputeResult()->Response:
+    content = request.get_json()
+
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    if 'compute_id' not in content: return Response("compute_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.getComputeResult(docking_id=content["docking_id"], compute_id=content["compute_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')

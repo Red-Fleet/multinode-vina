@@ -98,3 +98,24 @@ class ServerHttpDockingService:
         
         return response.json()
 
+    @staticmethod
+    def saveComputeResult(docking_id: str, computes: list):
+        """save compute results on server
+
+        Args:
+            docking_id (str): docking_id of compute
+            computes (list): list of dict contaning compute_id and result
+
+        Raises:
+            Exception: HttpError
+        """
+        body = {
+            "docking_id": docking_id,
+            "computes": computes
+        }
+
+
+        response = requests.post(server.address+"/docking/computes/result", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))

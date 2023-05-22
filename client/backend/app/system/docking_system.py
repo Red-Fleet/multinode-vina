@@ -5,6 +5,7 @@ from vina import Vina
 import os
 import pathlib
 
+
 class DockingSystem:
     def __init__(self, docking_id) -> None:
         self.docking_id = docking_id
@@ -19,16 +20,17 @@ class DockingSystem:
     def startDockingSystemThread(self):
         with app.app_context():
             # get docking details from server
-            docking_details = self.getDockingDetails()
+            docking_details = self.getDockingDetails(self.docking_id)
             self.params = docking_details["params"]
             self.target = docking_details["target"]
             self.master_id = docking_details["master_id"]
             
             # initializing vina
-            self.vina = self.getVina()
+            self.vina = self.getVina(params=self.params)
 
             # save receptor in temp file
             self.saveReceptorInTempFolder(self.target)
+            
 
             # set target/receptor in vina
             self.vina.set_receptor(self.target_path)
@@ -69,7 +71,7 @@ class DockingSystem:
         
         # get targets
         while True:
-            computes = self.getComputes()
+            computes = self.getComputes(self.docking_id)
             results = [] # stores dict contaning 
             app.logger.info("sdfdsf")
             if len(computes) >= 1:
@@ -83,9 +85,13 @@ class DockingSystem:
                                             min_rmsd=min_rmsd,
                                             max_evals=max_evals)
                     
-                    result1
+                    results.append({
+                        "compute_id": compute["compute_id"],
+                        "result": self.vina.poses(n_poses=n_poses)
+                    })
 
-                    
+                # update result of this batch without blocking next request
+                self.updateComputeResult(compute_results=results)
 
             else:
                 app.logger.info("Docking Finished: docking_id({self.docking_id})")
@@ -121,5 +127,22 @@ class DockingSystem:
         return ServerHttpDockingService.getDockingTarget(self.docking_id)
     
     def getDockingDetails(self, docking_id:str)-> str:
-        return ServerHttpDockingService.getDockingTarget(docking_id)
+        return ServerHttpDockingService.getDockingDetails(docking_id)
+    
+    def updateComputeResult(self, compute_results: list):
+        """This method start a thread which updates compute result on server
+
+        Args:
+            compute_results (list): list of dict contaning compute_id and result
+        """
+        def threadedComputeResultUpdate(docking_id, compute_results):
+            with app.app_context():
+                ServerHttpDockingService.saveComputeResult(docking_id, compute_results)
+
+        t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
+        t.start()
+
+
+
+        
         

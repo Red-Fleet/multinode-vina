@@ -20,5 +20,4 @@ class Compute(db.Model):
 
 
 
-
     
