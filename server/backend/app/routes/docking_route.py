@@ -158,3 +158,48 @@ def getComputeResult()->Response:
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
+    
+
+@app.route('/docking/ids', methods = ['GET'])
+@auth.login_required
+def getMasterDockingIds()->Response:
+    """function returns all docking_id and state of dockings started by master
+
+    Returns:
+        Response: json: 
+            [
+                {
+                    "docking_id":"val",
+                    "state": "val"
+                }
+                ...
+            ]
+    """
+    master_id = g.user.client_id
+
+    try:
+        result = DockingService.getMasterDockingIds(master_id= master_id)
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+    
+
+@app.route('/docking/compute/ids', methods = ['GET'])
+@auth.login_required
+def getAllComputeIds()->Response:
+    """function returns all docking_id and state of dockings started by master
+
+    Returns:
+        Response: json: 
+            [
+                "compute_id_1", "compute_id_2", ...
+            ]
+    """
+    content = request.get_json()
+    if 'compute_id' not in content: return Response("compute_id not present", status=500, mimetype='application/json')
+
+    try:
+        result = DockingService.getAllComputeIds(docking_id= content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')

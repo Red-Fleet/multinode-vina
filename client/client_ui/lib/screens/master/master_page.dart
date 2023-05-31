@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:ui/screens/master/all_clients_tab.dart';
 import 'package:ui/screens/master/connected_clients.dart';
 import 'package:ui/screens/master/connection_requests.dart';
+import 'package:ui/screens/master/docking_result_tab.dart';
 import 'package:ui/screens/master/initiate_docking_tab.dart';
 import 'package:ui/widgets/custon_chips.dart';
 
@@ -16,7 +17,7 @@ class MasterPage extends StatefulWidget {
 
 class MasterPageState extends State<MasterPage> {
   var selectedTab = 0; // index of selected tab
-  final tabs = ["All Clients", "Connection Requests","Connected Clients", "Initiate Docking"];
+  final tabs = ["All Clients", "Connection Requests","Connected Clients", "Initiate Docking", "Result"];
 
   void changeSelectedTab(int index){
     setState(() {
@@ -36,6 +37,9 @@ class MasterPageState extends State<MasterPage> {
     }
     if(selectedTab==3){
       return const InitiateDockingTab();
+    }
+    if(selectedTab == 4){
+      return const DockingResultTab();
     }
 
     return Container();

@@ -21,3 +21,32 @@ class MasterDockingService:
             raise e
         
         return docking_id
+    
+    @staticmethod
+    def getMasterDockingIds()->list[dict[str, str]]:
+        """function returns all docking_id of dockings started by master
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[dict[str, str]]: list of dict contaning docking_id and state of docking
+        """
+        return ServerHttpDockingService.getMasterDockingIds()
+
+    @staticmethod
+    def getAllComputeIds(docking_id: str)-> list[str]:
+        """returns all compute_ids of a docking
+
+        Args:
+            docking_id (str): docking id
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[str]: list contaning compute ids
+        """
+
+        return ServerHttpDockingService.getAllComputeIds(docking_id=docking_id)
+

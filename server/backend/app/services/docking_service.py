@@ -187,3 +187,49 @@ class DockingService:
             dict[str, str]: dict contaning compute_id, state and result
         """
         return DockingService.dockings[docking_id].getComputeResult(compute_id=compute_id)
+    
+    @staticmethod
+    def getMasterDockingIds(master_id: str)->list[dict[str, str]]:
+        """function returns all docking_id of dockings started by master
+
+        Args:
+            master_id (str): client_id of master
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[dict[str, str]]: list of dict contaning docking_id and state of docking
+        """
+        try:
+            rows = Docking.query.with_entities(Docking.docking_id, Docking.state).filter_by(master_id=master_id)
+            result: list[dict[str, str]] = [{"docking_id": row[0], "state": row[1]} for row in rows]
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("DockingService: Database Error")
+        
+
+        return result
+
+    @staticmethod
+    def getAllComputeIds(docking_id: str)-> list[str]:
+        """returns all compute_ids of a docking
+
+        Args:
+            docking_id (str): docking id
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            list[str]: list contaning compute ids
+        """
+        try:
+            rows = Docking.query.with_entities(Docking.compute_ids).filter_by(docking_id=docking_id)
+            result: list[str] = [row[0] for row in rows]
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("DockingService: Database Error")
+        
+        return result
+

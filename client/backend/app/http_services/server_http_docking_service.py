@@ -119,3 +119,43 @@ class ServerHttpDockingService:
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
+        
+
+    @staticmethod
+    def getMasterDockingIds():
+        """function returns all docking_id and state of dockings started by master
+
+        Returns:
+                [
+                    {
+                        "docking_id":"val",
+                        "state": "val"
+                    }
+                    ...
+                ]
+        """
+        response = requests.get(server.address+"/docking/ids", auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()
+        
+    @staticmethod
+    def getAllComputeIds(docking_id: str):
+        """function returns all docking_id and state of dockings started by master
+
+        Returns: 
+                [
+                    "compute_id_1", "compute_id_2", ...
+                ]
+        """
+        body = {
+            "docking_id": docking_id
+        }
+        response = requests.get(server.address+"/docking/compute/ids", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()

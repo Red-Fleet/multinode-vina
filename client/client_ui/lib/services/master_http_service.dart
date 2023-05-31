@@ -71,4 +71,10 @@ class MasterHttpService{
 
     return http.post(Uri.parse('$clientAddress/master/docking/create'), headers: headers, body: body);
   }
+
+
+  /// get all dockings started by user
+  static Future<http.Response> getMasterDockingIds(){
+    return http.get(Uri.parse('$clientAddress/master/docking/ids'), headers: headers);
+  }
 }
