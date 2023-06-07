@@ -12,6 +12,7 @@ class Compute(db.Model):
     compute_id = sqaly.Column(sqaly.String(36), primary_key=True)
     # worker_id = sqaly.Column(sqaly.String(36), nullable=True)
     # master_id = sqaly.Column(sqaly.String(36), nullable=True)
+    docking_id = sqaly.Column(sqaly.String(36), index=True)
     result = sqaly.Column(sqaly.TEXT())
     last_updated = sqaly.Column(sqaly.DateTime())
     state = sqaly.Column(sqaly.Enum(ComputeState))

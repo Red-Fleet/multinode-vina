@@ -181,6 +181,7 @@ def getMasterDockingIds()->Response:
         result = DockingService.getMasterDockingIds(master_id= master_id)
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
+        print(e)
         return Response(str(e), status=500, mimetype='application/json')
     
 

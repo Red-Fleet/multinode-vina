@@ -75,7 +75,7 @@ class DockingService:
         for ligand in ligands:
             compute_id = str(uuid.uuid4())
             compute_ids.append(compute_id)
-            computes.append(Compute(compute_id=compute_id, ligand=ligand, state=ComputeState.NOT_COMPUTED))
+            computes.append(Compute(compute_id=compute_id, docking_id=docking_id, ligand=ligand, state=ComputeState.NOT_COMPUTED))
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
             target=target, compute_ids=compute_ids, target_name=target_name, ligands_name=ligands_name,
@@ -203,13 +203,21 @@ class DockingService:
         """
         try:
             rows = Docking.query.with_entities(Docking.docking_id, Docking.state).filter_by(master_id=master_id)
-            result: list[dict[str, str]] = [{"docking_id": row[0], "state": row[1]} for row in rows]
+            result: list[dict[str, str]] = [{"docking_id": row[0], "state": row[1].name} for row in rows]
         except Exception as e:
             app.logger.error(e)
             raise Exception("DockingService: Database Error")
-        
+
+        for docking in result:
+            if docking['docking_id'] in DockingService.dockings:
+                docking["computed"] = DockingService.getDockingStatus(docking['docking_id'])['COMPUTED']
+
+            else:
+                docking['computed'] = Compute.query.filter_by(docking_id = docking['docking_id']).count()
+
 
         return result
+    
 
     @staticmethod
     def getAllComputeIds(docking_id: str)-> list[str]:

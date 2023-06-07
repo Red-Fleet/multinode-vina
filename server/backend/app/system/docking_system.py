@@ -1,7 +1,7 @@
 from threading import Thread, Lock
 from app.models.compute import Compute, ComputeState
 from app import app, db
-from app.models.docking import Docking
+from app.models.docking import Docking, DockingState
 from app.models.compute import Compute, ComputeState
 from app.services.notification_service import NotificationService
 from sqlalchemy import case
@@ -105,6 +105,9 @@ class DockingSystem:
             app.logger.error(e)
             raise Exception("Database Error")
 
+        if len(computes) == 0: # docking finished
+            Docking.query.filter_by(docking_id=self.docking_id).update({'state': DockingState.FINISHED})
+            db.session.commit()
         return computes
 
     def saveResults(self, computes):
@@ -147,7 +150,6 @@ class DockingSystem:
             ComputeState.NOT_COMPUTED.name: len(self.un_computed_ids),
             ComputeState.ERROR.name: len(self.error_ids)
         }
-
         return result
     
     def getComputeResult(self, compute_id: str)->dict[str, str]:
