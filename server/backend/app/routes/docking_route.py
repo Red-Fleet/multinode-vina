@@ -9,7 +9,15 @@ import os
 @auth.login_required
 def createDocking() -> Response:
     """Create new docking task, POST request should have  worker_ids, ligands, target, params in json body
-
+    Args(json):
+        {
+            "worker_ids": [id_1, id_2, ...],
+            "target": target pdbqt,
+            "ligands": [pdbqt_1, pdbqt_2, ...],
+            "target_name": name,
+            "ligands_name": [ligand_name_1, ligand_name_2, ...],
+            vina parameters ...
+        }
     Returns:
         Response: docking_id
     """
@@ -28,7 +36,7 @@ def createDocking() -> Response:
     if 'target_name' not in content: target_name = ""
     else : target_name = content['target_name']
 
-    if 'ligands_name' not in content: ligands_name = ""
+    if 'ligands_name' not in content: ligands_name = []
     else : ligands_name = content['ligands_name']
 
     params = dict()

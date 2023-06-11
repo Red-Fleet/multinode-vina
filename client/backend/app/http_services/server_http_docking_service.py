@@ -8,7 +8,15 @@ class ServerHttpDockingService:
     @staticmethod
     def createDocking(docking_details: dict)->str:
         """Create new docking task
-
+        Args:
+            docking_details: {
+                "worker_ids": [id_1, id_2, ...],
+                "target": target pdbqt,
+                "ligands": [pdbqt_1, pdbqt_2, ...],
+                "target_name": name,
+                "ligands_name": [ligand_name_1, ligand_name_2, ...],
+                vina parameters ...
+            }
         Raises:
             Exception: _description_
 

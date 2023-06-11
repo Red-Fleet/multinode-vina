@@ -6,6 +6,15 @@ from app.services.master_docking_service import MasterDockingService
 @app.route('/master/docking/create', methods=['POST'])
 def createDocking():
     """create new dock task
+    Args(json):
+    {
+            "worker_ids": [id_1, id_2, ...],
+            "target": target pdbqt,
+            "ligands": [pdbqt_1, pdbqt_2, ...],
+            "target_name": name,
+            "ligands_name": [ligand_name_1, ligand_name_2, ...],
+            vina parameters ...
+    }
 
     Returns:
         json: json contaning docking_id

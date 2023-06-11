@@ -443,12 +443,14 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     String targetFileContent = targetFileReader.result as String;
 
     List<String> ligandFileContents = [];
+    List<String> ligandsName = [];
     for(var ligandFile in ligandFileInput.files!){
       var ligandFileReader = FileReader();
 
       ligandFileReader.readAsText(ligandFile);
       await ligandFileReader.onLoad.first;
       ligandFileContents.add(ligandFileReader.result as String);
+      ligandsName.add(ligandFile.name);
     }
     
     
@@ -465,6 +467,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
         target: targetFileContent,
         targetName: targetFile.name,
         ligands: ligandFileContents,
+        ligandsName: ligandsName,
         cpuNum: getInteger(paramCpuController.text)!,
         randomSeed: getInteger(paramRandomSeedController.text)!,
         scoringFunction: paramScoringFunction,

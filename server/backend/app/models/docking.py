@@ -35,7 +35,6 @@ class Docking(db.Model):
     target = sqaly.Column(sqaly.TEXT())
     target_name = sqaly.Column(sqaly.String(1000))
     compute_ids = sqaly.Column(ListType) # array of ligand_ids
-    ligands_name = sqaly.Column(sqaly.String(1000))
     last_updated = sqaly.Column(sqaly.DateTime())
     state = sqaly.Column(sqaly.Enum(DockingState))
     params = sqaly.Column(sqaly.JSON) # for storing parameters

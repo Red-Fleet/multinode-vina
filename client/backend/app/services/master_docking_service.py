@@ -8,13 +8,39 @@ class MasterDockingService:
     """
     @staticmethod
     def createDock(docking_details: dict):
+        """This method will start a new docking request on server
+
+        Args:
+            docking_details (dict): {
+            "worker_ids": [id_1, id_2, ...],
+            "target": target pdbqt,
+            "ligands": [pdbqt_1, pdbqt_2, ...],
+            "target_name": name,
+            "ligands_name": [ligand_name_1, ligand_name_2, ...],
+            vina parameters ...
+        }
+
+        Returns:
+            dict: {"docking_id": id}
+        """
         try:
             # splitting pdbqt
             splitted_ligands = []
-            for ligands in docking_details['ligands']:
-                splitted_ligands += PdbqtUtils.splitIntoLigands(ligands)
+            ligands_name = []
+            for i in range(len(docking_details['ligands'])):
+                ligands = docking_details['ligands'][i]
+                try:
+                    name = docking_details['ligands_name'][i]
+                except:
+                    name = ""
+                
+                splits = PdbqtUtils.splitIntoLigands(ligands)
+                for i in range(1, len(splits)+1):
+                    ligands_name.append(name+"_"+str(i))
+                splitted_ligands += splits
 
             docking_details['ligands'] = splitted_ligands
+            docking_details['ligands_name'] = ligands_name
             docking_id = ServerHttpDockingService.createDocking(docking_details)
         except Exception as e:
             app.logger.error(e)

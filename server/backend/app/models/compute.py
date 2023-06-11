@@ -18,6 +18,7 @@ class Compute(db.Model):
     state = sqaly.Column(sqaly.Enum(ComputeState))
     error = sqaly.Column(sqaly.TEXT())
     ligand = sqaly.Column(sqaly.TEXT())
+    ligand_name = sqaly.Column(sqaly.TEXT())
 
 
 

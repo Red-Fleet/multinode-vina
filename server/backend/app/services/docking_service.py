@@ -43,7 +43,7 @@ class DockingService:
     def createDock(target: str, 
                    target_name:str, 
                    ligands: list[str], 
-                   ligands_name: str, 
+                   ligands_name: list[str], 
                    master_id: str, 
                    worker_ids:list[str],
                    params: dict
@@ -55,8 +55,8 @@ class DockingService:
         Args:
             target (str): _description_
             target_name (str): _description_
-            ligands (list[str]): _description_
-            ligands_name (str): _description_
+            ligands (list[str]): list contaning ligand pdbqt
+            ligands_name (list[str]): list contaning ligand name
             master_id (str): _description_
             worker_ids (list[str]): _description_
             params: dict
@@ -72,10 +72,16 @@ class DockingService:
         computes: list[Compute] = []
         compute_ids:list[str] = []
         
-        for ligand in ligands:
+        for i in range(len(ligands)):
+            ligand = ligands[i]
+            try: 
+                ligand_name = ligands_name[i]
+            except Exception as e: # ligand name is not present
+                ligand_name = ""
+
             compute_id = str(uuid.uuid4())
             compute_ids.append(compute_id)
-            computes.append(Compute(compute_id=compute_id, docking_id=docking_id, ligand=ligand, state=ComputeState.NOT_COMPUTED))
+            computes.append(Compute(compute_id=compute_id, docking_id=docking_id, ligand=ligand, ligand_name=ligand_name, state=ComputeState.NOT_COMPUTED))
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
             target=target, compute_ids=compute_ids, target_name=target_name, ligands_name=ligands_name,
