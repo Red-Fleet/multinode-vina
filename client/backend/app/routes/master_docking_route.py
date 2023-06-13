@@ -76,3 +76,33 @@ def getAllComputeIds()->Response:
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
+    
+
+
+@app.route('/docking/compute/result', methods = ['GET'])
+def getComputeResult()->Response:
+    """returns result pdbqt and ligand_name of given compute_id
+
+        Args(json):
+            {
+                "compute_id":"id"
+            }
+
+        Raises:
+            Exception: _description_
+
+        Returns(json):
+            {
+                "result": "pdbqt",
+                "ligand_name": "name"
+            }
+    """
+
+    content = request.get_json()
+    if 'compute_id' not in content: return Response("compute_id not present", status=500, mimetype='application/json')
+    
+    try:
+        result = MasterDockingService.getComputeResult(compute_id = content["compute_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')

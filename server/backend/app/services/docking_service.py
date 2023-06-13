@@ -84,7 +84,7 @@ class DockingService:
             computes.append(Compute(compute_id=compute_id, docking_id=docking_id, ligand=ligand, ligand_name=ligand_name, state=ComputeState.NOT_COMPUTED))
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
-            target=target, compute_ids=compute_ids, target_name=target_name, ligands_name=ligands_name,
+            target=target, compute_ids=compute_ids, target_name=target_name,
             state=DockingState.STARTED, last_updated=datetime.datetime.now(), params=params)
         
         try: 
@@ -181,18 +181,18 @@ class DockingService:
         """
         return DockingService.dockings[docking_id].getDockingStatus()
     
-    @staticmethod
-    def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
-        """return result and state of compute 
+    # @staticmethod
+    # def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
+    #     """return result and state of compute 
 
-        Args:
-            docking_id (str): _description_
-            compute_id (str): _description_
+    #     Args:
+    #         docking_id (str): _description_
+    #         compute_id (str): _description_
 
-        Returns:
-            dict[str, str]: dict contaning compute_id, state and result
-        """
-        return DockingService.dockings[docking_id].getComputeResult(compute_id=compute_id)
+    #     Returns:
+    #         dict[str, str]: dict contaning compute_id, state and result
+    #     """
+    #     return DockingService.dockings[docking_id].getComputeResult(compute_id=compute_id)
     
     @staticmethod
     def getMasterDockingIds(master_id: str)->list[dict[str, str]]:
@@ -219,7 +219,7 @@ class DockingService:
                 docking["computed"] = DockingService.getDockingStatus(docking['docking_id'])['COMPUTED']
 
             else:
-                docking['computed'] = Compute.query.filter_by(docking_id = docking['docking_id']).count()
+                docking['computed'] = Compute.query.with_entities(Compute.compute_id).filter_by(docking_id = docking['docking_id']).count()
 
 
         return result
@@ -239,7 +239,7 @@ class DockingService:
             list[str]: list contaning compute ids
         """
         try:
-            rows = Docking.query.with_entities(Docking.compute_ids).filter_by(docking_id=docking_id)
+            rows = Compute.query.with_entities(Compute.compute_id).filter_by(docking_id=docking_id)
             result: list[str] = [row[0] for row in rows]
         except Exception as e:
             app.logger.error(e)
@@ -247,3 +247,29 @@ class DockingService:
         
         return result
 
+    def getComputeResult(compute_id: str)-> dict[str, str]:
+        """returns result pdbqt and ligand_name of given compute_id
+
+        Args:
+            compute_id (str): compute id of ligand
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            dict[str, str]: {
+                "result": "pdbqt",
+                "ligand_name": "name"
+            }
+        """
+        try:
+            row = Compute.query.with_entities(Compute.result, Compute.ligand_name).filter_by(compute_id=compute_id).first()
+            result = {
+                "result": row[0],
+                "ligand_name": row[1]
+            }
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("DockingService: Database Error")
+        
+        return result

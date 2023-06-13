@@ -152,20 +152,20 @@ class DockingSystem:
         }
         return result
     
-    def getComputeResult(self, compute_id: str)->dict[str, str]:
-        """return result and state of compute 
+    # def getComputeResult(self, compute_id: str)->dict[str, str]:
+    #     """return result and state of compute 
 
-        Args:
-            compute_id (str): str
+    #     Args:
+    #         compute_id (str): str
 
-        Returns:
-            dict[str, str]: dict contaning compute_id, state and result
-        """
-        data = Compute.query.with_entities(Compute.state, Compute.result).filter_by(compute_id= compute_id).first()
-        result = {
-            "compute_id": compute_id,
-            "state": data[0],
-            "result": data[1]
-        }
+    #     Returns:
+    #         dict[str, str]: dict contaning compute_id, state and result
+    #     """
+    #     data = Compute.query.with_entities(Compute.state, Compute.result).filter_by(compute_id= compute_id).first()
+    #     result = {
+    #         "compute_id": compute_id,
+    #         "state": data[0],
+    #         "result": data[1]
+    #     }
 
-        return result
+    #     return result

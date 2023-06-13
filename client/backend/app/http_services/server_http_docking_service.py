@@ -167,3 +167,30 @@ class ServerHttpDockingService:
             raise Exception(str(response.status_code)+", "+str(response.text))
         
         return response.json()
+    
+
+    @staticmethod
+    def getComputeResult(compute_id: str):
+        """returns result pdbqt and ligand_name of given compute_id
+
+        Args:
+                compute_id:"id"
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            {
+                "result": "pdbqt",
+                "ligand_name": "name"
+            }
+        """
+        body = {
+            "compute_id": compute_id
+        }
+        response = requests.get(server.address+"/docking/compute/result", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()

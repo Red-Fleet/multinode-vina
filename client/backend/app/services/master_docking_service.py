@@ -76,3 +76,22 @@ class MasterDockingService:
 
         return ServerHttpDockingService.getAllComputeIds(docking_id=docking_id)
 
+
+    @staticmethod
+    def getAllComputeIds(compute_id: str)-> list[str]:
+        """returns result pdbqt and ligand_name of given compute_id
+
+        Args:
+            compute_id (str): compute id of ligand
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            dict[str, str]: {
+                "result": "pdbqt",
+                "ligand_name": "name"
+            }
+        """
+
+        return ServerHttpDockingService.getComputeResult(compute_id=compute_id)
