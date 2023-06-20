@@ -58,7 +58,7 @@ def getMasterDockingIds()->Response:
         return Response(str(e), status=500, mimetype='application/json')
     
 
-@app.route('/docking/compute/ids', methods = ['GET'])
+@app.route('/master/docking/compute/ids', methods = ['GET'])
 def getAllComputeIds()->Response:
     """function returns all docking_id and state of dockings started by master
 
@@ -79,7 +79,7 @@ def getAllComputeIds()->Response:
     
 
 
-@app.route('/docking/compute/result', methods = ['GET'])
+@app.route('/master/docking/compute/result', methods = ['GET'])
 def getComputeResult()->Response:
     """returns result pdbqt and ligand_name of given compute_id
 
@@ -104,5 +104,29 @@ def getComputeResult()->Response:
     try:
         result = MasterDockingService.getComputeResult(compute_id = content["compute_id"])
         return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+    
+
+@app.route('/master/docking/result/download', methods = ['POST'])
+def downloadDockingResult()->Response:
+    """returns result pdbqt and ligand_name of given compute_id
+
+        Args(json):
+            {
+                "docking_id":"id"
+                "path": "path of folder to store docking result"
+            }
+
+        Raises:
+            Exception: _description_
+    """
+
+    content = request.get_json()
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    if 'path' not in content: return Response("path not present", status=500, mimetype='application/json')
+    try:
+        MasterDockingService.downloadDockingResult(docking_id = content["docking_id"], path=content['path'])
+        return Response(status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')

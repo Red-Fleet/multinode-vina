@@ -2,6 +2,7 @@ import datetime
 from app import db, app, user
 from app.http_services.server_http_docking_service import ServerHttpDockingService
 from app.utils.pqbqt_utils import PdbqtUtils
+import os
 
 class MasterDockingService:
     """MasterDockingService class is used by master to create, view, update, delete dockings
@@ -78,7 +79,7 @@ class MasterDockingService:
 
 
     @staticmethod
-    def getAllComputeIds(compute_id: str)-> list[str]:
+    def getComputeResult(compute_id: str)-> list[str]:
         """returns result pdbqt and ligand_name of given compute_id
 
         Args:
@@ -95,3 +96,57 @@ class MasterDockingService:
         """
 
         return ServerHttpDockingService.getComputeResult(compute_id=compute_id)
+    
+    def downloadDockingResult(docking_id: str, path: str):
+        """Method will download and save(at given location) docking result from server
+
+        Args:
+            docking_id (str): docking if
+            path (str): path at which file will be saved
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            _type_: _description_
+        """
+        # check if given path exists or not
+        if os.path.isdir(path) == False:
+            raise Exception("Path do not exists: "+path)
+        
+        # create folder at that location
+        result_folder_path = os.path.join(path, docking_id)
+        if os.path.isdir(result_folder_path) == False:
+            os.mkdir(result_folder_path)
+        
+
+        # get compute_ids from server
+        compute_ids = ServerHttpDockingService.getAllComputeIds(docking_id=docking_id)
+
+        # storing compute results
+        for compute_id in compute_ids:
+            result = ServerHttpDockingService.getComputeResult(compute_id=compute_id)
+            def getFilePath(file_path: str, append_int: 0)-> str:
+                """ returns file name that is not present at given location
+
+                Args:
+                    file_path (str): initial file name without .pdbqt extension
+                    append_int (0): 0=> do not append anything in file name initially
+
+                Returns:
+                    str: final file name
+                """
+                if append_int == 0: new_file_path = file_path + ".pdbqt"
+                else: new_file_path = file_path + "(" + str(append_int) + ").pdbqt"
+                
+                if os.path.isfile(new_file_path) == True:
+                    return getFilePath(file_path, append_int+1)
+                else:
+                    return new_file_path
+
+            compute_result_file_path = getFilePath(os.path.join(result_folder_path, result['ligand_name']))
+            compute_file = open(compute_result_file_path, 'w')
+            compute_file.write(result['result'])
+            compute_file.close()
+        
+

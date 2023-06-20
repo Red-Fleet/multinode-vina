@@ -79,4 +79,14 @@ class MasterHttpService{
   static Future<http.Response> getMasterDockingIds(){
     return http.get(Uri.parse('$clientAddress/master/docking/ids'), headers: headers);
   }
+
+  /// save docking result
+  static Future<http.Response> saveDockingResult(String dockingId, String path){
+    var body = json.encode({
+      "docking_id": dockingId,
+      "path": path
+    });
+
+    return http.post(Uri.parse('$clientAddress/master/docking/result/download'), headers: headers, body: body);
+  }
 }
