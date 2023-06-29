@@ -7,12 +7,18 @@ from flask import Response, json, g
 def register() -> Response:
     """Used to register new user
 
-    Args: json input
-        username (str): username
-        password_hash (str): hash of password
+    Args(json):{
+        "username": "username",
+        "password_hash": "hash of password"
+    }
 
     Returns:
-        Response: return json contaning client_id and username
+        Success Response (HTTP status code 201) with JSON body:
+        {
+            "client_id": "id",
+            "username": "username"
+        }
+        Failure Response (HTTP status code 500)
     """
     content = request.get_json()
     username = content['username']

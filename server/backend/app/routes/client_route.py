@@ -6,10 +6,10 @@ from flask import Response, json, g
 @app.route('/client/all', methods = ['GET'])
 @auth.login_required
 def getAllClients() -> Response:
-    """Get all registered clients
+    """Api returns all registered clients details (client_id, state, name)
 
     Returns:
-        Response: return list of client_id, name and state
+        json: [{"client_id": "id", "state":"OFFLINE/ONLINE", "name":"client-name"}, ...]
     """
     try:
         result = ClientService.getAllClients()
@@ -23,11 +23,7 @@ def getAllClients() -> Response:
 @app.route('/client/state/<state>', methods = ['PUT'])
 @auth.login_required
 def updateState(state) -> Response:
-    """Client can update its state
-
-        Args:
-            client_id (_type_): client_id (primary key of client table)
-            state (_type_): new state of client
+    """Api used by client to update its state
 
         Raises:
             Exception: raise exception on error
@@ -42,12 +38,12 @@ def updateState(state) -> Response:
 @app.route('/client/details', methods = ['GET'])
 @auth.login_required
 def getClientDetails():
-    """return client details
-    Args(json):
-        client_id: client_id of client
+    """Api returns client details (client_id, name, state)
+    Args:
+        json: {"client_id": "id"}
 
     Returns:
-        json: details of client - client_id, name, state
+        json: {"client_id": "id", "state":"OFFLINE/ONLINE", "name":"client-name"}
     """
     content = request.get_json()
     if 'client_id' not in content: return Response("'client_id' not found", status=500)

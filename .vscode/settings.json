@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "vina.h": "c"
+        "vina.h": "c",
+        "iostream": "cpp"
     }
 }

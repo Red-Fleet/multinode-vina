@@ -8,7 +8,7 @@ def getAllClients():
     """return all clients details
 
     Returns:
-        _type_: json contaning [{client_id, status, name}]
+        json: [{client_id_1, status, name}, {client_id_2, status, name}, ....]
     """
     try:
         result = ClientService.getAllClients()
