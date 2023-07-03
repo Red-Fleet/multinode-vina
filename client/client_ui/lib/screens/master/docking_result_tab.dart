@@ -88,7 +88,67 @@ class DockingTile extends StatefulWidget {
 class _DockingTileState extends State<DockingTile> {
   /// if downloading is true then disable downloading butten
   bool downloading = false;
+  /// for storing download path
+  TextEditingController downloadPathController = TextEditingController();
 
+  Future<void> saveDockingResult()async{
+    final response =  await MasterHttpService.saveDockingResult(widget.dockingId, downloadPathController.text);
+
+    if(response.statusCode == 200 || response.statusCode == 201){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Downloaded'),
+            duration: Duration(seconds: 3)));
+    
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('Error while Downloading (${response.body})'),
+            duration: Duration(seconds: 7)));
+    }
+  }
+
+  AlertDialog getDialog(){
+    return AlertDialog(
+      content: Row(
+        children: [
+          const Text("Download Path: "),
+          Expanded(
+            child: TextFormField(
+              controller: downloadPathController,
+              decoration: const InputDecoration(
+                                isDense: true,
+                              ),
+              
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () async{
+            // removid alert box
+            Navigator.pop(context);
+            // turning off download button
+            setState(() {
+                  downloading = true;
+                });
+
+            // downloading
+            await saveDockingResult();
+
+            // turning on download button
+            setState(() {
+                  downloading = false;
+                });
+
+          },
+          child: const Text("Submit")),
+      ],
+      actionsAlignment: MainAxisAlignment.center
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -143,17 +203,12 @@ class _DockingTileState extends State<DockingTile> {
                   ):
             ElevatedButton(
                 onPressed: () async {
-                setState(() {
-                  downloading = true;
-                });
-                  var dialog = const AlertDialog(
-                    title: Text("Success"),
-                    content: Text("Save successfully"),
-                  );
+                
+                  
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return dialog;
+                      return getDialog();
                     },
                   );
                   //// start from here

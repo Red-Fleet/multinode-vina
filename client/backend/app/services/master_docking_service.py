@@ -122,11 +122,11 @@ class MasterDockingService:
 
         # get compute_ids from server
         compute_ids = ServerHttpDockingService.getAllComputeIds(docking_id=docking_id)
-
+        
         # storing compute results
         for compute_id in compute_ids:
             result = ServerHttpDockingService.getComputeResult(compute_id=compute_id)
-            def getFilePath(file_path: str, append_int: 0)-> str:
+            def getFilePath(file_path: str, append_int: int = 0)-> str:
                 """ returns file name that is not present at given location
 
                 Args:
