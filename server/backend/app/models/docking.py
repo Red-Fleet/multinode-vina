@@ -48,7 +48,7 @@ class Docking(db.Model):
     target = sqaly.Column(sqaly.TEXT())
     # The name or description of the target for the docking process.
     target_name = sqaly.Column(sqaly.String(1000))
-    compute_ids = sqaly.Column(ListType) # array of ligand_ids # have to remove this
+    #compute_ids = sqaly.Column(ListType) # array of ligand_ids # have to remove this
     # The datetime when the docking request was last updated. Used for database cleanup.
     last_updated = sqaly.Column(sqaly.DateTime())
     # The state of the docking request ("STARTED", "FINISHED", "ERROR").

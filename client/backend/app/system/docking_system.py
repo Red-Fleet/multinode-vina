@@ -4,6 +4,7 @@ from app.http_services.server_http_docking_service import ServerHttpDockingServi
 from vina import Vina
 import os
 import pathlib
+import time
 
 
 class DockingSystem:
@@ -14,6 +15,8 @@ class DockingSystem:
         self.params: dict = None
         self.master_id: str = None
         self.vina: Vina = None
+        self.inital_batch_size = 10
+        self.ideal_completion_time = 10 # in minutes
         self.dockingSystemThread = Thread(target=self.startDockingSystemThread)
         self.dockingSystemThread.start()
     
@@ -70,10 +73,15 @@ class DockingSystem:
         max_evals= params["max_evals"]
         
         # get targets
+        batch_size = -1
+        batch_time = -1
         while True:
-            computes = self.getComputes(self.docking_id)
+            batch_size = self.getLigandBatchSize(old_batch_size=batch_size,
+                                                         old_batch_time=batch_time)
+            computes = self.getComputes(docking_id=self.docking_id, compute_count=batch_size)
             results = [] # stores dict contaning 
-            app.logger.info("sdfdsf")
+            
+            batch_start_time = time.time()
             if len(computes) >= 1:
                 # update compute result
                 for compute in computes:
@@ -89,6 +97,9 @@ class DockingSystem:
                         "compute_id": compute["compute_id"],
                         "result": self.vina.poses(n_poses=n_poses)
                     })
+                
+                # updating current batch compute time in minutes
+                batch_time = (time.time() - batch_start_time)/60
 
                 # update result of this batch without blocking next request
                 self.updateComputeResult(compute_results=results)
@@ -141,6 +152,12 @@ class DockingSystem:
 
         t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
         t.start()
+
+    def getLigandBatchSize(self, old_batch_size, old_batch_time):
+        if old_batch_size == -1: return self.inital_batch_size
+
+        x = int(self.ideal_completion_time - old_batch_time)
+        return max(old_batch_size + x * abs(x), self.inital_batch_size)
 
 
 

@@ -26,7 +26,7 @@ class DockingSystem:
     #     self.computed_ligand_ids = computing_ligand_ids
 
     def readDockingDetailsFromDB(self):
-        """Method will first get all compute_ids from docking table using docking_id, and then
+        """Method will first get all compute_ids from compute table using docking_id, and then
         get compute status to initialize computed, uncomputed ids.
         Method will notify all workers of the docking
         Note: all computing ids will be considered as uncomputed.
@@ -34,11 +34,16 @@ class DockingSystem:
         with app.app_context():
             try:
                 result = Docking.query.with_entities(
-                    Docking.master_id, Docking.compute_ids, Docking.worker_ids).filter_by(docking_id=self.docking_id).first()
+                    Docking.master_id, Docking.worker_ids).filter_by(docking_id=self.docking_id).first()
 
-                self.worker_ids = result[2]
+                self.worker_ids = result[1]
                 self.master_id = result[0]
-                compute_ids = result[1]
+
+                result = Compute.query.with_entities(
+                    Compute.compute_id
+                ).filter_by(docking_id = self.docking_id).all()
+
+                compute_ids = [row[0] for row in result]
 
                 # read status of all docking
                 result = Compute.query.with_entities(

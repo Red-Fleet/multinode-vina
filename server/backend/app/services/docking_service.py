@@ -84,7 +84,7 @@ class DockingService:
             computes.append(Compute(compute_id=compute_id, docking_id=docking_id, ligand=ligand, ligand_name=ligand_name, state=ComputeState.NOT_COMPUTED))
 
         dock = Docking(docking_id=docking_id, master_id=master_id, worker_ids= worker_ids, 
-            target=target, compute_ids=compute_ids, target_name=target_name,
+            target=target, target_name=target_name,
             state=DockingState.STARTED, last_updated=datetime.datetime.now(), params=params)
         
         try: 
