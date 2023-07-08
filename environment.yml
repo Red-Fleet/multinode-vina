@@ -1,0 +1,23 @@
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - alembic=1.11.1
+  - boost-cpp
+  - flask=2.2.3
+  - flask-httpauth=4.8.0
+  - flask-migrate=4.0.4
+  - flask-sqlalchemy
+  - python=3.10.9
+  - requests=2.31.0
+  - sqlalchemy=2.0.18
+  - sqlite
+  - numpy=1.23.4
+  - swig
+  - sphinx
+  - sphinx_rtd_theme
+  - vina
+  - openbabel
+  - pip:
+    - chembl-webresource-client==0.10.8
+    - flask-cors==3.0.10

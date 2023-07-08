@@ -1,10 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:html';
+
 
 
 class ChemblHttpService{
   // clientAddress stores address of client
-  static const String clientAddress = "http://127.0.0.1:7000";
+  static String clientAddress =  window.location.origin;
 
   static const Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -16,6 +18,8 @@ class ChemblHttpService{
 
   
   static Future<http.Response> sdfDownload(String chemblId, String path){
+    print(clientAddress);
+    print("######################################");
     var body = json.encode({
       "chembl_id": chemblId,
       "dir_path": path

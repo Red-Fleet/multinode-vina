@@ -1,8 +1,10 @@
+import 'dart:html';
+
 import 'package:http/http.dart' as http;
 
 class ClientHttpService{
   // clientAddress stores address of client
-  static const String clientAddress = "http://127.0.0.1:7000"; /// change this
+  static String clientAddress =  window.location.origin;
 
   // api for storing server address in client
   static const String loginApi = "user/login";
