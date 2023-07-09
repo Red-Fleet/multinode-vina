@@ -3,6 +3,7 @@ from app import db, app, user
 from app.http_services.server_http_docking_service import ServerHttpDockingService
 from app.utils.pqbqt_utils import PdbqtUtils
 import os
+from app.utils.file_utils import generateFilePath
 
 class MasterDockingService:
     """MasterDockingService class is used by master to create, view, update, delete dockings
@@ -31,13 +32,17 @@ class MasterDockingService:
             for i in range(len(docking_details['ligands'])):
                 ligands = docking_details['ligands'][i]
                 try:
-                    name = docking_details['ligands_name'][i]
+                    name, extension = os.path.splitext(docking_details['ligands_name'][i])
                 except:
                     name = ""
+                    extension = ""
                 
                 splits = PdbqtUtils.splitIntoLigands(ligands)
                 for i in range(1, len(splits)+1):
-                    ligands_name.append(name+"_"+str(i))
+                    if i == 1:
+                        ligands_name.append(name+str(extension))
+                    else:
+                        ligands_name.append(name+"_"+str(i)+str(extension))
                 splitted_ligands += splits
 
             docking_details['ligands'] = splitted_ligands
@@ -126,25 +131,8 @@ class MasterDockingService:
         # storing compute results
         for compute_id in compute_ids:
             result = ServerHttpDockingService.getComputeResult(compute_id=compute_id)
-            def getFilePath(file_path: str, append_int: int = 0)-> str:
-                """ returns file name that is not present at given location
-
-                Args:
-                    file_path (str): initial file name without .pdbqt extension
-                    append_int (0): 0=> do not append anything in file name initially
-
-                Returns:
-                    str: final file name
-                """
-                if append_int == 0: new_file_path = file_path + ".pdbqt"
-                else: new_file_path = file_path + "(" + str(append_int) + ").pdbqt"
-                
-                if os.path.isfile(new_file_path) == True:
-                    return getFilePath(file_path, append_int+1)
-                else:
-                    return new_file_path
-
-            compute_result_file_path = getFilePath(os.path.join(result_folder_path, result['ligand_name']))
+            
+            compute_result_file_path = generateFilePath(result_folder_path, result['ligand_name'])
             compute_file = open(compute_result_file_path, 'w')
             compute_file.write(result['result'])
             compute_file.close()

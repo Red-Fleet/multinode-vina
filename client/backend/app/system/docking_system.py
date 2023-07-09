@@ -106,6 +106,10 @@ class DockingSystem:
 
             else:
                 app.logger.info("Docking Finished: docking_id({self.docking_id})")
+                try:
+                    self.deleteReceptorFile()
+                except Exception as e:
+                    app.logger.info("Error while removing temp files for docking_id({self.docking_id}): ", e)
                 break
 
     def getComputes(self, docking_id:str, compute_count:int = 1):

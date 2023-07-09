@@ -6,8 +6,6 @@ from app.models.server import Server
 from app.models.user import User
 from app.models.worker_connection import WorkerConnection
 from flask_cors import CORS, cross_origin
-from flask import send_from_directory
-from flask import render_template
 
 
 app = Flask(__name__)
@@ -28,28 +26,6 @@ from app.routes import home_route, server_route, user_route, master_connection_r
 from app.routes import client_route, worker_connection_request_route, master_docking_route
 from app.routes import chembl_route
 
-FLUTTER_WEB_APP = 'web'
-
-@app.route('/')
-def render_page():
-    return render_template('/index.html')
-
-# @app.route('/web/')
-# def render_page_web():
-#     return render_template('index.html')
-
-
-# @app.route('/web/<path:name>')
-# def return_flutter_doc(name):
-
-#     datalist = str(name).split('/')
-#     DIR_NAME = FLUTTER_WEB_APP
-
-#     if len(datalist) > 1:
-#         for i in range(0, len(datalist) - 1):
-#             DIR_NAME += '/' + datalist[i]
-
-#     return send_from_directory(DIR_NAME, datalist[-1])
 
 
 from app.db_models import master_compute, master_compute_ligand, master_compute_target

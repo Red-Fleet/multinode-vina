@@ -8,7 +8,8 @@ def runAutomatedServices():
         AutomatedNotificationService.start()
 
 if __name__ == '__main__':
+    port = 7000
     x = threading.Thread(target=runAutomatedServices)
     x.start()
-    app.run(debug=False, port=7000)
+    app.run(debug=False, port=port)
 

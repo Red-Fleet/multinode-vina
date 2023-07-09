@@ -6,9 +6,16 @@ FLUTTER_WEB_APP = 'templates'
 
 
 @app.route('/')
+def render_page():
+    return render_template('/index.html')
+
+@app.route('/web')
 def render_page_web():
     return render_template('/index.html')
 
+@app.route('/web/')
+def render_page_web_with_slash():
+    return render_template('/index.html')
 
 @app.route('/web/<path:name>')
 def return_flutter_doc(name):
