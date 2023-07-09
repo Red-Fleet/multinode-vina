@@ -19,4 +19,4 @@ default client port - 7000
 
 
 
-for accessing ui open this URL in browser - <ip-address>:<client-port>
+for accessing ui open this URL in browser - 'ip-address':'client-port'
