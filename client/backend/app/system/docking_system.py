@@ -22,8 +22,12 @@ class DockingSystem:
     
     def startDockingSystemThread(self):
         with app.app_context():
+            start_time = time.process_time() # start
             # get docking details from server
             docking_details = self.getDockingDetails(self.docking_id)
+            app.logger.info("Time taken for fetching docking info: " + str(time.process_time()-start_time) + " seconds")
+
+            start_time = time.process_time() # start
             self.params = docking_details["params"]
             self.target = docking_details["target"]
             self.master_id = docking_details["master_id"]
@@ -41,6 +45,7 @@ class DockingSystem:
             # compute vina maps
             self.setVinaMap(self.vina, self.params)
 
+            app.logger.info("Time taken for vina setup and vina map creation: " + str(time.process_time()-start_time) + " seconds")
             # start docking
             app.logger.info("Docking Started: docking_id({self.docking_id})")
             self.dock(self.vina, self.params)
@@ -78,11 +83,14 @@ class DockingSystem:
         while True:
             batch_size = self.getLigandBatchSize(old_batch_size=batch_size,
                                                          old_batch_time=batch_time)
+            start_time = time.process_time()
             computes = self.getComputes(docking_id=self.docking_id, compute_count=batch_size)
+            app.logger.info("Time taken for fetching ligands: " + str(time.process_time()-start_time) + " seconds")
             results = [] # stores dict contaning 
             
             batch_start_time = time.time()
             if len(computes) >= 1:
+                start_time = time.process_time()
                 # update compute result
                 for compute in computes:
                     ligand = compute['ligand']
@@ -98,6 +106,7 @@ class DockingSystem:
                         "result": self.vina.poses(n_poses=n_poses)
                     })
                 
+                app.logger.info("Time taken for docking ligands of current batch: " + str(time.process_time()-start_time) + " seconds")
                 # updating current batch compute time in minutes
                 batch_time = (time.time() - batch_start_time)/60
 
@@ -111,6 +120,7 @@ class DockingSystem:
                 except Exception as e:
                     app.logger.info("Error while removing temp files for docking_id({self.docking_id}): ", e)
                 break
+
 
     def getComputes(self, docking_id:str, compute_count:int = 1):
         computes = ServerHttpDockingService.getComputes(docking_id=docking_id, count=compute_count)
@@ -151,8 +161,10 @@ class DockingSystem:
             compute_results (list): list of dict contaning compute_id and result
         """
         def threadedComputeResultUpdate(docking_id, compute_results):
+            start_time = time.process_time()
             with app.app_context():
                 ServerHttpDockingService.saveComputeResult(docking_id, compute_results)
+            app.logger.info("Time taken for uploading result to server: " + str(time.process_time()-start_time) + " seconds")
 
         t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
         t.start()

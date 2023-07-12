@@ -2,6 +2,7 @@ from app import app, server
 from flask import Response, json
 from flask import request
 from app.services.master_docking_service import MasterDockingService
+import time
 
 @app.route('/master/docking/create', methods=['POST'])
 def createDocking():
@@ -19,6 +20,7 @@ def createDocking():
     Returns:
         json: json contaning docking_id
     """
+    start_time = time.process_time()
     content = request.get_json()
     
     if 'worker_ids' not in content: return Response("worker_ids not present", status=500, mimetype='application/json')
@@ -30,6 +32,8 @@ def createDocking():
 
     try:
         docking_id = MasterDockingService.createDock(content)
+        end_time = time.process_time()
+        app.logger.info("Time taken for creating a docking task: " + str(end_time-start_time) + " seconds")
         return Response(json.dumps({'docking_id':docking_id}),status=201, mimetype='application/json')
     except Exception as e:
         app.logger.error(e)
