@@ -927,7 +927,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                     width: 100, 
                     child: TextFormField(
                         inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.-]'))
                         ], // Only numbers can be entered
                         controller: paramCenterXController,
                         decoration: const InputDecoration(
@@ -953,7 +953,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                     width: 100, 
                     child: TextFormField(
                         inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.-]'))
                         ], // Only numbers can be entered
                         controller: paramCenterYController,
                         decoration: const InputDecoration(
@@ -979,7 +979,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                     width: 100, 
                     child: TextFormField(
                         inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp('[0-9.]'))
+                          FilteringTextInputFormatter.allow(RegExp('[0-9.-]'))
                         ], // Only numbers can be entered
                         controller: paramCenterZController,
                         decoration: const InputDecoration(
