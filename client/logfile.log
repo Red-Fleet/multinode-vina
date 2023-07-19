@@ -1,0 +1,15 @@
+Docking Task Creation: 0.009154141000000005 seconds
+Network Call Docking: 0.017932653427124023 seconds
+Vina Init: 0.5274436610000002 seconds
+Network Call Compute: 0.011738300323486328 seconds
+Batch Size: 10
+Docking Process Time: 312.27459808500004 seconds
+Docking Time: 42.900206565856934 seconds
+Network Call Compute: 0.024049758911132812 seconds
+Time taken for uploading result to server: 36.59512381500002 seconds
+Batch Size: 17
+Docking Process Time: 674.7155322660001 seconds
+Docking Time: 92.54494404792786 seconds
+Network Call Compute: 0.10279083251953125 seconds
+Docking Finished: docking_id({self.docking_id})
+Time taken for uploading result to server: 0.02003539399993315 seconds

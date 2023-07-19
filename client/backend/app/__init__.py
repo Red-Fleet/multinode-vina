@@ -6,13 +6,21 @@ from app.models.server import Server
 from app.models.user import User
 from app.models.worker_connection import WorkerConnection
 from flask_cors import CORS, cross_origin
-
+import logging
 
 app = Flask(__name__)
 app.config.from_object(Config)
 CORS(app)
 db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# Set the log file path
+log_file = '../logfile.log'
+
+# Configure Flask logger to write to file
+file_handler = logging.FileHandler(log_file)
+app.logger.addHandler(file_handler)
+app.logger.setLevel(logging.INFO)
 
 # stores address of server
 server = Server()

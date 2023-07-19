@@ -33,7 +33,7 @@ def createDocking():
     try:
         docking_id = MasterDockingService.createDock(content)
         end_time = time.process_time()
-        app.logger.info("Time taken for creating a docking task: " + str(end_time-start_time) + " seconds")
+        app.logger.info("Docking Task Creation: " + str(end_time-start_time) + " seconds")
         return Response(json.dumps({'docking_id':docking_id}),status=201, mimetype='application/json')
     except Exception as e:
         app.logger.error(e)

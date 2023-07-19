@@ -22,12 +22,12 @@ class DockingSystem:
     
     def startDockingSystemThread(self):
         with app.app_context():
-            start_time = time.process_time() # start
+            network_call_time_start = time.time() # start
             # get docking details from server
             docking_details = self.getDockingDetails(self.docking_id)
-            app.logger.info("Time taken for fetching docking info: " + str(time.process_time()-start_time) + " seconds")
+            app.logger.info("Network Call Docking: " + str(time.time()-network_call_time_start) + " seconds")
 
-            start_time = time.process_time() # start
+            vina_init_start = time.process_time() # start
             self.params = docking_details["params"]
             self.target = docking_details["target"]
             self.master_id = docking_details["master_id"]
@@ -45,9 +45,9 @@ class DockingSystem:
             # compute vina maps
             self.setVinaMap(self.vina, self.params)
 
-            app.logger.info("Time taken for vina setup and vina map creation: " + str(time.process_time()-start_time) + " seconds")
+            app.logger.info("Vina Init: " + str(time.process_time()-vina_init_start) + " seconds")
             # start docking
-            app.logger.info("Docking Started: docking_id({self.docking_id})")
+            #app.logger.info("Docking Started: docking_id({self.docking_id})")
             self.dock(self.vina, self.params)
 
     def saveReceptorInTempFolder(self, target):
@@ -83,14 +83,15 @@ class DockingSystem:
         while True:
             batch_size = self.getLigandBatchSize(old_batch_size=batch_size,
                                                          old_batch_time=batch_time)
-            start_time = time.process_time()
+            network_call_time_start = time.time()
             computes = self.getComputes(docking_id=self.docking_id, compute_count=batch_size)
-            app.logger.info("Time taken for fetching ligands: " + str(time.process_time()-start_time) + " seconds")
+            app.logger.info("Network Call Compute: " + str(time.time()-network_call_time_start) + " seconds")
             results = [] # stores dict contaning 
             
             batch_start_time = time.time()
             if len(computes) >= 1:
-                start_time = time.process_time()
+                start_process_time = time.process_time() # start
+                start_time = time.time() # start
                 # update compute result
                 for compute in computes:
                     ligand = compute['ligand']
@@ -105,8 +106,10 @@ class DockingSystem:
                         "compute_id": compute["compute_id"],
                         "result": self.vina.poses(n_poses=n_poses)
                     })
+                app.logger.info("Batch Size: " + str(len(computes)))
+                app.logger.info("Docking Process Time: " + str(time.process_time()-start_process_time) + " seconds")
+                app.logger.info("Docking Time: " + str(time.time()-start_time) + " seconds")
                 
-                app.logger.info("Time taken for docking ligands of current batch: " + str(time.process_time()-start_time) + " seconds")
                 # updating current batch compute time in minutes
                 batch_time = (time.time() - batch_start_time)/60
 

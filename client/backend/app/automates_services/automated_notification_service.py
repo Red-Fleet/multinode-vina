@@ -4,7 +4,6 @@ from app.http_services.server_http_notification_service import ServerHttpNotific
 from app import app, user
 import time
 from app.services.docking_service import DockingService
-import os
 
 class AutomatedNotificationService:
 
@@ -29,10 +28,7 @@ class AutomatedNotificationService:
                     continue
                 # check notification
                 try:
-                    start_time = time.process_time()
                     result = ServerHttpNotificationService.getWorkerNotifications()
-                    end_time = time.process_time()
-                    app.logger.info("Time taken for fetching notifications: " + str(end_time-start_time) + " seconds")
                     docking_ids = [x['docking_id'] for x in result]
                     if len(docking_ids) >= 1:
                         for docking_id in docking_ids:
