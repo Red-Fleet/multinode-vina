@@ -15,7 +15,7 @@ db:SQLAlchemy = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Set the log file path
-log_file = '../logfile.log'
+log_file = 'logfile.log'
 
 # Configure Flask logger to write to file
 file_handler = logging.FileHandler(log_file)
@@ -47,3 +47,4 @@ from app.db_models import master_compute, master_compute_ligand, master_compute_
 #     from app.automates_services.automated_master_request_service import AutomatedMasterRequestService
 #     AutomatedMasterRequestService.start()
 #     print("this is running")
+

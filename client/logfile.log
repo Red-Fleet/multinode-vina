@@ -13,3 +13,77 @@ Docking Time: 92.54494404792786 seconds
 Network Call Compute: 0.10279083251953125 seconds
 Docking Finished: docking_id({self.docking_id})
 Time taken for uploading result to server: 0.02003539399993315 seconds
+Docking Task Creation: 0.01716115500000015 seconds
+Network Call Docking: 0.021121740341186523 seconds
+Vina Init: 0.267450349 seconds
+Network Call Compute: 0.003520965576171875 seconds
+Batch Size: 10
+Docking Process Time: 157.270242658 seconds
+Docking Time: 20.46199917793274 seconds
+Network Call Compute: 0.004179477691650391 seconds
+Time taken for uploading result to server: 19.762322642999976 seconds
+Batch Size: 17
+Docking Process Time: 309.834539841 seconds
+Docking Time: 40.18070578575134 seconds
+Network Call Compute: 0.06428265571594238 seconds
+Docking Finished: docking_id({self.docking_id})
+Time taken for uploading result to server: 0.00455606500003114 seconds
+Docking Task Creation: 0.01076625199999981 seconds
+Network Call Docking: 0.006443500518798828 seconds
+Vina Init: 0.26252414300000737 seconds
+Network Call Compute: 0.003021240234375 seconds
+Batch Size: 10
+Docking Process Time: 150.40060661900003 seconds
+Docking Time: 19.632093906402588 seconds
+Network Call Compute: 0.0036280155181884766 seconds
+Time taken for uploading result to server: 19.514251119999926 seconds
+Batch Size: 17
+Docking Process Time: 318.246526645 seconds
+Docking Time: 41.194937229156494 seconds
+Network Call Compute: 0.016077041625976562 seconds
+Docking Finished: docking_id({self.docking_id})
+Time taken for uploading result to server: 0.004223634000027232 seconds
+Docking Task Creation: 0.011414641000000003 seconds
+Network Call Docking: 0.021053552627563477 seconds
+Vina Init: 0.25878345199999986 seconds
+Network Call Compute: 0.002992391586303711 seconds
+Batch Size: 1
+Docking Process Time: 19.162722635999998 seconds
+Docking Time: 2.4548187255859375 seconds
+Network Call Compute: 0.014217615127563477 seconds
+Docking Finished: docking_id({self.docking_id})
+Time taken for uploading result to server: 0.0026415779999986455 seconds
+Docking Task Creation: 0.012901290999999926 seconds
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddbaf0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddafb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddac50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dda980>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd8e20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9c00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9ea0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddbb80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dda590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1e40250>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9660>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddb5e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddac80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9f90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6de7eb0d30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddb6d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddb7c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9780>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddbfd0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddba30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1e408e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dda440>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dda2f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9a20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9d50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1e402e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddad10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd9240>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddaad0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddbe80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1dd93f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1e40520>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f6da1ddaa70>: Failed to establish a new connection: [Errno 111] Connection refused'))
