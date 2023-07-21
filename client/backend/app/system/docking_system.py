@@ -164,10 +164,8 @@ class DockingSystem:
             compute_results (list): list of dict contaning compute_id and result
         """
         def threadedComputeResultUpdate(docking_id, compute_results):
-            start_time = time.process_time()
             with app.app_context():
                 ServerHttpDockingService.saveComputeResult(docking_id, compute_results)
-            app.logger.info("Time taken for uploading result to server: " + str(time.process_time()-start_time) + " seconds")
 
         t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
         t.start()

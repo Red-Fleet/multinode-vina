@@ -7,6 +7,7 @@ from app.models.compute import Compute, ComputeState
 from flask import json
 from threading import Lock
 from app.system.docking_system import DockingSystem
+import time
 
 class DockingService:
     dockings: dict[str, DockingSystem] = dict() # contains all docking result
@@ -68,6 +69,7 @@ class DockingService:
             str: docking_id
         """
         # updating docking details in database
+        app.logger.info("Docking Start Time: " + str(time.time()))
         docking_id = str(uuid.uuid4())
         computes: list[Compute] = []
         compute_ids:list[str] = []
@@ -164,6 +166,7 @@ class DockingService:
     @staticmethod
     def saveComputeResult(docking_id: str, computes: list):
         try:
+            app.logger.info("Time: " + str(time.time()) + ", Batch Size: "+ str(len(computes)))
             DockingService.dockings[docking_id].saveResults(computes)
         except Exception as e:
             app.logger.error(e)
