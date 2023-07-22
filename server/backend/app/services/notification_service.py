@@ -17,7 +17,7 @@ class NotificationService:
             Exception: _description_
         """
         try:
-            notification = WorkerNotification.query.filter_by(docking_id=docking_id).first()
+            notification = WorkerNotification.query.filter_by(docking_id=docking_id, worker_id=worker_id).first()
 
             #create new Notification
             if notification == None:
