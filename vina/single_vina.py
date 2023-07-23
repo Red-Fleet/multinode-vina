@@ -38,7 +38,7 @@ def splitIntoLigands(pdbqt: str) -> list[str]:
 log_file = open("vina.log", 'w')
 total_time = time.process_time()
 print("#&% Docking started")
-log_file.write("#&% Docking started")
+log_file.write("#&% Docking started\n")
 vina = Vina(cpu=8)
 
 vina.set_receptor("6cc0_filled.pdbqt")
@@ -74,8 +74,8 @@ for name in ligands_names:
         f.close()
         i += 1
         print("#&% Time: " + str(time.time()-start_time) + ",  Process Time: " + str(time.process_time()-process_start_time))
-        log_file.write("#&% Time: " + str(time.time()-start_time) + ",  Process Time: " + str(time.process_time()-process_start_time))
+        log_file.write("#&% Time: " + str(time.time()-start_time) + ",  Process Time: " + str(time.process_time()-process_start_time) + "\n")
 
 print("#&% Total time :" + str(time.process_time()-total_time) + " seconds")
-log_file.write("#&% Total time :" + str(time.process_time()-total_time) + " seconds")
+log_file.write("#&% Total time :" + str(time.process_time()-total_time) + " seconds\n")
 log_file.close()
