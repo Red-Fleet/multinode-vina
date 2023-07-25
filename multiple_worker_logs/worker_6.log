@@ -1,0 +1,104 @@
+Network Call Docking: 0.032806396484375 seconds
+Vina Init: 15.848044019000003 seconds
+Network Call Compute: 0.01183629035949707 seconds
+Batch Size: 10
+Docking Process Time: 1024.293834437 seconds
+Docking Time: 161.06663870811462 seconds
+Network Call Compute: 0.021091699600219727 seconds
+Batch Size: 59
+Docking Process Time: 5191.289201344 seconds
+Docking Time: 803.5323574542999 seconds
+Network Call Compute: 0.02429342269897461 seconds
+Batch Size: 50
+Docking Process Time: 5129.7529388 seconds
+Docking Time: 787.3380556106567 seconds
+Network Call Compute: 0.01827073097229004 seconds
+Batch Size: 41
+Docking Process Time: 3520.5341892769993 seconds
+Docking Time: 545.1340606212616 seconds
+Network Call Compute: 0.023935556411743164 seconds
+Batch Size: 41
+Docking Process Time: 3976.315267226999 seconds
+Docking Time: 613.6323006153107 seconds
+Network Call Compute: 0.01882195472717285 seconds
+Batch Size: 41
+Docking Process Time: 3451.0222620489985 seconds
+Docking Time: 528.7022686004639 seconds
+Network Call Compute: 0.02117013931274414 seconds
+Batch Size: 42
+Docking Process Time: 3666.9966686400003 seconds
+Docking Time: 564.824453830719 seconds
+Network Call Compute: 0.022103309631347656 seconds
+Batch Size: 42
+Docking Process Time: 3901.588856844999 seconds
+Docking Time: 605.7026188373566 seconds
+Network Call Compute: 0.019485950469970703 seconds
+Batch Size: 42
+Docking Process Time: 3846.792147365002 seconds
+Docking Time: 589.3077852725983 seconds
+Network Call Compute: 0.019521236419677734 seconds
+Batch Size: 42
+Docking Process Time: 3456.5859692209997 seconds
+Docking Time: 527.2281382083893 seconds
+Network Call Compute: 0.016292333602905273 seconds
+Batch Size: 43
+Docking Process Time: 4448.845206757003 seconds
+Docking Time: 683.5558412075043 seconds
+Network Call Compute: 0.025951385498046875 seconds
+Batch Size: 42
+Docking Process Time: 3282.918054861002 seconds
+Docking Time: 504.6594240665436 seconds
+Network Call Compute: 0.019161462783813477 seconds
+Batch Size: 43
+Docking Process Time: 3887.796579337002 seconds
+Docking Time: 593.102236032486 seconds
+Network Call Compute: 0.02117180824279785 seconds
+Batch Size: 43
+Docking Process Time: 4006.380642198994 seconds
+Docking Time: 622.8775820732117 seconds
+Network Call Compute: 0.019509553909301758 seconds
+Batch Size: 43
+Docking Process Time: 4204.121029407004 seconds
+Docking Time: 639.0677633285522 seconds
+Network Call Compute: 0.01796436309814453 seconds
+Batch Size: 43
+Docking Process Time: 4063.885199709999 seconds
+Docking Time: 627.835515499115 seconds
+Network Call Compute: 0.020920753479003906 seconds
+Batch Size: 43
+Docking Process Time: 3851.7452603130005 seconds
+Docking Time: 594.6262474060059 seconds
+Network Call Compute: 0.02544260025024414 seconds
+Batch Size: 43
+Docking Process Time: 3306.057607367009 seconds
+Docking Time: 508.5145375728607 seconds
+Network Call Compute: 0.017223119735717773 seconds
+Batch Size: 44
+Docking Process Time: 3878.2095002989954 seconds
+Docking Time: 595.3585913181305 seconds
+Network Call Compute: 0.019634008407592773 seconds
+Batch Size: 44
+Docking Process Time: 3645.7107728590054 seconds
+Docking Time: 564.592746257782 seconds
+Network Call Compute: 0.0194394588470459 seconds
+Batch Size: 44
+Docking Process Time: 3836.773976565004 seconds
+Docking Time: 585.3704261779785 seconds
+Network Call Compute: 0.02130293846130371 seconds
+Batch Size: 44
+Docking Process Time: 4012.146905817004 seconds
+Docking Time: 627.8231143951416 seconds
+Network Call Compute: 0.019753217697143555 seconds
+Batch Size: 44
+Docking Process Time: 3668.8040014989965 seconds
+Docking Time: 556.9529182910919 seconds
+Network Call Compute: 0.01724696159362793 seconds
+Batch Size: 44
+Docking Process Time: 3651.6407210769976 seconds
+Docking Time: 561.5289421081543 seconds
+Network Call Compute: 0.017483949661254883 seconds
+Batch Size: 44
+Docking Process Time: 4199.076462423996 seconds
+Docking Time: 638.55495262146 seconds
+Network Call Compute: 0.01607036590576172 seconds
+Docking Finished: docking_id({self.docking_id})

@@ -1,0 +1,239 @@
+401, Unauthorized Access
+401, Unauthorized Access
+Docking Task Creation: 0.3909254719999997 seconds
+Network Call Docking: 0.00590062141418457 seconds
+Vina Init: 0.966465892 seconds
+Network Call Compute: 0.0033369064331054688 seconds
+Batch Size: 10
+Docking Process Time: 109.46922900700001 seconds
+Docking Time: 16.53211760520935 seconds
+Network Call Compute: 0.008279085159301758 seconds
+Batch Size: 91
+Docking Process Time: 1143.208287695 seconds
+Docking Time: 169.90779495239258 seconds
+Network Call Compute: 0.020613670349121094 seconds
+Batch Size: 140
+Docking Process Time: 1695.8115036319998 seconds
+Docking Time: 250.92623686790466 seconds
+Network Call Compute: 0.026771068572998047 seconds
+Batch Size: 165
+Docking Process Time: 2005.3653127720004 seconds
+Docking Time: 296.74082136154175 seconds
+Network Call Compute: 0.009725809097290039 seconds
+Batch Size: 190
+Docking Process Time: 2363.485955921 seconds
+Docking Time: 354.1512532234192 seconds
+Network Call Compute: 0.022606611251831055 seconds
+Batch Size: 206
+Docking Process Time: 2500.505307579 seconds
+Docking Time: 370.9400124549866 seconds
+Network Call Compute: 0.009816169738769531 seconds
+Batch Size: 215
+Docking Process Time: 2734.4059410120008 seconds
+Docking Time: 405.38871359825134 seconds
+Network Call Compute: 0.029237031936645508 seconds
+Batch Size: 224
+Docking Process Time: 2709.660624667 seconds
+Docking Time: 403.1047012805939 seconds
+Network Call Compute: 0.011828184127807617 seconds
+Batch Size: 233
+Docking Process Time: 2830.143294984 seconds
+Docking Time: 422.1627428531647 seconds
+Network Call Compute: 0.06559419631958008 seconds
+Batch Size: 237
+Docking Process Time: 2972.274173201 seconds
+Docking Time: 442.66725635528564 seconds
+Network Call Compute: 0.011026144027709961 seconds
+Batch Size: 241
+Docking Process Time: 2902.0080723089995 seconds
+Docking Time: 430.97652530670166 seconds
+Network Call Compute: 0.011181831359863281 seconds
+Batch Size: 245
+Docking Process Time: 3094.684823524003 seconds
+Docking Time: 458.29337310791016 seconds
+Network Call Compute: 0.05281949043273926 seconds
+Batch Size: 249
+Docking Process Time: 2988.516045966 seconds
+Docking Time: 447.64075541496277 seconds
+Network Call Compute: 0.01099252700805664 seconds
+Batch Size: 253
+Docking Process Time: 3115.831221452998 seconds
+Docking Time: 462.48227190971375 seconds
+Network Call Compute: 0.00966644287109375 seconds
+Batch Size: 257
+Docking Process Time: 3045.781811570996 seconds
+Docking Time: 451.36898255348206 seconds
+Network Call Compute: 0.010126113891601562 seconds
+Batch Size: 261
+Docking Process Time: 3241.4747092109974 seconds
+Docking Time: 479.73503398895264 seconds
+Network Call Compute: 0.010677576065063477 seconds
+Batch Size: 265
+Docking Process Time: 3248.7504677339966 seconds
+Docking Time: 484.77529549598694 seconds
+Network Call Compute: 0.011373758316040039 seconds
+Batch Size: 266
+Docking Process Time: 3266.4819252809975 seconds
+Docking Time: 487.24394631385803 seconds
+Network Call Compute: 0.01072835922241211 seconds
+Batch Size: 267
+Docking Process Time: 3360.557827577002 seconds
+Docking Time: 500.1393463611603 seconds
+Network Call Compute: 0.010551691055297852 seconds
+Batch Size: 268
+Docking Process Time: 3247.4172652859997 seconds
+Docking Time: 480.893089056015 seconds
+Network Call Compute: 0.010393619537353516 seconds
+Batch Size: 269
+Docking Process Time: 3225.9120572609972 seconds
+Docking Time: 478.1839361190796 seconds
+Network Call Compute: 0.010827064514160156 seconds
+Batch Size: 273
+Docking Process Time: 3471.2918959710005 seconds
+Docking Time: 516.7755899429321 seconds
+Network Call Compute: 0.01105189323425293 seconds
+Batch Size: 274
+Docking Process Time: 3407.5892666709988 seconds
+Docking Time: 507.0372793674469 seconds
+Network Call Compute: 0.011212348937988281 seconds
+Batch Size: 275
+Docking Process Time: 3401.587759537004 seconds
+Docking Time: 508.9255952835083 seconds
+Network Call Compute: 0.0109710693359375 seconds
+Batch Size: 276
+Docking Process Time: 3376.2640632319963 seconds
+Docking Time: 500.7618625164032 seconds
+Network Call Compute: 0.011135339736938477 seconds
+Batch Size: 277
+Docking Process Time: 3421.754633953009 seconds
+Docking Time: 506.1191017627716 seconds
+Network Call Compute: 0.01167440414428711 seconds
+Batch Size: 278
+Docking Process Time: 3415.068402095014 seconds
+Docking Time: 507.4533340930939 seconds
+Network Call Compute: 0.01046895980834961 seconds
+Batch Size: 279
+Docking Process Time: 3249.3005276299955 seconds
+Docking Time: 481.54624819755554 seconds
+Network Call Compute: 0.011089324951171875 seconds
+Batch Size: 280
+Docking Process Time: 3446.1673058010056 seconds
+Docking Time: 512.6691627502441 seconds
+Network Call Compute: 0.010770559310913086 seconds
+Batch Size: 281
+Docking Process Time: 3567.095545996999 seconds
+Docking Time: 531.5022702217102 seconds
+Network Call Compute: 0.010966062545776367 seconds
+Batch Size: 282
+Docking Process Time: 3483.2545263820066 seconds
+Docking Time: 517.0219833850861 seconds
+Network Call Compute: 0.011820793151855469 seconds
+Batch Size: 283
+Docking Process Time: 3468.6275004060008 seconds
+Docking Time: 512.370215177536 seconds
+Network Call Compute: 0.011597633361816406 seconds
+Batch Size: 284
+Docking Process Time: 3492.2136359119904 seconds
+Docking Time: 519.9086096286774 seconds
+Network Call Compute: 0.0113372802734375 seconds
+Batch Size: 285
+Docking Process Time: 3632.896420707999 seconds
+Docking Time: 541.7563915252686 seconds
+Network Call Compute: 0.011086225509643555 seconds
+Batch Size: 285
+Docking Process Time: 3458.7171810169966 seconds
+Docking Time: 512.7660427093506 seconds
+Network Call Compute: 0.011579513549804688 seconds
+Batch Size: 286
+Docking Process Time: 3592.32107998 seconds
+Docking Time: 535.2350206375122 seconds
+Network Call Compute: 0.03197121620178223 seconds
+Batch Size: 287
+Docking Process Time: 3628.522812864001 seconds
+Docking Time: 540.9747343063354 seconds
+Network Call Compute: 0.011080265045166016 seconds
+Batch Size: 287
+Docking Process Time: 3613.143340067996 seconds
+Docking Time: 536.2419548034668 seconds
+Network Call Compute: 0.014027118682861328 seconds
+Batch Size: 288
+Docking Process Time: 3530.67992804799 seconds
+Docking Time: 522.5146336555481 seconds
+Network Call Compute: 0.03279924392700195 seconds
+Batch Size: 289
+Docking Process Time: 3485.5377705230057 seconds
+Docking Time: 518.3709580898285 seconds
+Network Call Compute: 0.01130533218383789 seconds
+Batch Size: 290
+Docking Process Time: 3611.895593051988 seconds
+Docking Time: 538.0480298995972 seconds
+Network Call Compute: 0.011583566665649414 seconds
+Batch Size: 291
+Docking Process Time: 3646.7122226749925 seconds
+Docking Time: 538.7648861408234 seconds
+Network Call Compute: 0.01178884506225586 seconds
+Batch Size: 292
+Docking Process Time: 3600.1691523500194 seconds
+Docking Time: 536.3130140304565 seconds
+Network Call Compute: 0.01171875 seconds
+Batch Size: 293
+Docking Process Time: 3808.4225806100003 seconds
+Docking Time: 566.0820949077606 seconds
+Network Call Compute: 0.012093782424926758 seconds
+Batch Size: 293
+Docking Process Time: 3479.6177321150026 seconds
+Docking Time: 517.6275587081909 seconds
+Network Call Compute: 0.046489715576171875 seconds
+Batch Size: 294
+Docking Process Time: 3472.6243188689987 seconds
+Docking Time: 517.2507338523865 seconds
+Network Call Compute: 0.053930044174194336 seconds
+Batch Size: 295
+Docking Process Time: 3571.3746794920007 seconds
+Docking Time: 531.950231552124 seconds
+Network Call Compute: 0.1280200481414795 seconds
+Batch Size: 296
+Docking Process Time: 3717.526800642023 seconds
+Docking Time: 552.8897747993469 seconds
+Network Call Compute: 0.059067726135253906 seconds
+Batch Size: 296
+Docking Process Time: 3717.826360642008 seconds
+Docking Time: 553.2470698356628 seconds
+Network Call Compute: 0.04482746124267578 seconds
+Batch Size: 296
+Docking Process Time: 3525.237348588009 seconds
+Docking Time: 526.1537384986877 seconds
+Network Call Compute: 0.0466609001159668 seconds
+Batch Size: 297
+Docking Process Time: 3613.717876559007 seconds
+Docking Time: 535.4595510959625 seconds
+Network Call Compute: 0.05374431610107422 seconds
+Batch Size: 298
+Docking Process Time: 3857.7089328810107 seconds
+Docking Time: 573.4436480998993 seconds
+Network Call Compute: 0.054123878479003906 seconds
+Batch Size: 298
+Docking Process Time: 3671.3995380310225 seconds
+Docking Time: 544.3517973423004 seconds
+Network Call Compute: 0.04330015182495117 seconds
+Batch Size: 298
+Docking Process Time: 3741.3796334940125 seconds
+Docking Time: 549.2014458179474 seconds
+Network Call Compute: 0.04499530792236328 seconds
+Batch Size: 298
+Docking Process Time: 3733.2190794799826 seconds
+Docking Time: 552.0865201950073 seconds
+Network Call Compute: 0.0511317253112793 seconds
+Batch Size: 298
+Docking Process Time: 3901.1435245549947 seconds
+Docking Time: 577.3473691940308 seconds
+Network Call Compute: 0.047008514404296875 seconds
+Batch Size: 298
+Docking Process Time: 3633.4813210340217 seconds
+Docking Time: 539.5328011512756 seconds
+Network Call Compute: 0.04113364219665527 seconds
+Batch Size: 128
+Docking Process Time: 1619.4690172279952 seconds
+Docking Time: 240.58222842216492 seconds
+Network Call Compute: 0.022670745849609375 seconds
+Docking Finished: docking_id({self.docking_id})
