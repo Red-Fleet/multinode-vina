@@ -1,5 +1,5 @@
 from app import app
-from threading import Thread
+from threading import Thread, Lock
 from app.http_services.server_http_docking_service import ServerHttpDockingService
 from vina import Vina
 import os
@@ -13,19 +13,44 @@ from app.system.vina_process import VinaProcess
 class DockingTask:
 
     class ProcessEntity:
-        def __init__(self, vina_process, control_queue, compute_queue, result_queue,error_queue, 
-                     num_core, compute_assigned_queue) -> None:
-            self.vina_process: VinaProcess = vina_process
-            self.control_queue: multiprocessing.Queue = control_queue
-            self.compute_queue: multiprocessing.Queue = compute_queue
-            self.result_queue: multiprocessing.Queue = result_queue
-            self.error_queue: multiprocessing.Queue = error_queue
+        def __init__(self, num_core) -> None:
+            
+            self.control_queue: multiprocessing.Queue = multiprocessing.Queue()
+            self.compute_queue: multiprocessing.Queue = multiprocessing.Queue()
+            self.result_queue: multiprocessing.Queue = multiprocessing.Queue()
+            self.error_queue: multiprocessing.Queue = multiprocessing.Queue()
+            self.computing_queue: multiprocessing.Queue = multiprocessing.Queue()
+
+            self.createVinaProcess()
+            
             self.alive = True
             self.num_core = num_core
-            self.compute_assigned_queue: queue.Queue = compute_assigned_queue
+
+        
+        def createVinaProcess(self):
+            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.computing_queue is None:
+                raise Exception("control_queue, compute_queue, result_queue, error_queue, computing_queue cannot be empty")
+            self.vina_process: VinaProcess = VinaProcess(
+                                        control_queue=self.control_queue,
+                                       compute_queue=self.compute_queue,
+                                       result_queue=self.result_queue,
+                                       error_queue=self.error_queue,
+                                       computing_queue=self.computing_queue
+                                    )
+
+        def replaceVinaProcess(self):
+            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.computing_queue is None:
+                raise Exception("control_queue, compute_queue, result_queue, error_queue, computing_queue cannot be empty")
+            
+            # empty control and computing_queue
+            while self.control_queue.empty() == False: self.control_queue.get()
+            while self.computing_queue.empty() == False: self.computing_queue.get()
+
+            self.createVinaProcess()
 
 
     def __init__(self, docking_id) -> None:
+
         self.docking_id = docking_id
         self.avaliable_cores = 1
         self.target = None
@@ -44,6 +69,13 @@ class DockingTask:
         self.run_thread = Thread(target=self.run)
         self.run_thread.start()
 
+        self.processes_lock = Lock() # for locking processes list
+
+        ### used for getting batch size of ligands ###
+        self.batch_size = -1
+        self.batch_time = -1
+        ########################################
+
     
     def run(self):
         try:
@@ -52,12 +84,17 @@ class DockingTask:
             #######################handle this###################
             with app.app_context():
                 app.logger.info("Error while fetching Docking detials: docking_id{self.docking_id}\n", e)
+            
+            return
         
-
-        self.createVinaProcesses()
-
-        
-
+        try:
+            self.createVinaProcesses()
+        except Exception as e:
+            #######################handle this###################
+            with app.app_context():
+                app.logger.info("Error while fetching Docking detials: docking_id{self.docking_id}\n", e)
+            
+            return
 
 
     def getDockingDetails(self):
@@ -122,37 +159,12 @@ class DockingTask:
         
         self.processes = []
         for num_core in self.process_cores:
-            control_queue = multiprocessing.Queue()
-            compute_queue = multiprocessing.Queue()
-            result_queue = multiprocessing.Queue()
-            error_queue = multiprocessing.Queue()
-            compute_assigned_queue = queue.Queue()
-
-            vina_process = VinaProcess(control_queue=control_queue,
-                                       compute_queue=compute_queue,
-                                       result_queue=result_queue,
-                                       error_queue=error_queue,
-                                       compute_assigned_queue=compute_assigned_queue
-                                       )
-        
             self.processes.append(DockingTask.ProcessEntity(
-                vina_process=vina_process,
-                control_queue = control_queue,
-                compute_queue=compute_queue,
-                result_queue=result_queue,
-                error_queue=error_queue,
                 num_core=num_core,
-                compute_assigned_queue=compute_assigned_queue
             ))
 
-    def runAndInitVinaProcesses(self):
-        """will pass params to vina processes and create instance of vina in vinaProcess
-        """
-        for process in self.processes:
-            # run vina process
-            process.vina_process.start()
-
-            process.control_queue.put(VinaProcess.ParamsMessage(
+    def runAndInitVinaProcess(self, process: ProcessEntity):
+        process.control_queue.put(VinaProcess.ParamsMessage(
                 center=self.params["center"],
                 box = self.params['box'],
                 target_path=self.target_path,
@@ -165,20 +177,77 @@ class DockingTask:
                 max_evals=self.params['max_evals']
             ))
 
-            # initialize vina
-            process.control_queue.put(VinaProcess.InitVinaMessage())
+        # run vina process
+        process.vina_process.start()
 
-            while not process.control_queue.empty():
-                time.sleep(5)
+        # initialize vina
+        process.control_queue.put(VinaProcess.InitVinaMessage())
+
+        while not process.control_queue.empty():
+            time.sleep(5)
+        
+        # check for error
+        if process.vina_process.is_alive() == False or process.error_queue.empty() == False:
+            ################ Handle error #####################
+            ################# Update Server about error ################
+            error_str = ""
+            if process.error_queue.empty() == False:
+                error_str = str(process.error_queue.get().message)
+            raise Exception("Error: docking_id({self.docking_id})" , error_str)                 
             
-            # check of error
-            if process.vina_process
+    def computeAssignmentThread(self):
+        """This thread will assign new computes to the process.
+        It keeps looking for ideal processes, once ideal process is found 
+        it will ask for new batch of ligands.
+        """
 
+        while True:
+            time.sleep(10) # sleep for 10 sec
 
+            # acquire processes lock
+            self.processes_lock.acquire()
 
+            # check if all processes have computes or not
+            hasComputes = True
+            for process in self.processes:
+                if process.compute_queue.qsize() == 0:
+                    hasComputes = False
+                    break
+            
+            if hasComputes == False:
+                # get new batch of ligands
+                computes = self.getComputes(docking_id=self.docking_id, compute_count=self.getLigandBatchSize())
 
+                totalComputes = len(computes)
+                for process in self.processes:
+                    totalComputes += process.compute_queue.qsize()
+                
+                average_computes = math.ceil(totalComputes/len(self.processes))
+                
+                for process in self.processes:
+                    put = average_computes - process.compute_queue.qsize()
+                    while put>0 and len(computes)>0:
+                        put -= 1
+                        compute = computes.pop()
+                        process.compute_queue.put(VinaProcess.ComputeMessage(
+                            compute['compute_id'], compute['ligand'])
+                            )
+                
+    def removeClosedProcessesThread(self):
+        while(1):
+            time.sleep(180) # sleep for 180 seconds
+            self.processes_lock.acquire()
 
-    
+            for process in self.processes:
+                # update error
+                error_compute = process.computing_queue.get()
+                with app.app_context():
+                    app.logger.error("########### Update ligand error on server")
+                
+                process.replaceVinaProcess()
+                self.runAndInitVinaProcess(process)
+
+        
 
     def getComputes(self, docking_id:str, compute_count:int = 1):
         computes = ServerHttpDockingService.getComputes(docking_id=docking_id, count=compute_count)
@@ -206,11 +275,16 @@ class DockingTask:
         t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
         t.start()
 
-    def getLigandBatchSize(self, old_batch_size, old_batch_time):
-        if old_batch_size == -1: return self.inital_batch_size
-
-        x = int(self.ideal_completion_time - old_batch_time)
-        return max(old_batch_size + x * abs(x), self.inital_batch_size)
+    def getLigandBatchSize(self):
+        if self.batch_size == -1:
+            self.batch_size = self.inital_batch_size
+            self.batch_time = time.time()
+            return self.batch_size
+    
+        x = int(self.ideal_completion_time - (time.time() - self.batch_time))
+        self.batch_size = max(self.batch_size + x * abs(x), self.inital_batch_size)
+        self.batch_time = time.time()
+        return self.batch_size
 
 
 
