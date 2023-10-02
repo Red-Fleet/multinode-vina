@@ -1,169 +1,92 @@
-from app import app
-from threading import Thread
-from app.http_services.server_http_docking_service import ServerHttpDockingService
-from vina import Vina
-import os
-import pathlib
+from collections.abc import Callable, Iterable, Mapping
+from threading import Thread, Lock
 import time
+from typing import Any
+from app.http_services.server_http_notification_service import ServerHttpNotificationService
+from app import app, user
+from app.services.docking_service import DockingService
+from app.system.docking_task import DockingTask
+
+class DockingSystem(Thread):
+    def __init__(self, total_cores: int = 1,  group: None = None, target: Callable[..., object] | None = None, name: str | None = None, args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = None, *, daemon: bool | None = None) -> None:
+        super().__init__(group, target, name, args, kwargs, daemon=daemon)
+
+        self.total_cores = total_cores
+        self.docking_tasks: set[DockingTask] = set()
+        self.docking_tasks_lock = Lock()
 
 
-class DockingSystem:
-    def __init__(self, docking_id) -> None:
-        self.docking_id = docking_id
-        self.target: str = None
-        self.target_path: str = None
-        self.params: dict = None
-        self.master_id: str = None
-        self.vina: Vina = None
-        self.inital_batch_size = 10
-        self.ideal_completion_time = 10 # in minutes
-        self.dockingSystemThread = Thread(target=self.startDockingSystemThread)
-        self.dockingSystemThread.start()
+    def run(self):
+        self.notification_thread = Thread(target=self.checkNotificationAndStartDockingThread)
+        self.notification_thread.start()
+
+        self.remove_ended_task_thread = Thread(target=self.removeEndedTasksThread)
+        self.remove_ended_task_thread.start()
+
+        while self.remove_ended_task_thread.is_alive() == True and self.notification_thread.is_alive() == True:
+            time.sleep(600)
     
-    def startDockingSystemThread(self):
-        with app.app_context():
-            # get docking details from server
-            docking_details = self.getDockingDetails(self.docking_id)
-            self.params = docking_details["params"]
-            self.target = docking_details["target"]
-            self.master_id = docking_details["master_id"]
-            
-            # initializing vina
-            self.vina = self.getVina(params=self.params)
+    def startDocking(self, docking_id: str):
+        task = DockingTask(docking_id=docking_id, avaliable_cores=0)
+        task.start()
+        self.docking_tasks.add(task)
 
-            # save receptor in temp file
-            self.saveReceptorInTempFolder(self.target)
-            
-
-            # set target/receptor in vina
-            self.vina.set_receptor(self.target_path)
-
-            # compute vina maps
-            self.setVinaMap(self.vina, self.params)
-
-            # start docking
-            app.logger.info("Docking Started: docking_id({self.docking_id})")
-            self.dock(self.vina, self.params)
-
-    def saveReceptorInTempFolder(self, target):
-        temp_dir_path: str = os.path.join(str(pathlib.Path(__file__).parent.resolve()), "temp_receptors")
-        if os.path.exists(temp_dir_path) == False:
-            # create dir for storing temp files
-            os.mkdir(temp_dir_path)
-
-        # save receptor
-        self.target_path = os.path.join(temp_dir_path, self.docking_id+"_receptor.pdbqt")
-        rece_file = open(self.target_path, "w")
-        rece_file.write(target)
-        rece_file.close()
-
-    def deleteReceptorFile(self):
-        os.remove(self.target_path)
-
-    def dock(self, vina: Vina, params:dict):
-
-        if "exhaustiveness" not in params: params["exhaustiveness"] = 8
-        if "n_poses" not in params: params["n_poses"] = 20
-        if "min_rmsd" not in params: params["min_rmsd"] = 1.0
-        if "max_evals" not in params: params["max_evals"] = 0
-
-        exhaustiveness = params["exhaustiveness"]
-        n_poses = params["n_poses"]
-        min_rmsd = params["min_rmsd"]
-        max_evals= params["max_evals"]
-        
-        # get targets
-        batch_size = -1
-        batch_time = -1
-        while True:
-            batch_size = self.getLigandBatchSize(old_batch_size=batch_size,
-                                                         old_batch_time=batch_time)
-            computes = self.getComputes(docking_id=self.docking_id, compute_count=batch_size)
-            results = [] # stores dict contaning 
-            
-            batch_start_time = time.time()
-            if len(computes) >= 1:
-                # update compute result
-                for compute in computes:
-                    ligand = compute['ligand']
-                    self.vina.set_ligand_from_string(ligand)
-                    
-                    self.vina.dock(exhaustiveness=exhaustiveness, 
-                                            n_poses=n_poses,
-                                            min_rmsd=min_rmsd,
-                                            max_evals=max_evals)
-                    
-                    results.append({
-                        "compute_id": compute["compute_id"],
-                        "result": self.vina.poses(n_poses=n_poses)
-                    })
-                
-                # updating current batch compute time in minutes
-                batch_time = (time.time() - batch_start_time)/60
-
-                # update result of this batch without blocking next request
-                self.updateComputeResult(compute_results=results)
-
-            else:
-                app.logger.info("Docking Finished: docking_id({self.docking_id})")
-                try:
-                    self.deleteReceptorFile()
-                except Exception as e:
-                    app.logger.info("Error while removing temp files for docking_id({self.docking_id}): ", e)
-                break
-
-    def getComputes(self, docking_id:str, compute_count:int = 1):
-        computes = ServerHttpDockingService.getComputes(docking_id=docking_id, count=compute_count)
-        return computes
-    
-    def setVinaMap(self, vina:Vina, params:dict):
-
-        if "grid_spacing" not in params: params["grid_spacing"] = 0.375
-
-        center = [params["center_x"], params["center_y"], params["center_z"]]
-        box = [params["box_size_x"], params["box_size_y"], params["box_size_z"]]
-
-        vina.compute_vina_maps(center=center, box_size=box, spacing=params["grid_spacing"])
-
-
-
-    def getVina(self, params:dict):
-        # set default parameters if they are not set
-        if "scoring_function" not in params: params["scoring_function"] = "vina"
-        if "cpu_num" not in params: params["cpu_num"] = 0
-        if "random_seed" not in params: params["random_seed"] = 0
-
-
-        return Vina(sf_name=params["scoring_function"], 
-                    cpu=params["cpu_num"],
-                    seed=params["random_seed"])
-
-    def getTarget(self)-> str:
-        return ServerHttpDockingService.getDockingTarget(self.docking_id)
-    
-    def getDockingDetails(self, docking_id:str)-> str:
-        return ServerHttpDockingService.getDockingDetails(docking_id)
-    
-    def updateComputeResult(self, compute_results: list):
-        """This method start a thread which updates compute result on server
-
-        Args:
-            compute_results (list): list of dict contaning compute_id and result
+    def coresAssignment(self):
+        """it distributes cores among different docking_tasks
         """
-        def threadedComputeResultUpdate(docking_id, compute_results):
-            with app.app_context():
-                ServerHttpDockingService.saveComputeResult(docking_id, compute_results)
-
-        t = Thread(target=threadedComputeResultUpdate, args=(self.docking_id, compute_results), daemon=False)
-        t.start()
-
-    def getLigandBatchSize(self, old_batch_size, old_batch_time):
-        if old_batch_size == -1: return self.inital_batch_size
-
-        x = int(self.ideal_completion_time - old_batch_time)
-        return max(old_batch_size + x * abs(x), self.inital_batch_size)
-
-
-
+        self.docking_tasks_lock.acquire()
         
+        total_tasks = len(self.docking_tasks)
+
+        cores = [self.total_cores//total_tasks]*total_tasks
+        left_cores = self.total_cores - (self.total_cores//total_tasks)*total_tasks
+
+        i = 0
+        while left_cores > 0:
+            cores[i] += 1
+            left_cores -= 1
+            i = (i+1)%total_tasks
         
+        i = 0
+        for task in self.docking_tasks:
+            task.updateAvaliableCores(avaliable_cores=cores[i])
+            i += 1
+
+        self.docking_tasks_lock.release()
+        
+    def removeEndedTasksThread(self):
+        """Thread will remove the docking tasks which are finished
+        """
+        while True:
+            time.sleep(180)
+            self.docking_tasks_lock.acquire()
+
+            removed = False
+            for process in self.docking_tasks:
+                if process.is_alive() == False:
+                    removed = True
+                    self.docking_tasks.remove(process)
+            
+            if removed == True:
+                self.coresAssignment()
+            
+            self.docking_tasks_lock.release()
+
+
+            
+    
+    def checkNotificationAndStartDockingThread():
+        with app.app_context():
+            while True:
+                time.sleep(180)
+                if user.isAuthenticated == False:
+                    continue
+                # check notification
+                try:
+                    result = ServerHttpNotificationService.getWorkerNotifications()
+                    docking_ids = [x['docking_id'] for x in result]
+                    if len(docking_ids) >= 1:
+                        for docking_id in docking_ids:
+                            DockingService.startDocking(docking_id=docking_id)
+                except Exception as e:
+                    app.logger.error(e)
