@@ -22,34 +22,88 @@ class DockingTask(Thread):
             self.compute_queue: multiprocessing.Queue = multiprocessing.Queue()
             self.result_queue: multiprocessing.Queue = multiprocessing.Queue()
             self.error_queue: multiprocessing.Queue = multiprocessing.Queue()
-            self.computing_queue: multiprocessing.Queue = multiprocessing.Queue()
+            self.slow_compute_queue: multiprocessing.Queue = multiprocessing.Queue()
             self.logs_queue: multiprocessing.Queue = multiprocessing.Queue()
             self.process_ended_event: multiprocessing.Event = multiprocessing.Event()
             self.createVinaProcess()
             
             self.num_core = num_core
 
+        def getCompute(self) -> VinaProcess.ComputeMessage:
+            """returns compute => will maintain size of compute and slow_compute queues
+                do not pull computes while vina process is running.
+            """
+            compute = None
+            try:
+                compute = self.compute_queue.get(timeout=1)
+                self.slow_compute_queue.get(timeout=1)
+            except:
+                pass
+
+            return compute
+            
+
+
+        def addCompute(self, compute):
+            """add compute to compute and slow_compute queue
+
+            Args:
+                compute (_type_): _description_
+            """
+            self.compute_queue.put(compute)
+            self.slow_compute_queue.put(compute)
+        
+        def numComputes(self)->int:
+            """return number of computes avaliable in compute_queue
+
+            Returns:
+                int: _description_
+            """
+            return self.compute_queue.qsize()
+
+        def getErrorCompute(self):
+            """returns compute that has caused vina to stop if avaliable else return none 
+
+            Returns:
+                _type_: _description_
+            """
+            if self.vina_process.is_alive() == False:
+                if self.compute_queue.qsize() < self.slow_compute_queue.qsize():
+                    try: 
+                        return self.slow_compute_queue.get()
+                    except:
+                        pass
+            
+            return None
+        
+        def isComputeError(self):
+            
+            if self.vina_process.is_alive() == False:
+                if self.compute_queue.qsize() < self.slow_compute_queue.qsize():
+                    return True
+            
+            return False
+        
         
         def createVinaProcess(self):
-            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.computing_queue is None:
-                raise Exception("control_queue, compute_queue, result_queue, error_queue, computing_queue cannot be empty")
+            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.slow_compute_queue is None:
+                raise Exception("control_queue, compute_queue, result_queue, error_queue cannot be empty")
             self.vina_process: VinaProcess = VinaProcess(
                                         control_queue=self.control_queue,
                                        compute_queue=self.compute_queue,
                                        result_queue=self.result_queue,
                                        error_queue=self.error_queue,
-                                       computing_queue=self.computing_queue,
+                                       slow_compute_queue=self.slow_compute_queue,
                                        logs_queue=self.logs_queue,
                                        process_ended_event = self.process_ended_event
                                     )
 
         def replaceVinaProcess(self):
-            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.computing_queue is None:
-                raise Exception("control_queue, compute_queue, result_queue, error_queue, computing_queue cannot be empty")
+            if self.control_queue is None or self.compute_queue is None or self.result_queue is None or self.error_queue is None or self.slow_compute_queue is None:
+                raise Exception("control_queue, compute_queue, result_queue, error_queue cannot be empty")
             
-            # empty control and computing_queue
+            # empty control
             while self.control_queue.empty() == False: self.control_queue.get()
-            while self.computing_queue.empty() == False: self.computing_queue.get()
 
             self.process_ended_event = multiprocessing.Event() # new event
 
@@ -275,16 +329,16 @@ class DockingTask(Thread):
     def assignComputesToProcesses(self, computes: list[VinaProcess.ComputeMessage]):
         totalComputes = len(computes)
         for process in self.processes:
-            totalComputes += process.compute_queue.qsize()
+            totalComputes += process.numComputes()
         
         average_computes = math.ceil(totalComputes/len(self.processes))
         print("assignining computes to process queues")
         for process in self.processes:
-            put = average_computes - process.compute_queue.qsize()
+            put = average_computes - process.numComputes()
             while put>0 and len(computes)>0:
                 put -= 1
                 compute = computes.pop()
-                process.compute_queue.put(compute)
+                process.addCompute(compute)
 
     def computeAssignmentThread(self):
         """This thread will assign new computes to the process.
@@ -302,7 +356,7 @@ class DockingTask(Thread):
                 # check if all processes have computes or not
                 hasComputes = True
                 for process in self.processes:
-                    if process.compute_queue.qsize() == 0:
+                    if process.numComputes() == 0:
                         hasComputes = False
                         break
                 
@@ -324,11 +378,12 @@ class DockingTask(Thread):
             self.error("DockingTask(updateKilledProcessError)[docking_id("+ str(self.docking_id) +"]: Cannot update error of running process")
             return
         
-        error_compute = process.computing_queue.get()
+        error_compute = process.getErrorCompute()
         
-        compute_id = error_compute.compute_id
-        ####################### handle this ###############################
-        self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Vina killed, Error in ligand pdbqt, compute_id(" + str(compute_id)+ ")")
+        if error_compute is not None:
+            compute_id = error_compute.compute_id
+            ####################### handle this ###############################
+            self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Vina killed, Error in ligand pdbqt, compute_id(" + str(compute_id)+ ")")
         
 
     def replaceKilledVinaProcesses(self):
@@ -337,7 +392,7 @@ class DockingTask(Thread):
         """
         for process in self.processes:
             if process.vina_process.is_alive() ==False:
-                if process.computing_queue.empty() == False:
+                if process.isComputeError() == True:
                     # process is dead and it is killed due to error in ligand
                     # update error
                     self.updateKilledProcessError(process)
@@ -492,8 +547,8 @@ class DockingTask(Thread):
             # adding all computes in computes list
             computes = []
             for process in self.processes:
-                while process.compute_queue.empty() == False:
-                    computes.append(process.compute_queue.get())
+                while process.numComputes() > 0:
+                    computes.append(process.getCompute())
             
 
             
@@ -503,7 +558,7 @@ class DockingTask(Thread):
             self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:updating ligand error")
             # handle error of processes which were killed due to vina error (they will have non empty computing queue)
             for process in self.processes:
-                if process.vina_process.is_alive() ==False and process.computing_queue.empty()==False:
+                if process.isComputeError() == True:
                     # process is dead and it is killed due to error in ligand
                     # update error
                     self.updateKilledProcessError(process)

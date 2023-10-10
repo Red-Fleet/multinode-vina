@@ -63,7 +63,7 @@ class VinaProcess(multiprocessing.Process):
                  compute_queue: multiprocessing.Queue,
                  result_queue: multiprocessing.Queue, 
                  error_queue: multiprocessing.Queue,
-                 computing_queue: multiprocessing.Queue,
+                 slow_compute_queue: multiprocessing.Queue,
                  logs_queue: multiprocessing.Queue,
                  process_ended_event: multiprocessing.Event) -> None:
         multiprocessing.Process.__init__(self)
@@ -71,7 +71,7 @@ class VinaProcess(multiprocessing.Process):
         self.compute_queue = compute_queue
         self.result_queue = result_queue
         self.error_queue = error_queue
-        self.computing_queue = computing_queue
+        self.slow_compute_queue = slow_compute_queue
         self.logs_queue = logs_queue
         self.process_ended_event = process_ended_event
         
@@ -177,9 +177,6 @@ class VinaProcess(multiprocessing.Process):
             try: 
                 
                 compute: VinaProcess.ComputeMessage = self.compute_queue.get()
-                # empty computing queue if not
-                while self.computing_queue.empty() == False: self.computing_queue.get()
-                self.computing_queue.put(compute)
                 
                 try: 
                     self.vina.set_ligand_from_string(compute.ligand)
@@ -194,7 +191,7 @@ class VinaProcess(multiprocessing.Process):
                                                 max_evals=self.max_evals)
                 
                 result = VinaProcess.ResultMessage(compute.compute_id, self.vina.poses(n_poses=self.n_poses))
-                self.computing_queue.get() # remove compute from computing_queue
+                self.slow_compute_queue.get() # remove compute from computing_queue
                 self.result_queue.put(result)
             except Exception as e:
                 self.error_queue.put(VinaProcess.LigandError(compute.compute_id, e))
