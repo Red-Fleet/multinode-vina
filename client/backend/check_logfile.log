@@ -1,0 +1,206 @@
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 356a4e07-7e68-4336-88e9-ef6ebd93570c
+DockingTask(__init__)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: DockingTask created
+DockingTask(run)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: started
+DockingTask(createVinaProcesses)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Total process created = 0
+DockingTask(run)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: ProcessEntity Created
+DockingTask(run)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Initializing vina processes
+DockingTask(run)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Starting Threads
+DockingTask(computeAssignmentThread): Running
+DockingTask(resultUpdateThread): Running
+DockingTask(errorHandlerThread): Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Total process created = 3
+Vina Logs: VinaProcess(__init__): Vina Process initialized
+Vina Logs: VinaProcess(run): Control thread running
+Vina Logs: VinaProcess(__init__): Vina Process initialized
+Vina Logs: VinaProcess(__init__): Vina Process initialized
+DockingTask(runAndInitVinaProcess)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fab061f3340>)
+Vina Logs: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fab0624b460>)
+Vina Logs: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fab06278520>)
+DockingTask(updateAvaliableCores)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Avaliable cores updated
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 356a4e07-7e68-4336-88e9-ef6ebd93570c
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 10 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 10 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 10 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 9 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: 0 computes fetched
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: dbc976de-80b4-49ed-a3f3-b25472fe7f5d
+DockingTask(__init__)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: DockingTask created
+DockingTask(run)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: started
+DockingTask(updateAvaliableCores)[docking_id(356a4e07-7e68-4336-88e9-ef6ebd93570c]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: Total process created = 0
+DockingTask(run)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: ProcessEntity Created
+DockingTask(run)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: Initializing vina processes
+DockingTask(run)[docking_id(dbc976de-80b4-49ed-a3f3-b25472fe7f5d]: Starting Threads
+DockingTask(computeAssignmentThread): Running
+DockingTask(resultUpdateThread): Running
+DockingTask(errorHandlerThread): Running
+DockingTask(restartClosedProcessesThread): Running
+
+
+##############################################################################################
+
+
+
+
+
+Checking Notification
+assignining computes to process queues
+[2023-10-09 18:00:54,722] INFO in docking_task: DockingTask(computeAssignmentThread)[docking_id(e74fd5c3-598c-4c90-8c8b-3b6d4b91395c]: 0 computes fetched
+Checking Notification
+Checking Notification
+assignining computes to process queues
+[2023-10-09 18:01:04,734] INFO in docking_task: DockingTask(computeAssignmentThread)[docking_id(e74fd5c3-598c-4c90-8c8b-3b6d4b91395c]: 0 computes fetched
+Checking Notification
+^CProcess VinaProcess-5:
+Process VinaProcess-4:
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/system/vina_process.py", line 151, in run
+    time.sleep(10)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/system/vina_process.py", line 151, in run
+    time.sleep(10)
+KeyboardInterrupt
+^CException ignored in: <module 'threading' from '/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py'>
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1567, in _shutdown
+Process VinaProcess-3:
+Process VinaProcess-1:
+Process VinaProcess-2:
+    lock.acquire()
+KeyboardInterrupt: 
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/system/vina_process.py", line 151, in run
+    time.sleep(10)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 317, in _bootstrap
+    util._exit_function()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 360, in _exit_function
+    _run_finalizers()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/queues.py", line 199, in _finalize_join
+    thread.join()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/system/vina_process.py", line 151, in run
+    time.sleep(10)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/system/vina_process.py", line 151, in run
+    time.sleep(10)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 317, in _bootstrap
+    util._exit_function()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 360, in _exit_function
+    _run_finalizers()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/queues.py", line 199, in _finalize_join
+    thread.join()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 317, in _bootstrap
+    util._exit_function()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 360, in _exit_function
+    _run_finalizers()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+KeyboardInterrupt
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/queues.py", line 199, in _finalize_join
+    thread.join()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1096, in join
+    self._wait_for_tstate_lock()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/threading.py", line 1116, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt
+^CException ignored in atexit callback: <function _exit_function at 0x7fc823f5b490>
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/util.py", line 357, in _exit_function
+    p.join()
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/popen_fork.py", line 43, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/home/red_fleet/miniconda3/envs/multidevice-vina/lib/python3.10/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt: 
+(multidevice-vina) (base) red_fleet@systemx:~/cb/multinode-vina/client/backend$ 

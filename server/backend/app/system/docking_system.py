@@ -121,8 +121,10 @@ class DockingSystem:
         Args:
             computes (_type_): _description_
         """
+        if len(computes) == 0: return 
+        
         compute_ids = [compute["compute_id"] for compute in computes]
-
+        
         # save in database
         Compute.query.filter(Compute.compute_id.in_(compute_ids)).update(
             {

@@ -1,0 +1,246 @@
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 915a3936-97da-4c5c-b350-d50357552bb2
+DockingTask(__init__)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: DockingTask created
+DockingTask(run)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: started
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 915a3936-97da-4c5c-b350-d50357552bb2
+DockingTask(createVinaProcesses)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Total process created = 0
+DockingTask(run)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: ProcessEntity Created
+DockingTask(run)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Initializing vina processes
+DockingTask(run)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Running
+DockingTask(resultUpdateThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Updating Cores
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:result updating
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:got results
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:updating ligand error
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:creating process entitites
+DockingTask(createVinaProcesses)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Total process created = 3
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:initializring
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run): Control thread running
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(runAndInitVinaProcess)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766db4b670>)
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766db293f0>)
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766dbb4c70>)
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: reassignig computes
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 2db33439-e3c5-4b47-b067-29d289dccc1d
+DockingTask(__init__)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: DockingTask created
+DockingTask(run)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: started
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Updating Cores
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 2db33439-e3c5-4b47-b067-29d289dccc1d
+DockingTask(createVinaProcesses)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Total process created = 0
+DockingTask(run)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: ProcessEntity Created
+DockingTask(run)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Initializing vina processes
+DockingTask(run)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Running
+DockingTask(resultUpdateThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Running
+DockingTask(restartClosedProcessesThread): Running
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.EndProcessMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.EndProcessMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.EndProcessMessage'>
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Updating Cores
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:result updating
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:got results
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:updating ligand error
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:creating process entitites
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(__init__): Vina Process initialized
+DockingTask(createVinaProcesses)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: Total process created = 2
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:initializring
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:got results
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:updating ligand error
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:creating process entitites
+DockingTask(createVinaProcesses)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: Total process created = 2
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:initializring
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run): Control thread running
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run): Control thread running
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(__init__): Vina Process initialized
+DockingTask(runAndInitVinaProcess)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766dbb78b0>)
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766db4b670>)
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run): Control thread running
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(runAndInitVinaProcess)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f766dbd5ba0>)
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: reassignig computes
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(runAndInitVinaProcess)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f7678fd25c0>)
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]:all processes closed
+DockingTask(updateAvaliableCores)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: reassignig computes
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:3
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: que size:1
+DockingTask(resultUpdate)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:2
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(getResultsFromQueues)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: que size:1
+DockingTask(resultUpdate)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: result updating
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(915a3936-97da-4c5c-b350-d50357552bb2]: 0 computes fetched
+DockingTask(computeAssignmentThread)[docking_id(2db33439-e3c5-4b47-b067-29d289dccc1d]: 0 computes fetched

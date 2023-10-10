@@ -4,6 +4,7 @@ import os
 import pathlib
 import time
 import multiprocessing
+import signal
 
 class VinaProcess(multiprocessing.Process):
     
@@ -30,33 +31,18 @@ class VinaProcess(multiprocessing.Process):
         pass
     
     class EndProcessMessage:
+        # this messege will stop run
         pass
 
-    class StartDockingMessage:
+    class ProcessEndedMessage:
+        # this message is send once run stops, for letting parent to know that run is stopped
         pass
 
-    class VinaInitError:
-        def __init__(self, message) -> None:
-            self.message = message
-    
-    class ControlThreadError:
-        def __init__(self, message) -> None:
-            self.message = message
-    
-    class TargetLoadError:
-        def __init__(self, message) -> None:
-            self.message = message
-    
-    class VinaMapError:
+    class Error:
         def __init__(self, message) -> None:
             self.message = message
 
-    class LigandLoadError:
-        def __init__(self, compute_id, message) -> None:
-            self.compute_id = compute_id
-            self.message = message
-    
-    class DockingError:
+    class LigandError:
         def __init__(self, compute_id, message) -> None:
             self.compute_id = compute_id
             self.message = message
@@ -77,15 +63,17 @@ class VinaProcess(multiprocessing.Process):
                  compute_queue: multiprocessing.Queue,
                  result_queue: multiprocessing.Queue, 
                  error_queue: multiprocessing.Queue,
-                 computing_queue: multiprocessing.Queue) -> None:
+                 computing_queue: multiprocessing.Queue,
+                 logs_queue: multiprocessing.Queue,
+                 process_ended_event: multiprocessing.Event) -> None:
         multiprocessing.Process.__init__(self)
         self.control_queue = control_queue
         self.compute_queue = compute_queue
         self.result_queue = result_queue
         self.error_queue = error_queue
         self.computing_queue = computing_queue
-        
-        self.start_docking: bool = False # if true dock thread will pull ligand from ligand queue and starts docking
+        self.logs_queue = logs_queue
+        self.process_ended_event = process_ended_event
         
         self.target_path: str = None
         self.vina: Vina = None
@@ -100,23 +88,20 @@ class VinaProcess(multiprocessing.Process):
         self.grid_spacing = 0.375
 
         self.exitProcessFlag: bool = False # if true this process will stop and exit
-        self.continueDockingFlag: bool = False # if true docking thread will keep running, else it will stop
         
         self.dockingThreadVariable = None
-
-        self.controlThreadVariable = Thread(target=self.controlThread)
+        self.logs("VinaProcess(__init__): Vina Process initialized")
+        
         
 
-    def run(self):    
-        self.controlThreadVariable.start()
-
-    
-    def controlThread(self):
-        while(1):
-            time.sleep(30) # read control signal after every 30 sec
+    def run(self):
+        self.logs("VinaProcess(run): Control thread running")
+        while self.exitProcessFlag == False:
+            time.sleep(10) # read control signal after every 30 sec
             try:
                 while not self.control_queue.empty():
                     item = self.control_queue.get()
+                    self.logs("VinaProcess(run):Item "+ str(type(item)))
                     if isinstance(item, VinaProcess.ParamsMessage):
                         if item.scoring_function is not None: 
                             self.scoring_function = item.scoring_function
@@ -134,43 +119,64 @@ class VinaProcess(multiprocessing.Process):
                             self.max_evals = item.max_evals
                         self.center = item.center
                         self.box = item.box
+                        self.target_path = item.target_path
 
                     elif isinstance(item, VinaProcess.EndProcessMessage):
                         self.exitProcessFlag = True
+                        break
                     elif isinstance(item, VinaProcess.InitVinaMessage):
                         try:
                             self.vina = self.getVina()
                         except Exception as e:
-                            self.error_queue.put(VinaProcess.VinaInitError(e))
+                            self.error_queue.put(VinaProcess.Error(e))
+                            self.exitProcessFlag = True
+                            break
                         
                         # Load target
                         try:
                             self.vina.set_receptor(self.target_path)
                         except Exception as e:
-                            self.error_queue.put(VinaProcess.TargetPathError(e))
+                            self.error_queue.put(VinaProcess.Error(e))
+                            self.exitProcessFlag = True
+                            break
 
                         # Generate grid map
                         try:
                             self.setVinaMap()
                         except Exception as e:
-                            self.error_queue.put(VinaProcess.VinaMapError(e))
-                    elif isinstance(item, VinaProcess.StartDockingMessage):
-                        self.continueDockingFlag = True
+                            self.error_queue.put(VinaProcess.Error(e))
+                            self.exitProcessFlag = True
+                            break
+                    
                         self.dockingThreadVariable = Thread(target=self.dockingThread)
                         self.dockingThreadVariable.start()
 
             except Exception as e:
-                self.error_queue.put(VinaProcess.ControlThreadError(e))
+                self.logs("VinaProcess(run):Error "+ str(e))
+                self.error_queue.put(VinaProcess.Error(e))
+                self.exitProcessFlag = True
+
+            
+        # weight for docking thread to end
+        while self.dockingThreadVariable is not None and self.dockingThreadVariable.is_alive() == True:
+            time.sleep(10)
+        
+        
+        self.logs("VinaProcess(run): Control thread ended")
+        self.process_ended_event.set()
+        # os.kill(os.getpid(), signal.SIGKILL)
 
     def dockingThread(self):
         
-        while self.continueDockingFlag is True and self.exitProcessFlag is False:
-            while self.compute_queue.empty() is True:
+        while self.exitProcessFlag is False:
+            while self.compute_queue.empty() == True:
                 time.sleep(10) # sleep for 10 seconds is no ligand is present
+                if self.exitProcessFlag == True: return
             
+
             try: 
-                compute: VinaProcess.ComputeMessage = self.compute_queue.get()
                 
+                compute: VinaProcess.ComputeMessage = self.compute_queue.get()
                 # empty computing queue if not
                 while self.computing_queue.empty() == False: self.computing_queue.get()
                 self.computing_queue.put(compute)
@@ -178,7 +184,8 @@ class VinaProcess(multiprocessing.Process):
                 try: 
                     self.vina.set_ligand_from_string(compute.ligand)
                 except Exception as e:
-                    self.error_queue.put(VinaProcess.LigandLoadError(compute.compute_id, e))
+                    self.error_queue.put(VinaProcess.LigandError(compute.compute_id, e))
+                    self.exitProcessFlag = True
                     break
 
                 self.vina.dock(exhaustiveness=self.exhaustiveness, 
@@ -190,7 +197,9 @@ class VinaProcess(multiprocessing.Process):
                 self.computing_queue.get() # remove compute from computing_queue
                 self.result_queue.put(result)
             except Exception as e:
-                self.error_queue.put(VinaProcess.DockingError(compute.compute_id, e))
+                self.error_queue.put(VinaProcess.LigandError(compute.compute_id, e))
+                self.exitProcessFlag = True
+                break
 
     
     def setVinaMap(self):
@@ -204,7 +213,8 @@ class VinaProcess(multiprocessing.Process):
                     cpu=self.cores_count,
                     seed=self.random_seed)
 
-
+    def logs(self, message: str):
+        self.logs_queue.put(message)
 
         
         
