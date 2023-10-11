@@ -56,3 +56,5 @@ class Docking(db.Model):
     # Additional parameters related to the docking request stored as 
     # JSON data like grid box, spacing etc.
     params = sqaly.Column(sqaly.JSON) # for storing parameters
+    # for saving error, will store key as worker_id and error as value
+    error = sqaly.Column(sqaly.JSON)

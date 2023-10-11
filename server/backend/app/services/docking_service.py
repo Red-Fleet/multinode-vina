@@ -163,11 +163,21 @@ class DockingService:
     
     @staticmethod
     def saveComputeResult(docking_id: str, computes: list):
-        try:
-            DockingService.dockings[docking_id].saveResults(computes)
-        except Exception as e:
-            app.logger.error(e)
-            raise Exception("database error")
+        DockingService.dockings[docking_id].saveResults(computes)
+        
+        
+    @staticmethod
+    def saveComputeError(docking_id: str, computes: list):
+        
+        DockingService.dockings[docking_id].saveComputeError(computes)
+        
+        
+    
+    @staticmethod
+    def saveDockingError(docking_id: str, worker_id: str, error: str):
+        
+        DockingService.dockings[docking_id].saveDockingError(worker_id=worker_id, error=error)
+        
         
     @staticmethod
     def getDockingStatus(docking_id: str)-> dict[str, int]:
@@ -180,6 +190,10 @@ class DockingService:
             dict[str, int]: _description_
         """
         return DockingService.dockings[docking_id].getDockingStatus()
+    
+    @staticmethod
+    def isDockingFinished(docking_id: str)->bool:
+        return DockingService.dockings[docking_id].isDockingFinished()
     
     # @staticmethod
     # def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
@@ -273,3 +287,5 @@ class DockingService:
             raise Exception("DockingService: Database Error")
         
         return result
+
+        
