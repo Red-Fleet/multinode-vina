@@ -23,6 +23,7 @@ class DockingSystem:
         self.readDockingDetailsFromDBThread = Thread(target=self.readDockingDetailsFromDB)
         self.readDockingDetailsFromDBThread.start()
 
+        self.docking_error_lock = Lock() # for storing docking error in database => lock makes this operation atomic
     # def set_computing_ligand_ids(self, computing_ligand_ids):
     #     self.computed_ligand_ids = computing_ligand_ids
 
@@ -241,6 +242,7 @@ class DockingSystem:
         """
         with app.app_context():
             try:
+                self.docking_error_lock.acquire()
                 result = Docking.query.with_entities(
                     Docking.error).filter_by(docking_id=self.docking_id).first()
                 
@@ -256,9 +258,11 @@ class DockingSystem:
                 )
 
                 db.session.commit()
-            except:
+            except Exception as e:
                 app.logger.error(e)
                 raise Exception("Error while saving docking error")
+            finally:
+                self.docking_error_lock.release()
 
                 
                 
