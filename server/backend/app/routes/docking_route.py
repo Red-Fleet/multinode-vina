@@ -161,7 +161,7 @@ def saveDockingError()->Response:
     if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
     if 'error' not in content: return Response("error not present", status=500, mimetype='application/json')
     try:
-        DockingService.saveDockingError(docking_id=content["docking_id"], worker_id=worker_id, error=error)
+        DockingService.saveDockingError(docking_id=content["docking_id"], worker_id=worker_id, error=content["error"])
         return Response(status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
