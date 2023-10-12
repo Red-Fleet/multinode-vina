@@ -19,7 +19,8 @@ class DockingSystem:
         self.worker_ids = [] # for storing ids of workers
         self.master_id: str = None # for storing id of master
         self.params = dict() # for storing different parameters used while docking like scoring function, grid size etc.
-
+        
+        self.docking_details_initialized = False
         self.readDockingDetailsFromDBThread = Thread(target=self.readDockingDetailsFromDB)
         self.readDockingDetailsFromDBThread.start()
 
@@ -71,12 +72,14 @@ class DockingSystem:
                     NotificationService.createWorkerNotification(docking_id=self.docking_id, worker_id=worker, commit=False)
                 # commiting
                 db.session.commit()
-
+                
             except Exception as e:
                 app.logger.error(e)
                 # garbage collector will automatically delete this object
                 self.readDockingDetailsFromDBThread = None
                 raise Exception("Database Error")
+            finally:
+                self.docking_details_initialized = True
             
         
 
@@ -148,6 +151,8 @@ class DockingSystem:
         Returns:
             _type_: boolean
         """
+        if self.docking_details_initialized == False: return False
+
         try:
             self.lock.acquire()
             if len(self.un_computed_ids)==0 and len(self.computing_ids)==0:

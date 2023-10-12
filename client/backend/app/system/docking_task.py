@@ -1,17 +1,14 @@
 from app import app
 from threading import Thread, Lock
 from app.http_services.server_http_docking_service import ServerHttpDockingService
-from vina import Vina
 import os
 import pathlib
 import time
 import math
-import queue
 import multiprocessing
 from app.system.vina_process import VinaProcess
 from typing import Any
 from collections.abc import Callable, Iterable, Mapping
-import random
 
 class DockingTask(Thread):
 
@@ -121,7 +118,7 @@ class DockingTask(Thread):
         self.master_id: str = None
 
         self.inital_batch_size = 10
-        self.ideal_completion_time = 10 # in minutes
+        self.ideal_completion_time = 10*60 # in sec
 
         self.processes:list[DockingTask.ProcessEntity] = [] # will store all process entity
         
@@ -150,7 +147,7 @@ class DockingTask(Thread):
         except Exception as e:
             #######################handle this###################
             self.exitTask = True
-            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while fetching docking details\n" + str(e))
+            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while fetching docking details, Docking stopped.\n" + str(e))
             return # stop this task
         
         try:
@@ -159,7 +156,7 @@ class DockingTask(Thread):
         except Exception as e:
             #######################handle this###################
             self.exitTask = True
-            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while creating Vina Processes\n" + str(e))
+            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while creating Vina Processes, Docking Stopped\n" + str(e))
             return # stop this task
 
         try:
@@ -167,9 +164,9 @@ class DockingTask(Thread):
             for process in self.processes:
                 self.runAndInitVinaProcess(process)
         except Exception as e:
-            #######################handle this, send error to server###################
+            ServerHttpDockingService.saveDockingError(self.docking_id, str(e))
             self.exitTask = True
-            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while Initializing vina processes and Creating Grid Map\n" + str(e))
+            self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while Initializing vina processes\n" + str(e))
             return # stop this task
 
         self.processes_lock.release()
@@ -190,8 +187,8 @@ class DockingTask(Thread):
             self.restart_closed_process_thread = Thread(target=self.restartClosedProcessesThread)
             self.restart_closed_process_thread.start()
 
-            self.logs_thread = Thread(target=self.printVinaProcessLogsThread)
-            self.logs_thread.start()
+            # self.logs_thread = Thread(target=self.printVinaProcessLogsThread)
+            # self.logs_thread.start()
         
         except Exception as e:
             self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while Thread creation")
@@ -209,7 +206,9 @@ class DockingTask(Thread):
                 (self.restart_closed_process_thread.is_alive() is True):
             time.sleep(10)
             if  self.exitTask == True:
-                return
+                break
+            
+        self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Docking Task ended")
                  
     def getDockingDetails(self):
         """will receive docking details from server(for given docking_id). And save target in temp folder
@@ -314,15 +313,15 @@ class DockingTask(Thread):
             time.sleep(5)
         
         
-        # check for error
-        if process.vina_process.is_alive() == False or process.error_queue.empty() == False:
-            ################ Handle error #####################
-            ################# Update Server about error ################
-            error_str = ""
-            if process.error_queue.empty() == False:
-                error_str = str(process.error_queue.get().message)
+        # # check for error
+        # if process.vina_process.is_alive() == False or process.error_queue.empty() == False:
+        #     ################ Handle error #####################
+        #     ################# Update Server about error ################
+        #     error_str = ""
+        #     # if process.error_queue.empty() == False:
+        #     #     error_str = str(process.error_queue.get().message)
             
-            raise Exception(f"Error: docking_id({self.docking_id})" , error_str) 
+        #     raise Exception() 
         
         self.info("DockingTask(runAndInitVinaProcess)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: VinaProcess running (" + str(process)+")")              
 
@@ -332,7 +331,7 @@ class DockingTask(Thread):
             totalComputes += process.numComputes()
         
         average_computes = math.ceil(totalComputes/len(self.processes))
-        print("assignining computes to process queues")
+        
         for process in self.processes:
             put = average_computes - process.numComputes()
             while put>0 and len(computes)>0:
@@ -346,10 +345,10 @@ class DockingTask(Thread):
         it will ask for new batch of ligands.
         """
         self.info("DockingTask(computeAssignmentThread)[docking_id("+ str(self.docking_id) +"]: Running")
-        while True and self.exitTask==False:
+        while self.exitTask==False:
             try:
                 time.sleep(10) # sleep for 10 sec
-
+               
                 # acquire processes lock
                 self.processes_lock.acquire()
 
@@ -365,8 +364,19 @@ class DockingTask(Thread):
                     
                     computes = self.getComputes(docking_id=self.docking_id, compute_count=self.getLigandBatchSize())
                     computes = [VinaProcess.ComputeMessage(compute['compute_id'], compute['ligand']) for compute in computes]
-                    self.assignComputesToProcesses(computes=computes)
-                    self.info("DockingTask(computeAssignmentThread)[docking_id("+ str(self.docking_id) +"]: "+ str(len(computes)) + " computes fetched")
+                    if len(computes) == 0:
+                        # check if docking is ended or not
+                        
+                        docking_ended = ServerHttpDockingService.isDockingFinished(self.docking_id)
+                        
+                        if docking_ended == True:
+                            self.exitTask = True
+                            
+
+                    else:
+                        self.info("DockingTask(computeAssignmentThread)[docking_id("+ str(self.docking_id) +"]: "+ str(len(computes)) + " computes fetched")
+                        self.assignComputesToProcesses(computes=computes)
+                        
                     
             except Exception as e:
                 self.error("DockingTask(computeAssignmentThread): " + str(e))
@@ -374,6 +384,11 @@ class DockingTask(Thread):
                 self.processes_lock.release()
 
     def updateKilledProcessError(self, process: ProcessEntity):
+        """update error related to compute
+
+        Args:
+            process (ProcessEntity): _description_
+        """
         if process.vina_process.is_alive() == True:
             self.error("DockingTask(updateKilledProcessError)[docking_id("+ str(self.docking_id) +"]: Cannot update error of running process")
             return
@@ -382,7 +397,7 @@ class DockingTask(Thread):
         
         if error_compute is not None:
             compute_id = error_compute.compute_id
-            ####################### handle this ###############################
+            ServerHttpDockingService.saveComputeError(self.docking_id, [{"compute_id": compute_id, "error": "Error in ligand pdbqt"}])
             self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Vina killed, Error in ligand pdbqt, compute_id(" + str(compute_id)+ ")")
         
 
@@ -403,13 +418,14 @@ class DockingTask(Thread):
                     self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Killed Process Restarted")
                 else:
                     self.exitTask = True
-                    self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"]: Vina killed, Error in target pdbqt or grid map generation")
+                    ServerHttpDockingService.saveDockingError(self.docking_id, " Error in target pdbqt or vina parameters")
+                    self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"]: Vina killed, Error in target pdbqt or vina parameters")
               
     def restartClosedProcessesThread(self):
         """thread for restaring processes that were killed due to error in vina
         """
         self.info("DockingTask(restartClosedProcessesThread): Running")
-        while True and self.exitTask==False:
+        while self.exitTask==False:
             time.sleep(10) # sleep for 180 seconds
             self.processes_lock.acquire()
 
@@ -433,7 +449,6 @@ class DockingTask(Thread):
         for process in self.processes:
             while process.result_queue.empty() == False:
                 try:
-                    self.info("DockingTask(getResultsFromQueues)[docking_id("+ str(self.docking_id) +"]: que size:" + str(process.result_queue.qsize()))
                     result = process.result_queue.get(timeout=1)
                     results.append({"compute_id": result.compute_id, "result": result.result})
                 except:
@@ -445,7 +460,7 @@ class DockingTask(Thread):
         """thread will update result to server
         """
         self.info("DockingTask(resultUpdateThread)[docking_id("+ str(self.docking_id) +"]: Running")
-        while True and self.exitTask==False:
+        while self.exitTask==False:
             time.sleep(10)
             try:
                 try:
@@ -469,8 +484,6 @@ class DockingTask(Thread):
     #             if isinstance(error, VinaProcess.Error):
                     
     #                 app.logger.error(f"Update ligand error: {error.compute_id}")
-
-
             
     # def errorHandlerThread(self): # not using this
     #     """thread used to handle error present in error_queue of processes
@@ -482,7 +495,6 @@ class DockingTask(Thread):
     #             self.errorHandler()
     #         except Exception as e:
     #             self.error("DockingTask(errorHandlerThread)[docking_id("+ str(self.docking_id) +"]: Error\n", str(e))
-
 
     def printVinaProcessLogs(self):
         for process in self.processes:
@@ -531,10 +543,8 @@ class DockingTask(Thread):
             for process in self.processes:
                 process.process_ended_event.wait()
             
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:result updating")
             #updating result
             results = self.getResultsFromQueues()
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:got results")
            
             self.resultUpdate(results=results)
             
@@ -543,19 +553,15 @@ class DockingTask(Thread):
                 process.vina_process.terminate()
                 process.vina_process.join()
             
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:all processes closed")
             # adding all computes in computes list
             computes = []
             for process in self.processes:
                 while process.numComputes() > 0:
                     computes.append(process.getCompute())
             
-
-            
             
             # handle error of if present in error_queue
             # self.errorHandler()
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:updating ligand error")
             # handle error of processes which were killed due to vina error (they will have non empty computing queue)
             for process in self.processes:
                 if process.isComputeError() == True:
@@ -563,24 +569,23 @@ class DockingTask(Thread):
                     # update error
                     self.updateKilledProcessError(process)
             
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:creating process entitites")
             # removing all old processes entities and adding new one
             self.processes = []
             self.createVinaProcesses()
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:initializring")
             # initializing and running new processes
             for process in self.processes:
                 self.runAndInitVinaProcess(process)
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]:all processes closed")
+            
             # reassign computes
             self.assignComputesToProcesses(computes=computes)
 
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: reassignig computes")
+            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Cores Updated")
         
         except Exception as e:
             self.exitTask = True
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Error\n" + str(e))
-            ######################333 Update to server ################################33
+            ServerHttpDockingService.saveDockingError(self.docking_id, str(e))
+
+            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Error, Docking Stopped\n" + str(e))
         finally:
             self.processes_lock.release()
 

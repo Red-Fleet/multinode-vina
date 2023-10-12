@@ -153,7 +153,7 @@ def saveComputeError()->Response:
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
 
-@app.route('/docking/docking/error', methods = ['POST'])
+@app.route('/docking/error', methods = ['POST'])
 @auth.login_required
 def saveDockingError()->Response:
     content = request.get_json()

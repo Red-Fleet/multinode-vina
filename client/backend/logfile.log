@@ -1,0 +1,87 @@
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 6ac544e5-3782-4240-a157-c457ce85d5f8
+DockingTask(__init__)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: DockingTask created
+DockingTask(run)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: started
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 6ac544e5-3782-4240-a157-c457ce85d5f8
+DockingTask(createVinaProcesses)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Total process created = 0
+DockingTask(run)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: ProcessEntity Created
+DockingTask(run)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Initializing vina processes
+DockingTask(run)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Running
+DockingTask(resultUpdateThread)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Total process created = 3
+DockingTask(runAndInitVinaProcess)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d67eb790>)
+DockingTask(runAndInitVinaProcess)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65678b0>)
+DockingTask(runAndInitVinaProcess)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d6590be0>)
+DockingTask(updateAvaliableCores)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: Cores Updated
+DockingTask(computeAssignmentThread)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: 10 computes fetched
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(computeAssignmentThread)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: 29 computes fetched
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingTask(resultUpdate)[docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8]: result updating
+DockingSystem(removeEndedTasksThread): DockingThread with docking_id(6ac544e5-3782-4240-a157-c457ce85d5f8) removed
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 311dcc12-96dc-4562-be12-639308ff8f20
+DockingTask(__init__)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: DockingTask created
+DockingTask(run)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: started
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 311dcc12-96dc-4562-be12-639308ff8f20
+DockingTask(createVinaProcesses)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Total process created = 0
+DockingTask(run)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: ProcessEntity Created
+DockingTask(run)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Initializing vina processes
+DockingTask(run)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Running
+DockingTask(resultUpdateThread)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Total process created = 3
+DockingTask(runAndInitVinaProcess)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65678b0>)
+DockingTask(runAndInitVinaProcess)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65b9720>)
+DockingTask(runAndInitVinaProcess)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65ba8f0>)
+DockingTask(updateAvaliableCores)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: Cores Updated
+DockingTask(computeAssignmentThread)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: 10 computes fetched
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(computeAssignmentThread)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: 29 computes fetched
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingTask(resultUpdate)[docking_id(311dcc12-96dc-4562-be12-639308ff8f20]: result updating
+DockingSystem(removeEndedTasksThread): DockingThread with docking_id(311dcc12-96dc-4562-be12-639308ff8f20) removed
+DockingSystem(checkNotificationAndStartDockingThread): received notification of docking_id: 08f138f5-9a6c-47f1-add1-95ea0c2a02e4
+DockingTask(__init__)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: DockingTask created
+DockingTask(run)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: started
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+DockingSystem(startDocking): Created DockingTask for docking_id: 08f138f5-9a6c-47f1-add1-95ea0c2a02e4
+DockingTask(createVinaProcesses)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Total process created = 0
+DockingTask(run)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: ProcessEntity Created
+DockingTask(run)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Initializing vina processes
+DockingTask(run)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Running
+DockingTask(resultUpdateThread)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Total process created = 3
+DockingTask(runAndInitVinaProcess)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65678b0>)
+DockingTask(runAndInitVinaProcess)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65da170>)
+DockingTask(runAndInitVinaProcess)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65db9a0>)
+DockingTask(updateAvaliableCores)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: Cores Updated
+DockingTask(computeAssignmentThread)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4]: 1 computes fetched
+DockingTask(updateKilledThreadError)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: Vina killed, Error in ligand pdbqt, compute_id(729a3a35-457b-4c3f-a635-003401ff694e)
+DockingTask(runAndInitVinaProcess)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65678b0>)
+DockingTask(updateKilledThreadError)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: Killed Process Restarted
+DockingSystem(removeEndedTasksThread): DockingThread with docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4) removed
