@@ -207,7 +207,8 @@ class DockingTask(Thread):
             time.sleep(10)
             if  self.exitTask == True:
                 break
-            
+
+        self.deleteReceptorFile()  
         self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Docking Task ended")
                  
     def getDockingDetails(self):

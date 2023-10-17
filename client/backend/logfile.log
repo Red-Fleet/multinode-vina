@@ -85,3 +85,63 @@ DockingTask(updateKilledThreadError)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a
 DockingTask(runAndInitVinaProcess)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7f34d65678b0>)
 DockingTask(updateKilledThreadError)[docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4][Process id:0]: Killed Process Restarted
 DockingSystem(removeEndedTasksThread): DockingThread with docking_id(08f138f5-9a6c-47f1-add1-95ea0c2a02e4) removed
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdf954f3a90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdf951e8220>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationAndStartDockingThread) Error:('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc913a30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc9741c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc913460>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc974910>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc975060>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc9757b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc975f00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc913f70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc975570>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc974e20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc974640>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /client/all (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc9745b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /client/all (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc9745b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc975810>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc975ba0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f19dc976230>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationAndStartDockingThread) Error:HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /notification/worker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa8a40774f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationAndStartDockingThread): thread started
+DockingSystem(removeEndedTasksThread): thread started

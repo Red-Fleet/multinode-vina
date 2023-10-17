@@ -256,3 +256,24 @@ class ServerHttpDockingService:
             raise Exception(str(response.status_code)+", "+str(response.text))
         
         return response.json()
+    
+    @staticmethod
+    def deleteDocking(docking_id: str):
+        """delete docking from server
+
+        Args:
+                docking_id:"id"
+
+        Raises:
+            Exception: _description_
+
+        """
+        body = {
+            "docking_id": docking_id
+        }
+        response = requests.delete(server.address+"/docking/delete", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()

@@ -177,7 +177,18 @@ def getDockingStatus()->Response:
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
-    
+
+@app.route('/docking/delete', methods = ['DELETE'])
+@auth.login_required
+def deleteDocking()->Response:
+    content = request.get_json()
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.deleteDocking(docking_id=content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+         
 @app.route('/docking/finished', methods = ['GET'])
 @auth.login_required
 def isDockingFinished()->Response:

@@ -1,9 +1,8 @@
 import 'dart:html';
 
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:ui/icons.dart';
 import 'package:ui/services/client_http_service.dart';
 import 'package:ui/services/master_http_service.dart';
 import 'dart:convert';
@@ -525,7 +524,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
                   searchFlag = true;
                 });
               },
-              icon: const Icon(Icons.search))),
+              icon: const Icon(MyIcons.search))),
     );
 
     /// sort field
@@ -624,7 +623,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
               const Spacer(),
               SelectionContainer.disabled(
                 child: IconButton(
-                  icon: const Icon(Icons.upload_file),
+                  icon: const Icon(MyIcons.uploadFile),
                   onPressed: () {
                     targetFileInput.click();
                   },
@@ -665,7 +664,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
               //const Spacer(),
               SelectionContainer.disabled(
                 child: IconButton(
-                  icon: const Icon(Icons.upload_file),
+                  icon: const Icon(MyIcons.uploadFile),
                   onPressed: () {
                     ligandFileInput.click();
                   },

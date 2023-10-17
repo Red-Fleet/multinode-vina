@@ -1,12 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:html';
-
+import 'package:ui/globals.dart' as globals;
 
 
 class ChemblHttpService{
   // clientAddress stores address of client
-  static String clientAddress =  window.location.origin;
+  static String clientAddress =  globals.clientAddress;
 
   static const Map<String, String> headers = {
     "Content-Type": "application/json",

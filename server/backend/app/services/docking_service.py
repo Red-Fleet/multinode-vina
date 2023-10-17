@@ -195,6 +195,29 @@ class DockingService:
     def isDockingFinished(docking_id: str)->bool:
         return DockingService.dockings[docking_id].isDockingFinished()
     
+
+    @staticmethod
+    def deleteDocking(docking_id: str):
+        try:
+            DockingService.docking_lock.acquire()
+            if docking_id in DockingService.dockings:
+                del DockingService.dockings[docking_id]
+        except Exception as e:
+            app.logger.error(e)
+        finally:
+            DockingService.docking_lock.release()
+
+        # removing from database
+        try:
+            Docking.query.filter_by(docking_id=docking_id).delete()
+            Compute.query.filter_by(docking_id=docking_id).delete()
+            db.session.commit()
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("database error")
+    
+
+
     # @staticmethod
     # def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
     #     """return result and state of compute 

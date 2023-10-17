@@ -1,11 +1,10 @@
-import 'dart:html';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ui/globals.dart' as globals;
 
 class MasterHttpService{
   // clientAddress stores address of client
-  static String clientAddress =  window.location.origin;
+  static String clientAddress =  globals.clientAddress;
 
   static const Map<String, String> headers = {
     "Content-Type": "application/json",
@@ -90,5 +89,13 @@ class MasterHttpService{
     });
 
     return http.post(Uri.parse('$clientAddress/master/docking/result/download'), headers: headers, body: body);
+  }
+
+  /// delete docking
+  static Future<http.Response> deleteDocking(String dockingId){
+    var body = json.encode({
+      "docking_id": dockingId
+    });
+    return http.delete(Uri.parse('$clientAddress/master/docking/delete'), headers: headers, body: body);
   }
 }

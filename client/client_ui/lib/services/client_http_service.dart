@@ -1,10 +1,9 @@
-import 'dart:html';
-
 import 'package:http/http.dart' as http;
+import 'package:ui/globals.dart' as globals;
 
 class ClientHttpService{
   // clientAddress stores address of client
-  static String clientAddress =  window.location.origin;
+  static String clientAddress =  globals.clientAddress;
 
   // api for storing server address in client
   static const String loginApi = "user/login";

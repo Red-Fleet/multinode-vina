@@ -130,3 +130,28 @@ def downloadDockingResult()->Response:
         return Response(status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
+    
+
+
+@app.route('/master/docking/delete', methods = ['DELETE'])
+def deleteDocking()->Response:
+    """DELETE docking from server
+
+        Args(json):
+            {
+                "docking_id":"id"
+            }
+
+        Raises:
+            Exception: _description_
+
+    """
+
+    content = request.get_json()
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    
+    try:
+        result = MasterDockingService.deleteDocking(docking_id= content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
