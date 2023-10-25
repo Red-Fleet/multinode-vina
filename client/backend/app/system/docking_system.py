@@ -5,6 +5,7 @@ from typing import Any
 from app.http_services.server_http_notification_service import ServerHttpNotificationService
 from app import app, user
 from app.system.docking_task import DockingTask
+import random
 
 class DockingSystem(Thread):
     def __init__(self, total_cores: int = 1,  group: None = None, target: Callable[..., object] | None = None, name: str | None = None, args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = None, *, daemon: bool | None = None) -> None:
@@ -12,16 +13,16 @@ class DockingSystem(Thread):
 
         self.info("DockingSystem(__init__): method started")
         self.total_cores = total_cores
-        self.docking_tasks: set[DockingTask] = set()
+        self.docking_tasks: dict[str, DockingTask] = dict()
         self.docking_tasks_lock = Lock()
         self.info("DockingSystem(__init__): method finished")
 
     def run(self):
         self.info("DockingSystem(run): method started")
-        self.notification_thread = Thread(target=self.checkNotificationAndStartDockingThread)
+        self.notification_thread = Thread(target=self.checkNotificationAndStartDockingThread, daemon=True)
         self.notification_thread.start()
 
-        self.remove_ended_task_thread = Thread(target=self.removeEndedTasksThread)
+        self.remove_ended_task_thread = Thread(target=self.coreAssignmentThread, daemon=True)
         self.remove_ended_task_thread.start()
 
         while self.remove_ended_task_thread.is_alive() == True and self.notification_thread.is_alive() == True:
@@ -32,10 +33,12 @@ class DockingSystem(Thread):
     def startDocking(self, docking_id: str):
         try:
             self.docking_tasks_lock.acquire()
+            if docking_id in self.docking_tasks: return
+
             task = DockingTask(docking_id=docking_id, avaliable_cores=0)
+            task.daemon = True
             task.start()
-            self.docking_tasks.add(task)
-            self.coresAssignment()
+            self.docking_tasks[docking_id] = task
             self.info("DockingSystem(startDocking): Created DockingTask for docking_id: "+ str(docking_id))
         except Exception as e:
             self.error("DockingSystem(startDocking): " + str(e))
@@ -57,44 +60,43 @@ class DockingSystem(Thread):
             i = (i+1)%total_tasks
         
         i = 0
-        for task in self.docking_tasks:
+        for task in self.docking_tasks.values():
             try:
-                th = Thread(target=task.updateAvaliableCores, args=(cores[i],))
-                th.start()
+                if cores[i] != task.avaliable_cores:
+                    task.updateAvaliableCores(cores[i])
+                    
             except Exception as e:
                 print("Closing every thing: ", e)
                 
             i += 1
         
-        print("##########################")
-        for task in self.docking_tasks:
-            print(str(task.docking_id) + " " + str(task.avaliable_cores))
-        print("###########-------------###############")
-        
         self.info("DockingSystem(coresAssignment): Distribution of cores among DockingTask finished")
 
         
-    def removeEndedTasksThread(self):
-        """Thread will remove the docking tasks which are finished
+    def coreAssignmentThread(self):
+        """Thread will assign cores and remove the docking tasks which are finished
         """
         self.info("DockingSystem(removeEndedTasksThread): thread started")
         while True:
             try:
-                time.sleep(3)
+                time.sleep(30)
                 self.docking_tasks_lock.acquire()
 
                 remove = []
                 
-                for process in self.docking_tasks:
-                    if process.is_alive() == False:
-                        remove.append(process)
+                for docking_id, task in self.docking_tasks.items():
+                    if task.is_alive() == False:
+                        remove.append(docking_id)
 
-                for process in remove:
-                    self.info("DockingSystem(removeEndedTasksThread): DockingThread with docking_id(" + str(process.docking_id) + ") removed")
-                    self.docking_tasks.remove(process)
+                for docking_id in remove:
+                    self.info("DockingSystem(removeEndedTasksThread): DockingThread with docking_id(" + str(docking_id) + ") removed")
+                    del self.docking_tasks[docking_id]
                 
-                if len(remove) > 0:
-                    self.coresAssignment()
+                self.coresAssignment()
+
+                for process in self.docking_tasks.values():
+                    self.info("#####################:docking_id(" + str(process.docking_id) + ") , cores:" + str(process.avaliable_cores) + ", alive:" + str(process.is_alive()))
+
 
             except Exception as e:
                 self.error("DockingSystem(removeEndedTasksThread): " + str(e))

@@ -7,10 +7,36 @@ from app.models.compute import Compute, ComputeState
 from flask import json
 from threading import Lock
 from app.system.docking_system import DockingSystem
+import time
+from app.models.notification import WorkerNotification
+from threading import Thread
 
 class DockingService:
     dockings: dict[str, DockingSystem] = dict() # contains all docking result
     docking_lock: Lock = Lock()
+    recreate_docking_notification = None
+
+    @staticmethod
+    def recreateDockingNotificationThread():
+        with app.app_context():
+            while(1):
+                
+                time.sleep(60*2) # after every 5 minutes recreates docking notification from worker
+                
+                try:
+                    DockingService.docking_lock.acquire()
+                    for docking in DockingService.dockings.values():
+
+                        for worker_id in docking.worker_ids:
+                            NotificationService.createWorkerNotification(docking_id=docking.docking_id, worker_id=worker_id, commit=False)
+                    
+                    db.session.commit()
+                except Exception as e:
+                    app.logger.error(e)
+                finally:
+                    DockingService.docking_lock.release()
+                
+
 
     @staticmethod
     def initDockingService():
@@ -34,6 +60,9 @@ class DockingService:
             DockingService.dockings[docking_id] = docking_system
             DockingService.docking_lock.release()
         
+        # starting notification thread
+        DockingService.recreate_docking_notification = Thread(target=DockingService.recreateDockingNotificationThread)
+        DockingService.recreate_docking_notification.start()
         app.logger.info("DockingService initialized")
 
 
@@ -133,6 +162,8 @@ class DockingService:
             "params": result[2]
         }
 
+        
+
         return dock
         
 
@@ -159,7 +190,9 @@ class DockingService:
         
     @staticmethod
     def getComputes(docking_id: str, num: int)-> dict:
-        return DockingService.dockings[docking_id].getComputes(num)
+        if docking_id in DockingService.dockings:
+            return DockingService.dockings[docking_id].getComputes(num)
+        else : return []
     
     @staticmethod
     def saveComputeResult(docking_id: str, computes: list):
@@ -193,11 +226,20 @@ class DockingService:
     
     @staticmethod
     def isDockingFinished(docking_id: str)->bool:
-        return DockingService.dockings[docking_id].isDockingFinished()
+        finished = True
+        if docking_id in DockingService.dockings:
+            finished =  DockingService.dockings[docking_id].isDockingFinished()
+        
+
+        return finished
+
+
     
 
     @staticmethod
     def deleteDocking(docking_id: str):
+       
+
         try:
             DockingService.docking_lock.acquire()
             if docking_id in DockingService.dockings:

@@ -2,6 +2,7 @@ import uuid
 import datetime
 from app import db, app
 from app.models.notification import WorkerNotification, MasterNotification
+from app.models.docking import Docking
 
 class NotificationService:
     @staticmethod
@@ -100,7 +101,7 @@ class NotificationService:
         try:
             # fetching notifications
             results = WorkerNotification.query.filter_by(worker_id=worker_id).all()
-            # deleting notifications
+            # deleting notifications 
             for result in results:
                 db.session.delete(result)
             db.session.commit()
@@ -109,3 +110,8 @@ class NotificationService:
             raise Exception("Database Error")
         
         return results
+    
+
+        
+    
+
