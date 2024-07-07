@@ -1201,3 +1201,9 @@ DockingSystem(__init__): method finished
 DockingSystem(run): method started
 DockingSystem(checkNotificationAndStartDockingThread): thread started
 DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
