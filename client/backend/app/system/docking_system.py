@@ -23,7 +23,7 @@ class DockingSystem(Thread):
     def run(self):
         self.info("DockingSystem(run): method started")
 
-        self.notification_thread = Thread(target=self.checkNotificationAndStartDockingThread, daemon=True)
+        self.notification_thread = Thread(target=self.checkNotificationThread, daemon=True)
         self.notification_thread.start()
 
         self.start_new_task_thread = Thread(target=self.startDockingTaskThread, daemon=True)

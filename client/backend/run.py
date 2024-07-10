@@ -1,13 +1,6 @@
 from app import app
 import argparse
 
-# from app.system.docking_system import DockingSystem
-
-
-# def runAutomatedServices():
-#     with app.app_context():
-#         from app.automates_services.automated_notification_service import AutomatedNotificationService
-#         AutomatedNotificationService.start()
 
 if __name__ == '__main__':
     #port = 7000

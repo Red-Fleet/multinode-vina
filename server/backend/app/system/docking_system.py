@@ -25,6 +25,9 @@ class DockingSystem:
         self.readDockingDetailsFromDBThread.start()
 
         self.docking_error_lock = Lock() # for storing docking error in database => lock makes this operation atomic
+        app.logger.info(f'docking start time DockingSystem: {time.time()}, docking id: {self.docking_id}')
+    
+    
     # def set_computing_ligand_ids(self, computing_ligand_ids):
     #     self.computed_ligand_ids = computing_ligand_ids
 
@@ -169,7 +172,7 @@ class DockingSystem:
             computes (_type_): _description_
         """
         if len(computes) == 0: return 
-        
+        app.logger.info(f'docking result saveResults: {time.time()}, batch size: {len(computes)}, docking id: {self.docking_id}')
         compute_ids = [compute["compute_id"] for compute in computes]
         
         # save in database

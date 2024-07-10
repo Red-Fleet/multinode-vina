@@ -129,7 +129,7 @@ class DockingService:
             app.logger.error(e)
             raise Exception("DockingService: Database Error")
         
-        # creating docking system for this ligand
+        # creating docking system for this target
         docking_system = DockingSystem(docking_id)
         DockingService.docking_lock.acquire()
         DockingService.dockings[docking_id] = docking_system

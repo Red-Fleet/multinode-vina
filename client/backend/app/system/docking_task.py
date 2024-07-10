@@ -435,7 +435,9 @@ class DockingTask(Thread):
         """updates result to the server
         """
         if len(results) > 0:
+            start_time = time.time()
             ServerHttpDockingService.saveComputeResult(self.docking_id, results)
+            self.info(f"network call resultUpdate: {time.time()-start_time}, batch size: {len(results)}, docking id: {self.docking_id}")
     
     def getResultsFromQueues(self):
         results = []
@@ -609,7 +611,9 @@ class DockingTask(Thread):
         Returns:
             _type_: _description_
         """
+        start_time = time.time()
         computes = ServerHttpDockingService.getComputes(docking_id=docking_id, count=compute_count)
+        self.info(f"network call getCompute: {time.time()-start_time}, batch size: {len(computes)}, docking id: {self.docking_id}")
         return computes
     
 
