@@ -5,6 +5,7 @@ import pathlib
 import time
 import multiprocessing
 import signal
+import random
 
 class VinaProcess(multiprocessing.Process):
     
@@ -97,7 +98,7 @@ class VinaProcess(multiprocessing.Process):
     def run(self):
         self.logs("VinaProcess(run): Control thread running")
         while self.exitProcessFlag == False:
-            time.sleep(10) # read control signal after every 30 sec
+            time.sleep(10) # read control signal after every 10 sec
             try:
                 while not self.control_queue.empty():
                     item = self.control_queue.get()

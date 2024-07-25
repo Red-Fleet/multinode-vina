@@ -307,7 +307,6 @@ class DockingTask(Thread):
         while process.control_queue.empty() == False and process.vina_process.is_alive() == True:
             time.sleep(5)
         
-        
         # # check for error
         # if process.vina_process.is_alive() == False or process.error_queue.empty() == False:
         #     ################ Handle error #####################
@@ -411,7 +410,7 @@ class DockingTask(Thread):
                     self.runAndInitVinaProcess(process)
 
                     self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Killed Process Restarted")
-                else:
+                elif self.exitTask == False:
                     self.exitTask = True
                     ServerHttpDockingService.saveDockingError(self.docking_id, " Error in target pdbqt or vina parameters")
                     self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"]: Vina killed, Error in target pdbqt or vina parameters")
@@ -514,7 +513,6 @@ class DockingTask(Thread):
             avaliable_cores (_type_): _description_
         """
         while self.docking_details_inititalized == False and self.exitTask==False:
-            print("wating ##############")
             time.sleep(10) # wait for docking details to get initialized
             
 
@@ -542,9 +540,9 @@ class DockingTask(Thread):
             for process in self.processes:
                 if process.vina_process.is_alive():
                     stopped = False
-                    for i in range(60): # wait for 30 mins before termination a process
+                    for i in range(60): # wait for 30 min before termination a process
                         try:
-                            process.process_ended_event.wait(30)
+                            process.process_ended_event.wait(30) # only wating for 30 sec
                             stopped = True
                         except:
                             if process.vina_process.is_alive() == False: stopped = True
@@ -637,7 +635,7 @@ class DockingTask(Thread):
             self.batch_time = time.time()
             return self.batch_size
     
-        x = int(self.ideal_completion_time - (time.time() - self.batch_time))
+        x = int(self.ideal_completion_time - (time.time() - self.batch_time))/60
         self.batch_size = max(self.batch_size + x * abs(x), self.inital_batch_size)
         self.batch_time = time.time()
         return self.batch_size

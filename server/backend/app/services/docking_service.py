@@ -21,12 +21,14 @@ class DockingService:
         with app.app_context():
             while(1):
                 
-                time.sleep(60*2) # after every 5 minutes recreates docking notification from worker
+                time.sleep(60*2) # after every 2 minutes recreates docking notification from worker
                 
                 try:
                     DockingService.docking_lock.acquire()
                     for docking in DockingService.dockings.values():
+                        if docking.isDockingFinished() == True: continue
 
+                        # only create notification if docking is not finished
                         for worker_id in docking.worker_ids:
                             NotificationService.createWorkerNotification(docking_id=docking.docking_id, worker_id=worker_id, commit=False)
                     
