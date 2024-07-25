@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:ui/icons.dart';
 import 'package:ui/models/user_model.dart';
 import 'package:ui/screens/chembl/chembl_page.dart';
 import 'package:ui/services/client_http_service.dart';
@@ -118,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
                             //if drawer is closed then open the drawer.
                           }
                         },
-                        icon: const Icon(Icons.menu),
+                        icon: const Icon(MyIcons.menu),
                       )
                     : null,
             actions:

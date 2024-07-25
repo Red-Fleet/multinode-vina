@@ -128,6 +128,68 @@ class ServerHttpDockingService:
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
+    
+    @staticmethod
+    def saveComputeError(docking_id: str, computes: list):
+        """save compute error on server
+
+        Args:
+            docking_id (str): docking_id of compute
+            computes (list): list of dict contaning compute_id and error
+
+        Raises:
+            Exception: HttpError
+        """
+        body = {
+            "docking_id": docking_id,
+            "computes": computes
+        }
+
+
+        response = requests.post(server.address+"/docking/computes/error", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+    @staticmethod
+    def saveDockingError(docking_id: str, error: str):
+        """save docking error on server
+
+        Args:
+            docking_id (str): docking_id of compute
+            error (str): error message
+
+        Raises:
+            Exception: HttpError
+        """
+        body = {
+            "docking_id": docking_id,
+            "error": error
+        }
+
+
+        response = requests.post(server.address+"/docking/error", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+
+    @staticmethod
+    def isDockingFinished(docking_id: str):
+        """function returns if docking is finished or not
+
+        Returns:
+                bool
+        """
+        body = {
+            "docking_id": docking_id
+        }
+        response = requests.get(server.address+"/docking/finished", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()
 
     @staticmethod
     def getMasterDockingIds():
@@ -189,6 +251,27 @@ class ServerHttpDockingService:
             "compute_id": compute_id
         }
         response = requests.get(server.address+"/docking/compute/result", json=body, auth=(user.username, user.password))
+        
+        if HttpError.isHttpError(response.status_code):
+            raise Exception(str(response.status_code)+", "+str(response.text))
+        
+        return response.json()
+    
+    @staticmethod
+    def deleteDocking(docking_id: str):
+        """delete docking from server
+
+        Args:
+                docking_id:"id"
+
+        Raises:
+            Exception: _description_
+
+        """
+        body = {
+            "docking_id": docking_id
+        }
+        response = requests.delete(server.address+"/docking/delete", json=body, auth=(user.username, user.password))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))

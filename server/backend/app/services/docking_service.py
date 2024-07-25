@@ -7,10 +7,38 @@ from app.models.compute import Compute, ComputeState
 from flask import json
 from threading import Lock
 from app.system.docking_system import DockingSystem
+import time
+from app.models.notification import WorkerNotification
+from threading import Thread
 
 class DockingService:
     dockings: dict[str, DockingSystem] = dict() # contains all docking result
     docking_lock: Lock = Lock()
+    recreate_docking_notification = None
+
+    @staticmethod
+    def recreateDockingNotificationThread():
+        with app.app_context():
+            while(1):
+                
+                time.sleep(60*2) # after every 2 minutes recreates docking notification from worker
+                
+                try:
+                    DockingService.docking_lock.acquire()
+                    for docking in DockingService.dockings.values():
+                        if docking.isDockingFinished() == True: continue
+
+                        # only create notification if docking is not finished
+                        for worker_id in docking.worker_ids:
+                            NotificationService.createWorkerNotification(docking_id=docking.docking_id, worker_id=worker_id, commit=False)
+                    
+                    db.session.commit()
+                except Exception as e:
+                    app.logger.error(e)
+                finally:
+                    DockingService.docking_lock.release()
+                
+
 
     @staticmethod
     def initDockingService():
@@ -34,6 +62,9 @@ class DockingService:
             DockingService.dockings[docking_id] = docking_system
             DockingService.docking_lock.release()
         
+        # starting notification thread
+        DockingService.recreate_docking_notification = Thread(target=DockingService.recreateDockingNotificationThread)
+        DockingService.recreate_docking_notification.start()
         app.logger.info("DockingService initialized")
 
 
@@ -100,7 +131,7 @@ class DockingService:
             app.logger.error(e)
             raise Exception("DockingService: Database Error")
         
-        # creating docking system for this ligand
+        # creating docking system for this target
         docking_system = DockingSystem(docking_id)
         DockingService.docking_lock.acquire()
         DockingService.dockings[docking_id] = docking_system
@@ -133,6 +164,8 @@ class DockingService:
             "params": result[2]
         }
 
+        
+
         return dock
         
 
@@ -159,15 +192,27 @@ class DockingService:
         
     @staticmethod
     def getComputes(docking_id: str, num: int)-> dict:
-        return DockingService.dockings[docking_id].getComputes(num)
+        if docking_id in DockingService.dockings:
+            return DockingService.dockings[docking_id].getComputes(num)
+        else : return []
     
     @staticmethod
     def saveComputeResult(docking_id: str, computes: list):
-        try:
-            DockingService.dockings[docking_id].saveResults(computes)
-        except Exception as e:
-            app.logger.error(e)
-            raise Exception("database error")
+        DockingService.dockings[docking_id].saveResults(computes)
+        
+        
+    @staticmethod
+    def saveComputeError(docking_id: str, computes: list):
+        
+        DockingService.dockings[docking_id].saveComputeError(computes)
+        
+        
+    
+    @staticmethod
+    def saveDockingError(docking_id: str, worker_id: str, error: str):
+        
+        DockingService.dockings[docking_id].saveDockingError(worker_id=worker_id, error=error)
+        
         
     @staticmethod
     def getDockingStatus(docking_id: str)-> dict[str, int]:
@@ -181,6 +226,42 @@ class DockingService:
         """
         return DockingService.dockings[docking_id].getDockingStatus()
     
+    @staticmethod
+    def isDockingFinished(docking_id: str)->bool:
+        finished = True
+        if docking_id in DockingService.dockings:
+            finished =  DockingService.dockings[docking_id].isDockingFinished()
+        
+
+        return finished
+
+
+    
+
+    @staticmethod
+    def deleteDocking(docking_id: str):
+       
+
+        try:
+            DockingService.docking_lock.acquire()
+            if docking_id in DockingService.dockings:
+                del DockingService.dockings[docking_id]
+        except Exception as e:
+            app.logger.error(e)
+        finally:
+            DockingService.docking_lock.release()
+
+        # removing from database
+        try:
+            Docking.query.filter_by(docking_id=docking_id).delete()
+            Compute.query.filter_by(docking_id=docking_id).delete()
+            db.session.commit()
+        except Exception as e:
+            app.logger.error(e)
+            raise Exception("database error")
+    
+
+
     # @staticmethod
     # def getComputeResult(docking_id: str, compute_id: str)-> dict[str, str]:
     #     """return result and state of compute 
@@ -273,3 +354,5 @@ class DockingService:
             raise Exception("DockingService: Database Error")
         
         return result
+
+        

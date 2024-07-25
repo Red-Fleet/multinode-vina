@@ -1,9 +1,8 @@
 import 'dart:js_util';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:ui/icons.dart';
 import 'package:ui/models/user_model.dart';
 import 'dart:math';
 import 'dart:convert';
@@ -188,9 +187,9 @@ class _LoginRegisterState extends State<LoginRegister> {
                               obscurePassword = !obscurePassword;
                             });
                           },
-                          icon: Icon(obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility))),
+                          icon: obscurePassword
+                              ? const Icon(MyIcons.visibilityOff)
+                              : const Icon(MyIcons.visibility))),
                 ),
               ),
             ],
@@ -315,9 +314,9 @@ class _LoginRegisterState extends State<LoginRegister> {
                               obscurePassword = !obscurePassword;
                             });
                           },
-                          icon: Icon(obscurePassword
-                              ? Icons.visibility_off
-                              : Icons.visibility))),
+                          icon: obscurePassword
+                              ? const Icon(MyIcons.visibilityOff)
+                              : const Icon(MyIcons.visibility))),
                 ),
               ),
             ],

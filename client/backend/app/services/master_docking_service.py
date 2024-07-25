@@ -138,3 +138,14 @@ class MasterDockingService:
             compute_file.close()
         
 
+    @staticmethod
+    def deleteDocking(docking_id: str):
+        """deletes docking from server
+
+        Args:
+            docking_id (str): 
+
+        
+        """
+
+        return ServerHttpDockingService.deleteDocking(docking_id=docking_id)

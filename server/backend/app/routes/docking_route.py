@@ -71,7 +71,6 @@ def createDocking() -> Response:
 def getComputes() -> Response:
     
     content = request.get_json()
-    master_id = g.user.client_id
     
     if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
     docking_id = content['docking_id']
@@ -141,6 +140,32 @@ def saveComputeResult()->Response:
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
     
+@app.route('/docking/computes/error', methods = ['POST'])
+@auth.login_required
+def saveComputeError()->Response:
+    content = request.get_json()
+
+    if 'computes' not in content: return Response("computes not present", status=500, mimetype='application/json')
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.saveComputeError(docking_id=content["docking_id"], computes=content['computes'])
+        return Response(status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+
+@app.route('/docking/error', methods = ['POST'])
+@auth.login_required
+def saveDockingError()->Response:
+    content = request.get_json()
+    worker_id = g.user.client_id
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    if 'error' not in content: return Response("error not present", status=500, mimetype='application/json')
+    try:
+        DockingService.saveDockingError(docking_id=content["docking_id"], worker_id=worker_id, error=content["error"])
+        return Response(status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+       
 @app.route('/docking/status', methods = ['GET'])
 @auth.login_required
 def getDockingStatus()->Response:
@@ -152,8 +177,35 @@ def getDockingStatus()->Response:
         return Response(json.dumps(result), status=200, mimetype='application/json')
     except Exception as e:
         return Response(str(e), status=500, mimetype='application/json')
-    
 
+@app.route('/docking/delete', methods = ['DELETE'])
+@auth.login_required
+def deleteDocking()->Response:
+    content = request.get_json()
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.deleteDocking(docking_id=content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+         
+@app.route('/docking/finished', methods = ['GET'])
+@auth.login_required
+def isDockingFinished()->Response:
+    """will return 'true'/'false' of str type
+
+    Returns:
+        Response: _description_
+    """
+    content = request.get_json()
+
+    if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
+    try:
+        result = DockingService.isDockingFinished(docking_id=content["docking_id"])
+        return Response(json.dumps(result), status=200, mimetype='application/json')
+    except Exception as e:
+        return Response(str(e), status=500, mimetype='application/json')
+    
 # @app.route('/docking/compute/result', methods = ['GET'])
 # @auth.login_required
 # def getComputeResult()->Response:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/icons.dart';
 import 'package:ui/services/client_http_service.dart';
 import 'dart:convert';
 
@@ -262,7 +263,7 @@ class _ConnectionRequestsState extends State<ConnectionRequests> {
                         searchFlag = true;
                       });
                     },
-                    icon: const Icon(Icons.search))),
+                    icon: const Icon(MyIcons.search))),
           );
 
           /// sort field

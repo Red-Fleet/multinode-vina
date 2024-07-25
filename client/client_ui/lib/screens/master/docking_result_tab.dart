@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ui/services/master_http_service.dart';
+import 'package:synchronized/synchronized.dart'; 
 
 class DockingResultTab extends StatefulWidget {
   const DockingResultTab({super.key});
@@ -11,8 +12,8 @@ class DockingResultTab extends StatefulWidget {
 
 class _DockingResultTabState extends State<DockingResultTab> {
   late bool getDockingIdsFromBackendFlag;
-
-  List<Map> dockingIdsWithStatus = [];
+  Lock dockingMapLock = Lock();
+  Map<String, Map> dockingIdsWithStatus = {};
 
   @override
   void initState() {
@@ -28,11 +29,11 @@ class _DockingResultTabState extends State<DockingResultTab> {
       if (response.statusCode == 200) {
         List<dynamic> result = jsonDecode(response.body);
         for (dynamic data in result) {
-          dockingIdsWithStatus.add({
+          dockingIdsWithStatus[data['docking_id']] = {
             "docking_id": data['docking_id'],
             "state": data['state'],
             'computed': data['computed']
-          });
+          };
         }
       }
     }
@@ -42,6 +43,28 @@ class _DockingResultTabState extends State<DockingResultTab> {
     return true;
   }
 
+  void deleteDocking(String docking_id) async{
+    final response = await MasterHttpService.deleteDocking(docking_id);
+
+    if(response.statusCode == 200){
+      setState(() {
+        dockingMapLock.synchronized((){
+          dockingIdsWithStatus.remove(docking_id);
+        });
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('Deleted'),
+            duration: Duration(seconds: 3)));
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('Error while Deleting: (${response.body})'),
+            duration: Duration(seconds: 7)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -49,11 +72,12 @@ class _DockingResultTabState extends State<DockingResultTab> {
       future: initializeDockingIds(),
       builder: (context, snapshot) {
         List<Widget> listChildren = [];
-        for (Map dockingDetails in dockingIdsWithStatus) {
+        for (Map dockingDetails in dockingIdsWithStatus.values) {
           DockingTile tile = DockingTile(
               dockingId: dockingDetails['docking_id'],
               state: dockingDetails['state'],
-              computedLigandsCount: dockingDetails['computed']);
+              computedLigandsCount: dockingDetails['computed'],
+              deleteDockingCallback: deleteDocking,);
           listChildren.add(tile);
         }
         return Flexible(
@@ -74,12 +98,14 @@ class DockingTile extends StatefulWidget {
   String dockingId;
   String state;
   int computedLigandsCount;
+  final Function(String) deleteDockingCallback;
 
   DockingTile(
       {super.key,
       required this.dockingId,
       required this.state,
-      required this.computedLigandsCount});
+      required this.computedLigandsCount,
+      required this.deleteDockingCallback});
 
   @override
   State<DockingTile> createState() => _DockingTileState();
@@ -213,7 +239,14 @@ class _DockingTileState extends State<DockingTile> {
                   );
                   //// start from here
                 },
-                child: const Text("Download Result"))
+                child: const Text("Download Result")),
+            const SizedBox(width: 20,),
+            ElevatedButton(
+                onPressed: () {
+                  widget.deleteDockingCallback(widget.dockingId);
+                },
+                style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)),
+                child: const Text("Delete"))
             //Column(children: [const Expanded(child: SizedBox(),), ElevatedButton(onPressed: (){}, child: const Text("Download")), const Expanded(child: SizedBox(),)],)
           ],
         ),

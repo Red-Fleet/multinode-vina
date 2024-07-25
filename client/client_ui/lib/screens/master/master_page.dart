@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ui/screens/master/all_clients_tab.dart';
 import 'package:ui/screens/master/connected_clients.dart';
 import 'package:ui/screens/master/connection_requests.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:ui/icons.dart';
 import 'package:ui/models/user_model.dart';
 
 class UserAvatar extends StatefulWidget {
@@ -15,7 +14,7 @@ class _UserAvatarState extends State<UserAvatar> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: const Icon(Icons.person),
+      icon: const Icon(MyIcons.person),
       itemBuilder: (BuildContext context) {
         return [
           PopupMenuItem(

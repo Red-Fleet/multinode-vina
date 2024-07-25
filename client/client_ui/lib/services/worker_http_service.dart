@@ -1,11 +1,10 @@
-import 'dart:html';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ui/globals.dart' as globals;
 
 class WorkerHttpService{
   // clientAddress stores address of client
-  static String clientAddress =  window.location.origin;
+  static String clientAddress =  globals.clientAddress;
 
   static const Map<String, String> headers = {
     "Content-Type": "application/json",
