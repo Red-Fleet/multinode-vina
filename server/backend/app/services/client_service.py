@@ -2,8 +2,7 @@ import uuid
 import datetime
 from app import db, app
 from app.models.client import Client, ClientState, ClientStateException
-from app.models.user import User
-from app.models.request import Request, RequestState
+
 
 class ClientService:
 
@@ -45,11 +44,13 @@ class ClientService:
             
             result = [{'client_id': row[0],
                        'state': row[1].name,
-                       'name': User.query.with_entities(User.name).filter_by(client_id=row[0]).first()[0]}
+                       }
                       for row in result]
         except Exception as e:
             app.logger.error(e)
             raise Exception("Database Error")
+        
+
         return result
 
     @staticmethod

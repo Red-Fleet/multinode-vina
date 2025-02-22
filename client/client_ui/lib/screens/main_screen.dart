@@ -52,10 +52,7 @@ class _MainScreenState extends State<MainScreen> {
 
       if (response.statusCode == 200) {
         final userDetails = jsonDecode(response.body);
-        userModel.username = userDetails['username'];
-        userModel.name = userDetails['name'];
         userModel.clientId = userDetails['client_id'];
-        userModel.password = userDetails['password'];
         userModel.isAuthenticated = true;
       }
     } catch (e) {

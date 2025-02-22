@@ -28,10 +28,12 @@ class Client(db.Model):
     """
     # The unique identifier for the client.
     client_id = sqaly.Column(sqaly.String(36), primary_key=True)
+    
     # The datetime when the client was last connected. For determining state of client.
     last_connected = sqaly.Column(sqaly.DateTime())
     # The current state of the client.
     state = sqaly.Column(sqaly.Enum(ClientState))
 
+    
     def __repr__(self):
         return '<client_id {}>'.format(self.client_id)

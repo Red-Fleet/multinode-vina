@@ -17,15 +17,6 @@ class _UserAvatarState extends State<UserAvatar> {
       icon: const Icon(MyIcons.person),
       itemBuilder: (BuildContext context) {
         return [
-          PopupMenuItem(
-            child: Row(children: [
-              const Text('Client Id :', style: TextStyle(
-                fontWeight: FontWeight.bold
-              ),),
-              const SizedBox(width: 10,),
-              Flexible(child: Text(Provider.of<UserModel>(context, listen: false).clientId, overflow: TextOverflow.ellipsis))
-            ]),
-          ),
 
           PopupMenuItem(
             child: Row(children: [
@@ -33,17 +24,7 @@ class _UserAvatarState extends State<UserAvatar> {
                 fontWeight: FontWeight.bold
               ),),
               const SizedBox(width: 10,),
-              Flexible(child: Text(Provider.of<UserModel>(context, listen: false).username, overflow: TextOverflow.ellipsis))
-            ]),
-          ),
-
-          PopupMenuItem(
-            child: Row(children: [
-              const Text('Name :', style: TextStyle(
-                fontWeight: FontWeight.bold
-              ),),
-              const SizedBox(width: 10,),
-              Flexible(child: Text(Provider.of<UserModel>(context, listen: false).name, overflow: TextOverflow.ellipsis))
+              Flexible(child: Text(Provider.of<UserModel>(context, listen: false).clientId, overflow: TextOverflow.ellipsis))
             ]),
           ),
         ];

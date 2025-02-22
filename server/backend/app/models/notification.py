@@ -18,10 +18,3 @@ class WorkerNotification(db.Model):
     # The datetime when the notification was created. This column is used to delete 
     # entries that are considered very old, helping to clean the database.
     create_time = sqaly.Column(sqaly.DateTime())
-
-class MasterNotification(db.Model):
-    """Stores notification of master
-    """
-    docking_id = sqaly.Column(sqaly.String(36), primary_key=True)
-    master_id = sqaly.Column(sqaly.String(36), nullable=False, index=True)
-    create_time = sqaly.Column(sqaly.DateTime())

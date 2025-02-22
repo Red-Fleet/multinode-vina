@@ -1,0 +1,679 @@
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+404, <!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+500, <!doctype html>
+<html lang=en>
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+
+500, (sqlite3.OperationalError) no such table: client
+[SQL: SELECT client.client_id AS client_client_id, client.last_connected AS client_last_connected, client.state AS client_state 
+FROM client 
+WHERE client.client_id = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('1', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+500, argument of type 'NoneType' is not iterable
+Exception on /user/connect [POST]
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask_cors/extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/routes/user_route.py", line 47, in connect
+    connection = Connect(address, username)
+                                  ^^^^^^^^
+NameError: name 'username' is not defined
+Exception on /user/connect [POST]
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask_cors/extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/cb/multinode-vina/client/backend/app/routes/user_route.py", line 47, in connect
+    connection = Connect(address, username)
+                                  ^^^^^^^^
+NameError: name 'username' is not defined
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+'NoneType' object has no attribute 'address'
+'NoneType' object has no attribute 'address'
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(checkNotificationThread) Error:unsupported operand type(s) for +: 'NoneType' and 'str'
+DockingSystem(checkNotificationThread) Error:unsupported operand type(s) for +: 'NoneType' and 'str'
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(checkNotificationThread) Error:unsupported operand type(s) for +: 'NoneType' and 'str'
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(run): method finished
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+500, Database Error
+500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+500, Database Error
+500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(checkNotificationThread) Error:500, Database Error
+500, Database Error
+500, Database Error
+500, Database Error
+500, Database Error
+500, Database Error
+500, Database Error
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationThread) Error:500, Database Error
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+401, Unauthorized Access
+401, Unauthorized Access
+DockingSystem(checkNotificationThread) Error:401, Unauthorized Access
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationThread): received notification of docking_id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingTask(__init__)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: DockingTask created
+DockingTask(run)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: started
+DockingSystem(startDocking): Created DockingTask for docking_id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingTask(run)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Running
+DockingTask(resultUpdateThread)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingSystem(checkNotificationThread): received notification of docking_id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingSystem(checkNotificationThread): received notification of docking_id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingTask(updateAvaliableCores)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Aquiring lock
+DockingTask(updateAvaliableCores)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Total process created = 4
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:0: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:0: VinaProcess(run): Control thread running
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:1: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:2: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:3: VinaProcess(__init__): Vina Process initialized
+DockingTask(runAndInitVinaProcess)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x70698939a180>)
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:0: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:0: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:1: VinaProcess(run): Control thread running
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:1: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:1: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(runAndInitVinaProcess)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x70691c9aa6c0>)
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:2: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x70691c9ab440>)
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:2: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:2: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:3: VinaProcess(run): Control thread running
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:3: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456], process id:3: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(runAndInitVinaProcess)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456][Process id:3]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7069186d4620>)
+DockingTask(updateAvaliableCores)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Cores Updated
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+#####################:docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456) , cores:10, alive:True
+network call getCompute: 0.005344390869140625, batch size: 7, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call getCompute: 0.00522303581237793, batch size: 0, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call resultUpdate: 0.057327985763549805, batch size: 3, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call getCompute: 0.0034570693969726562, batch size: 0, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call resultUpdate: 0.01616692543029785, batch size: 3, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call getCompute: 0.0047760009765625, batch size: 0, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+network call resultUpdate: 0.01660633087158203, batch size: 1, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingTask(run)[docking_id(f08b9ac4-8931-4e99-a099-8194bdc15456]: Docking Task ended
+network call getCompute: 0.018850326538085938, batch size: 0, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingSystem(checkNotificationThread): received notification of docking_id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingSystem(__init__): method started
+DockingSystem(__init__): method finished
+DockingSystem(run): method started
+DockingSystem(checkNotificationThread): thread started
+DockingSystem(startDockingTaskThread): thread started
+DockingSystem(removeEndedTasksThread): thread started
+DockingSystem(checkNotificationThread): received notification of docking_id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+DockingTask(__init__)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: DockingTask created
+DockingTask(run)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: started
+DockingSystem(startDocking): Created DockingTask for docking_id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+DockingTask(run)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Starting Threads
+DockingTask(computeAssignmentThread)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Running
+DockingTask(resultUpdateThread)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Running
+DockingTask(restartClosedProcessesThread): Running
+DockingTask(updateAvaliableCores)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Aquiring lock
+DockingTask(updateAvaliableCores)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Updating Cores
+DockingTask(createVinaProcesses)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Total process created = 4
+DockingSystem(checkNotificationThread): received notification of docking_id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:0: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:0: VinaProcess(run): Control thread running
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:1: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:2: VinaProcess(__init__): Vina Process initialized
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:3: VinaProcess(__init__): Vina Process initialized
+DockingTask(runAndInitVinaProcess)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e][Process id:0]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fd6e674e3f0>)
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:0: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:0: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:1: VinaProcess(run): Control thread running
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:1: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:1: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingTask(runAndInitVinaProcess)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e][Process id:1]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fd6e42a2480>)
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:2: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e][Process id:2]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fd6e42a3dd0>)
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:2: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:2: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:3: VinaProcess(run): Control thread running
+DockingTask(runAndInitVinaProcess)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e][Process id:3]: VinaProcess running (<app.system.docking_task.DockingTask.ProcessEntity object at 0x7fd6e42e5130>)
+DockingTask(updateAvaliableCores)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Cores Updated
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+#####################:docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e) , cores:10, alive:True
+network call getCompute: 0.003997087478637695, batch size: 7, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:3: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.ParamsMessage'>
+Vina Logs[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e], process id:3: VinaProcess(run):Item <class 'app.system.vina_process.VinaProcess.InitVinaMessage'>
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+#####################:docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e) , cores:10, alive:True
+network call getCompute: 0.004657268524169922, batch size: 0, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+network call resultUpdate: 0.01795196533203125, batch size: 3, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+#####################:docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e) , cores:10, alive:True
+network call getCompute: 0.0038220882415771484, batch size: 0, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+network call resultUpdate: 0.020528316497802734, batch size: 4, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+DockingSystem(coresAssignment): Distribution of cores among DockingTask finished
+#####################:docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e) , cores:10, alive:True
+network call getCompute: 0.018053770065307617, batch size: 0, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+DockingTask(run)[docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e]: Docking Task ended
+DockingSystem(removeEndedTasksThread): DockingThread with docking_id(ce2a95b3-ac4c-4f70-b147-14736359bf6e) removed

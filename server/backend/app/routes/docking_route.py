@@ -22,7 +22,7 @@ def createDocking() -> Response:
         Response: docking_id
     """
     content = request.get_json()
-    master_id = g.user.client_id
+    master_id = g.client.client_id
     
     if 'worker_ids' not in content: return Response("worker_ids not present", status=500, mimetype='application/json')
     worker_ids = content['worker_ids']
@@ -157,7 +157,7 @@ def saveComputeError()->Response:
 @auth.login_required
 def saveDockingError()->Response:
     content = request.get_json()
-    worker_id = g.user.client_id
+    worker_id = g.client.client_id
     if 'docking_id' not in content: return Response("docking_id not present", status=500, mimetype='application/json')
     if 'error' not in content: return Response("error not present", status=500, mimetype='application/json')
     try:
@@ -235,7 +235,7 @@ def getMasterDockingIds()->Response:
                 ...
             ]
     """
-    master_id = g.user.client_id
+    master_id = g.client.client_id
 
     try:
         result = DockingService.getMasterDockingIds(master_id= master_id)

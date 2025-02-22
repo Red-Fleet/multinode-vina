@@ -1,5 +1,5 @@
 import datetime
-from app import db, app, user
+from app import app
 from app.http_services.server_http_docking_service import ServerHttpDockingService
 from app.utils.pqbqt_utils import PdbqtUtils
 import os

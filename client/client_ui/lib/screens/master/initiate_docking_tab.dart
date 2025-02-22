@@ -27,19 +27,13 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   /// true = fetch client details from backend, false dont fetch
   late bool getDetailsFromBackendFlag;
 
-  /// sort clients based on name
-  late bool sortOnNameFlag;
-
   /// sort clients based on state
   late bool sortOnClientStateFlag;
-
-  /// sort client based of state of request
-  late bool sortOnRequestStateFlag;
 
   /// sort clients based on clientId
   late bool sortOnClientIdFlag;
 
-  /// search on name and clientId
+  /// search clientId
   late bool searchFlag;
   TextEditingController searchController = TextEditingController();
 
@@ -89,10 +83,8 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   void initState() {
     super.initState();
     getDetailsFromBackendFlag = true;
-    sortOnNameFlag = true;
     sortOnClientIdFlag = false;
     sortOnClientStateFlag = false;
-    sortOnRequestStateFlag = false;
     searchFlag = false;
     disableSubmitButton = false;
 
@@ -322,36 +314,17 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
   /// return list contaning client details
   Future<bool> getClientDetailsFromBackend() async {
     try {
-      /// fetching all requests created by client and excepted by worker
-      final response = await MasterHttpService.getAllConnectionRequests();
+      /// fetching all clients
+      final response = await ClientHttpService.getAllClients();
       clientDetailsList = [];
       if (response.statusCode == 200) {
         List<dynamic> result = jsonDecode(response.body);
         for (var e in result) {
-          /// only save accepted requests
-          if (e['state'] == "ACCEPTED") {
-            ClientDetails client = ClientDetails();
-            client.clientId = e['worker_id'];
-            client.requestState = e['state'];
-
-            /// fecthing all client details to whom request was shared
-            final clientDetailsResponse =
-                await ClientHttpService.getCientDetails(
-                    {'client_id': client.clientId});
-            if (clientDetailsResponse.statusCode == 200) {
-              /// client details received
-              var clientDetails = jsonDecode(clientDetailsResponse.body);
-              client.clientState = clientDetails['state'];
-              client.name = clientDetails['name'];
-            } else {
-              /// if cannot fetch client details
-              debugPrint(clientDetailsResponse.body);
-              client.clientState = "error";
-              client.name = "error";
-            }
-
-            clientDetailsList.add(client);
-          }
+          ClientDetails client = ClientDetails();
+          client.clientId = e['client_id'];
+          client.clientState = e['state'];
+          clientDetailsList.add(client);
+          
         }
         return true;
       } else {
@@ -385,19 +358,9 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
           a.clientId.toLowerCase().compareTo(b.clientId.toLowerCase()));
     }
 
-    if (sortOnNameFlag) {
-      visibleClientDetailsList
-          .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
-    }
-
     if (sortOnClientStateFlag) {
       visibleClientDetailsList.sort((a, b) =>
           a.clientState.toLowerCase().compareTo(b.clientState.toLowerCase()));
-    }
-
-    if (sortOnRequestStateFlag) {
-      visibleClientDetailsList.sort((a, b) =>
-          a.requestState.toLowerCase().compareTo(b.requestState.toLowerCase()));
     }
 
     // sorting ends
@@ -407,7 +370,7 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
       List<ClientDetails> searchedClients = [];
 
       for (var client in visibleClientDetailsList) {
-        if (client.name
+        if (client.clientState
             .toLowerCase()
             .contains(searchController.text.toLowerCase())) {
           searchedClients.add(client);
@@ -426,7 +389,6 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     /// reset all flags
     getDetailsFromBackendFlag = false;
     // sortOnClientIdFlag = false;
-    // sortOnNameFlag = true;
     // sortOnStateFlag = false;
     searchFlag = false;
 
@@ -531,10 +493,6 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
     var dropdownButton = DropdownButton(
         items: const [
           DropdownMenuItem(
-            value: "name",
-            child: Text("Name"),
-          ),
-          DropdownMenuItem(
             value: "clientId",
             child: Text("Client Id"),
           ),
@@ -542,30 +500,19 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
             value: "clientState",
             child: Text("Client Status"),
           ),
-          DropdownMenuItem(
-            value: "requestState",
-            child: Text("Request Status"),
-          ),
         ],
-        value: sortOnNameFlag
-            ? "name"
-            : (sortOnClientIdFlag
+        value: sortOnClientIdFlag
                 ? "clientId"
-                : (sortOnClientStateFlag ? "clientState" : "requestState")),
+                : "clientState",
         onChanged: (val) {
           setState(() {
-            sortOnNameFlag = false;
             sortOnClientIdFlag = false;
             sortOnClientStateFlag = false;
-            sortOnRequestStateFlag = false;
-            if (val == "name") {
-              sortOnNameFlag = true;
-            } else if (val == "clientId") {
+            
+            if (val == "clientId") {
               sortOnClientIdFlag = true;
             } else if (val == "clientState") {
               sortOnClientStateFlag = true;
-            } else if (val == "requestState") {
-              sortOnRequestStateFlag = true;
             }
           });
         });
@@ -1236,10 +1183,8 @@ class _InitiateDockingTabState extends State<InitiateDockingTab> {
 
 /// class used by ConnectionRequests for storing client details
 class ClientDetails {
-  late String name;
   late String clientId;
   late String clientState;
-  late String requestState;
   bool isCurrentClient = false;
 
   /// for selecting client for computation
@@ -1263,29 +1208,18 @@ class _ClientDetailsTileState extends State<ClientDetailsTile> {
         title: Row(
           children: [
             const Text(
-              "Name:",
+              "Client Id:",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               width: 10,
             ),
-            Text(widget.clientDetails.name)
+            Text(widget.clientDetails.clientId)
           ],
         ),
         subtitle: Column(
           children: [
-            Row(
-              children: [
-                const Text(
-                  "Client Id:",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(widget.clientDetails.clientId)
-              ],
-            ),
+            
             Row(
               children: [
                 const Text(
@@ -1298,18 +1232,7 @@ class _ClientDetailsTileState extends State<ClientDetailsTile> {
                 Text(widget.clientDetails.clientState)
               ],
             ),
-            Row(
-              children: [
-                const Text(
-                  "Request status:",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(widget.clientDetails.requestState)
-              ],
-            )
+            
           ],
         ),
         trailing: SelectionContainer.disabled(

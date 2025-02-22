@@ -9,6 +9,7 @@ import multiprocessing
 from app.system.vina_process import VinaProcess
 from typing import Any
 from collections.abc import Callable, Iterable, Mapping
+from app_config import VinaProcessConfig
 
 class DockingTask(Thread):
 
@@ -261,9 +262,9 @@ class DockingTask(Thread):
         """fill self.processes with process entity having vina, queues and cores
         """
         cores = self.avaliable_cores
-        process_cores = [4] * (cores//4)
-        if cores%4 != 0:
-            process_cores.append(cores%4)
+        process_cores = [VinaProcessConfig.MAX_CORES] * (cores//VinaProcessConfig.MAX_CORES)
+        if cores%VinaProcessConfig.MAX_CORES != 0:
+            process_cores.append(cores%VinaProcessConfig.MAX_CORES)
         
         self.processes = []
         for i in range(len(process_cores)):

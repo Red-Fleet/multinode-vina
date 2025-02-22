@@ -6,8 +6,7 @@ class ClientHttpService{
   static String clientAddress =  globals.clientAddress;
 
   // api for storing server address in client
-  static const String loginApi = "user/login";
-  static const String registerApi = "user/register";
+  static const String connectApi = "user/connect";
   static const String userDetailsApi = "user/details";
   static const String getAllClientsApi = "client/all";
 
@@ -18,12 +17,8 @@ class ClientHttpService{
     // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
     };
 
-  static Future<http.Response> login(var body){
-    return http.post(Uri.parse('$clientAddress/$loginApi'), body: body, headers: headers);
-  }
-
-  static Future<http.Response> register(var body){
-    return http.post(Uri.parse('$clientAddress/$registerApi'), body: body, headers: headers);
+  static Future<http.Response> connect(var body){
+    return http.post(Uri.parse('$clientAddress/$connectApi'), body: body, headers: headers);
   }
 
   static Future<http.Response> getUserDetails(){

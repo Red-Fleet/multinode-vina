@@ -6,7 +6,7 @@ auth = HTTPBasicAuth()
 
 @auth.verify_password
 def verify_password(username, password):
-    user = UserService.authenticateUser(username=username, password_hash=password)
-    if user != None:
-        g.user = user
-    return user
+    client = UserService.authenticateUser(client_id=username)
+    if client != None:
+        g.client = client
+    return client

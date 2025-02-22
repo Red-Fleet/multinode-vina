@@ -1,4 +1,4 @@
-from app import app, user, server
+from app import app
 from flask import Response, json
 from flask import request
 from app.services.chembl_service import ChemblService

@@ -14,21 +14,6 @@ class MasterHttpService{
     };
 
   
-  /// create connection request, body should have worker_id
-  static Future<http.Response> createConnectionRequest(var body){
-    return http.post(Uri.parse('$clientAddress/master/connectionrequest/create'), headers: headers, body: body);
-  }
-
-  /// delete connection request
-  static Future<http.Response> deleteConnectionRequest(String workerId){
-    var body = jsonEncode({'worker_id': workerId});
-    return http.delete(Uri.parse('$clientAddress/master/connectionrequest'), headers: headers, body: body);
-  }
-
-  /// get all connection requests of master
-  static Future<http.Response> getAllConnectionRequests(){
-    return http.get(Uri.parse('$clientAddress/master/connectionrequest'), headers: headers);
-  }
 
   /// initiate docking
   static Future<http.Response> initiateDocking({required String target, 

@@ -1,4 +1,4 @@
-from app import app, user, server
+from app import app
 from flask import Response, json
 from flask import request
 from app.services.client_service import ClientService

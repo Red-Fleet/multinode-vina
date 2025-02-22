@@ -1,0 +1,1790 @@
+Initializing DockingService
+DockingService initialized
+Initializing DockingService
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Exception on /user/connect [POST]
+Traceback (most recent call last):
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/miniconda3/envs/multinode/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/red_fleet/cb/multinode-vina/server/backend/app/routes/user_route.py", line 23, in connect
+    client_id = content['username']
+                ~~~~~~~^^^^^^^^^^^^
+KeyError: 'username'
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id, docking.state AS docking_state 
+FROM docking 
+WHERE docking.master_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id, docking.state AS docking_state 
+FROM docking 
+WHERE docking.master_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+name 'User' is not defined
+Database Error
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id, docking.state AS docking_state 
+FROM docking 
+WHERE docking.master_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+name 'User' is not defined
+Database Error
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('a',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id, docking.state AS docking_state 
+FROM docking 
+WHERE docking.master_id = ?]
+[parameters: ('1',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+name 'User' is not defined
+Database Error
+name 'User' is not defined
+Database Error
+name 'User' is not defined
+Database Error
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+Initializing DockingService
+(sqlite3.OperationalError) no such table: docking
+[SQL: SELECT docking.docking_id AS docking_docking_id 
+FROM docking 
+WHERE docking.state = ?]
+[parameters: ('STARTED',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+DockingService initialized
+(sqlite3.OperationalError) no such table: worker_notification
+[SQL: SELECT worker_notification.docking_id AS worker_notification_docking_id, worker_notification.worker_id AS worker_notification_worker_id, worker_notification.create_time AS worker_notification_create_time 
+FROM worker_notification 
+WHERE worker_notification.worker_id = ?]
+[parameters: ('1',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Initializing DockingService
+DockingService initialized
+docking start time DockingSystem: 1731788211.1018794, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+Initializing DockingService
+docking start time DockingSystem: 1731788598.2696018, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+DockingService initialized
+docking result saveResults: 1731789058.4576664, batch size: 3, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+docking result saveResults: 1731789068.5157018, batch size: 3, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+docking result saveResults: 1731789078.5332043, batch size: 1, docking id: f08b9ac4-8931-4e99-a099-8194bdc15456
+docking start time DockingSystem: 1731789181.5450068, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+docking result saveResults: 1731789279.5900047, batch size: 3, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e
+docking result saveResults: 1731789289.6089556, batch size: 4, docking id: ce2a95b3-ac4c-4f70-b147-14736359bf6e

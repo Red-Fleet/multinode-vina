@@ -3,8 +3,8 @@ from threading import Thread, Lock
 import time
 from typing import Any
 from app.http_services.server_http_notification_service import ServerHttpNotificationService
-from app import app, user
-from app.system.config import DockingSystemConfig
+from app import app, connection
+from app_config import DockingSystemConfig
 from app.system.docking_task import DockingTask
 import random
 
@@ -29,11 +29,11 @@ class DockingSystem(Thread):
         self.start_new_task_thread = Thread(target=self.startDockingTaskThread, daemon=True)
         self.start_new_task_thread.start()
 
-        self.remove_ended_task_thread = Thread(target=self.coreAssignmentThread, daemon=True)
-        self.remove_ended_task_thread.start()
+        self.core_assignment_thread = Thread(target=self.coreAssignmentThread, daemon=True)
+        self.core_assignment_thread.start()
 
-        while self.start_new_task_thread.is_alive() == True and self.remove_ended_task_thread.is_alive() == True and self.notification_thread.is_alive() == True:
-            time.sleep(DockingSystemConfig.RUN_SLEEP_TIME_SECONDS)
+        while self.start_new_task_thread.is_alive() == True and self.core_assignment_thread.is_alive() == True and self.notification_thread.is_alive() == True:
+            time.sleep(DockingSystemConfig.THREADS_ALIVE_CHECK_TIME)
 
         self.info("DockingSystem(run): method finished")
     
@@ -51,7 +51,8 @@ class DockingSystem(Thread):
 
                 for docking_id in docking_ids:
                     try:
-                        if docking_id in self.docking_tasks: continue
+                        # if already running docking for the task for which notification is received then skip this docking id
+                        if docking_id in self.docking_tasks: continue 
 
                         task = DockingTask(docking_id=docking_id, avaliable_cores=0)
                         task.daemon = True
@@ -60,9 +61,12 @@ class DockingSystem(Thread):
                         self.info("DockingSystem(startDocking): Created DockingTask for docking_id: "+ str(docking_id))
                     except Exception as e:
                         self.error("DockingSystem(startDocking): " + str(e))
+
             finally:
                 if self.notification_lock.locked(): self.notification_lock.release()
                 if self.docking_tasks_lock.locked(): self.docking_tasks_lock.release()
+            
+            time.sleep(DockingSystemConfig.DOCK_CHECK_TIME)
 
     def coresAssignment(self):
         """it distributes cores among different docking_tasks
@@ -98,7 +102,7 @@ class DockingSystem(Thread):
         self.info("DockingSystem(removeEndedTasksThread): thread started")
         while True:
             try:
-                time.sleep(30)
+                time.sleep(DockingSystemConfig.DOCK_CHECK_TIME)
                 self.docking_tasks_lock.acquire()
 
                 remove = []
@@ -128,9 +132,9 @@ class DockingSystem(Thread):
         
         while True:
             try:
-                time.sleep(DockingSystemConfig.NOTIFICATION_THREAD_SLEEP_TIME_SECONDS)
+                time.sleep(DockingSystemConfig.NOTIFICATION_CHECK_TIME)
 
-                if user.isAuthenticated == False:
+                if connection.connected is False:
                     continue
 
                 # check notification

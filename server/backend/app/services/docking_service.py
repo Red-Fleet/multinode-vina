@@ -12,7 +12,7 @@ from app.models.notification import WorkerNotification
 from threading import Thread
 
 class DockingService:
-    dockings: dict[str, DockingSystem] = dict() # contains all docking result
+    dockings: dict[str, DockingSystem] = dict() # contains all docking system
     docking_lock: Lock = Lock()
     recreate_docking_notification = None
 

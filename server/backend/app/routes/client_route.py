@@ -29,7 +29,7 @@ def updateState(state) -> Response:
             Exception: raise exception on error
     """
     try:
-        ClientService.updateState(client_id=g.user.client_id, state=state)
+        ClientService.updateState(client_id=g.client.client_id, state=state)
         return Response(status=200, mimetype='application/json')
     except Exception as e:
         app.logger.error(e)

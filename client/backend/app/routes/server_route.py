@@ -1,4 +1,4 @@
-from app import app, server
+from app import app, connection
 from flask import Response, json
 from flask import request
 
@@ -9,7 +9,7 @@ def isServerInitialized():
     Returns:
         _type_: _description_
     """
-    if server.address_initialized == True:
+    if connection.address_initialized == True:
         return Response("1", status=200)
 
     
@@ -22,7 +22,7 @@ def getServerAddress():
     Returns:
         _type_: _description_
     """
-    return Response(server.address, status=200)
+    return Response(connection.address, status=200)
 
 @app.route('/server/address', methods=['POST', 'PUT'])
 def setServerAddress():
@@ -34,6 +34,6 @@ def setServerAddress():
     content = request.get_json()
     if 'address' not in content: return Response("'address' not present in request", status=500)
     
-    server.address = content['address']
-    server.address_initialized = True
+    connection.address = content['address']
+    connection.address_initialized = True
     return Response(status=200)

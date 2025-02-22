@@ -1,4 +1,4 @@
-from app import app, server
+from app import app
 from flask import Response, json
 from flask import request
 from app.services.master_docking_service import MasterDockingService

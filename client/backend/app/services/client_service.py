@@ -1,5 +1,5 @@
 import datetime
-from app import db, app, user
+from app import app
 from app.http_services.server_http_client_service import ServerHttpClientService
 class ClientService:
     @staticmethod

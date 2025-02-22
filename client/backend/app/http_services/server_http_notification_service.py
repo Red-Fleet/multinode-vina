@@ -1,7 +1,7 @@
-from app import app, server, user
+from app import app
 import requests
 from app.http_services.http_error import HttpError
-
+from app import connection
 
 class ServerHttpNotificationService:
     @staticmethod
@@ -14,7 +14,7 @@ class ServerHttpNotificationService:
         Returns:
             list: list contaning dict of docking_id
         """
-        response = requests.get(server.address+"/notification/worker", auth=(user.username, user.password))
+        response = requests.get(connection.address+"/notification/worker", auth=(connection.username, ""))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         

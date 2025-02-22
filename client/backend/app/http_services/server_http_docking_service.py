@@ -1,4 +1,4 @@
-from app import app, server, user
+from app import app, connection
 import requests
 from app.http_services.http_error import HttpError
 
@@ -24,7 +24,7 @@ class ServerHttpDockingService:
             str: docking_id
         """
 
-        response = requests.post(server.address+"/docking/create", json=docking_details,auth=(user.username, user.password))
+        response = requests.post(connection.address+"/docking/create", json=docking_details,auth=(connection.username, ""))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
@@ -50,7 +50,7 @@ class ServerHttpDockingService:
             "count": count
         }
 
-        response = requests.get(server.address+"/docking/computes", json=body,auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/computes", json=body,auth=(connection.username, ""))
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
         
@@ -74,7 +74,7 @@ class ServerHttpDockingService:
             "docking_id": docking_id
         }
 
-        response = requests.get(server.address+"/docking/target", json=body, auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/target", json=body, auth=(connection.username, ""))
 
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -99,7 +99,7 @@ class ServerHttpDockingService:
             "docking_id": docking_id
         }
 
-        response = requests.get(server.address+"/docking/details", json=body, auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/details", json=body, auth=(connection.username, ""))
 
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -123,7 +123,7 @@ class ServerHttpDockingService:
         }
 
 
-        response = requests.post(server.address+"/docking/computes/result", json=body, auth=(user.username, user.password))
+        response = requests.post(connection.address+"/docking/computes/result", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -146,7 +146,7 @@ class ServerHttpDockingService:
         }
 
 
-        response = requests.post(server.address+"/docking/computes/error", json=body, auth=(user.username, user.password))
+        response = requests.post(connection.address+"/docking/computes/error", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -168,7 +168,7 @@ class ServerHttpDockingService:
         }
 
 
-        response = requests.post(server.address+"/docking/error", json=body, auth=(user.username, user.password))
+        response = requests.post(connection.address+"/docking/error", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -184,7 +184,7 @@ class ServerHttpDockingService:
         body = {
             "docking_id": docking_id
         }
-        response = requests.get(server.address+"/docking/finished", json=body, auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/finished", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -204,7 +204,7 @@ class ServerHttpDockingService:
                     ...
                 ]
         """
-        response = requests.get(server.address+"/docking/ids", auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/ids", auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -223,7 +223,7 @@ class ServerHttpDockingService:
         body = {
             "docking_id": docking_id
         }
-        response = requests.get(server.address+"/docking/compute/ids", json=body, auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/compute/ids", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -250,7 +250,7 @@ class ServerHttpDockingService:
         body = {
             "compute_id": compute_id
         }
-        response = requests.get(server.address+"/docking/compute/result", json=body, auth=(user.username, user.password))
+        response = requests.get(connection.address+"/docking/compute/result", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
@@ -271,7 +271,7 @@ class ServerHttpDockingService:
         body = {
             "docking_id": docking_id
         }
-        response = requests.delete(server.address+"/docking/delete", json=body, auth=(user.username, user.password))
+        response = requests.delete(connection.address+"/docking/delete", json=body, auth=(connection.username, ""))
         
         if HttpError.isHttpError(response.status_code):
             raise Exception(str(response.status_code)+", "+str(response.text))
