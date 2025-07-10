@@ -91,6 +91,7 @@ class DockingSystem:
         self.readDockingDetailsFromDBThread = None
 
     def getComputes(self, num: int):
+        num = int(num)
         try:
             self.lock.acquire()
             compute_ids = []

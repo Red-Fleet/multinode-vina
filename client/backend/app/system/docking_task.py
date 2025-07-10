@@ -358,6 +358,7 @@ class DockingTask(Thread):
                     # get new batch of ligands
                     
                     computes = self.getComputes(docking_id=self.docking_id, compute_count=self.getLigandBatchSize())
+                    self.batch_size = len(computes) # v.v. imp for getting updated batch size
                     computes = [VinaProcess.ComputeMessage(compute['compute_id'], compute['ligand']) for compute in computes]
                     if len(computes) == 0:
                         # check if docking is ended or not
@@ -637,9 +638,10 @@ class DockingTask(Thread):
             return self.batch_size
     
         x = int(self.ideal_completion_time - (time.time() - self.batch_time))/60
-        self.batch_size = max(self.batch_size + x * abs(x), self.inital_batch_size)
+        batch_size = max(self.batch_size + x * 2, self.inital_batch_size)
         self.batch_time = time.time()
-        return self.batch_size
+        # update self.batch_size after receiving ligands from server
+        return batch_size
 
 
     def info(self, message):
