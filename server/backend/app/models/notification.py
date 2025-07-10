@@ -10,11 +10,12 @@ class WorkerNotification(db.Model):
     Once a worker receives its notification, the corresponding entry is deleted from the 
     table to maintain its size.
     """
+    #id = sqaly.Column(sqaly.Integer, primary_key=True, autoincrement=True)
     # The unique identifier of the docking request associated with the notification.
     docking_id = sqaly.Column(sqaly.String(36), primary_key=True) 
     # The unique identifier of the worker (client_id) associated with the notification. 
     # Indexed for faster retrieval of docking IDs.
-    worker_id = sqaly.Column(sqaly.String(36), nullable=False, index=True)
+    worker_id = sqaly.Column(sqaly.String(36), nullable=False, index=True, primary_key=True)
     # The datetime when the notification was created. This column is used to delete 
     # entries that are considered very old, helping to clean the database.
     create_time = sqaly.Column(sqaly.DateTime())
