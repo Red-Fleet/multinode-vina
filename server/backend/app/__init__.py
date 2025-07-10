@@ -17,6 +17,8 @@ log_file = 'logfile.log'
 file_handler = logging.FileHandler(log_file)
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+file_handler.setFormatter(formatter)
 
 from app.basic_authentication import auth
 from app.routes import user_route, client_route, notification_route, docking_route

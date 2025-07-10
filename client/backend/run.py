@@ -1,6 +1,7 @@
 from app import app, connection
 import argparse
 from app.models.connect import Connect
+from app.http_services.server_http_service import ServerHttpService
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Multinode-vina Client")
@@ -12,15 +13,28 @@ if __name__ == '__main__':
     args = parser.parse_args()
     port = args.port
 
-    if args.server_address is not None and args.username is not None:
-        connection = Connect(address=args.server_address, username=args.username)
+    
     
 
     from app.system.docking_system import DockingSystem
     with app.app_context():
+
+        if args.server_address is not None and args.username is not None:
+            try:
+                clientId = ServerHttpService.connectWithServer(server_addr=args.server_address, clientId=args.username)
+            except Exception as e:
+                print('############# Server Connection Error ##############')
+                clientId = None
+            
+            if clientId:
+                print("sdsds")
+                connection.address =  args.server_address
+                connection.username = args.username
+                connection.connected = True
         
         docking_system = DockingSystem(total_cores=args.max_cores)
         docking_system.start()
+
         
         
     app.run(host="0.0.0.0", debug=False, port=port)

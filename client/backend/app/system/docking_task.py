@@ -142,7 +142,7 @@ class DockingTask(Thread):
     
     def run(self):
         
-        self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: started")
+        #self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: started")
         
         try:
             self.processes_lock.acquire()
@@ -159,7 +159,7 @@ class DockingTask(Thread):
         self.docking_details_inititalized = True
 
         try:
-            self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Starting Threads")
+            #self.info("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Starting Threads")
             self.compute_assignment_thread = Thread(target = self.computeAssignmentThread, daemon=True)
             self.compute_assignment_thread.start()
 
@@ -173,8 +173,8 @@ class DockingTask(Thread):
             self.restart_closed_process_thread.start()
 
 
-            self.logs_thread = Thread(target=self.printVinaProcessLogsThread)
-            self.logs_thread.start()
+            # self.logs_thread = Thread(target=self.printVinaProcessLogsThread)
+            # self.logs_thread.start()
         
         except Exception as e:
             self.error("DockingTask(run)[docking_id("+ str(self.docking_id) +"]: Error while Thread creation")
@@ -273,7 +273,7 @@ class DockingTask(Thread):
                 num_core= process_cores[i],
             ))
         
-        self.info("DockingTask(createVinaProcesses)[docking_id("+ str(self.docking_id) +"]: Total process created = " + str(len(self.processes)))
+        #self.info("DockingTask(createVinaProcesses)[docking_id("+ str(self.docking_id) +"]: Total process created = " + str(len(self.processes)))
             
 
     def runAndInitVinaProcess(self, process: ProcessEntity):
@@ -318,7 +318,7 @@ class DockingTask(Thread):
             
         #     raise Exception() 
         
-        self.info("DockingTask(runAndInitVinaProcess)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: VinaProcess running (" + str(process)+")")              
+        #self.info("DockingTask(runAndInitVinaProcess)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: VinaProcess running (" + str(process)+")")              
 
     def assignComputesToProcesses(self, computes: list[VinaProcess.ComputeMessage]):
         totalComputes = len(computes)
@@ -339,7 +339,7 @@ class DockingTask(Thread):
         It keeps looking for ideal processes, once ideal process is found 
         it will ask for new batch of ligands.
         """
-        self.info("DockingTask(computeAssignmentThread)[docking_id("+ str(self.docking_id) +"]: Running")
+        #self.info("DockingTask(computeAssignmentThread)[docking_id("+ str(self.docking_id) +"]: Running")
         while self.exitTask==False:
             try:
                 time.sleep(10) # sleep for 10 sec
@@ -410,16 +410,16 @@ class DockingTask(Thread):
                     process.replaceVinaProcess()
                     self.runAndInitVinaProcess(process)
 
-                    self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Killed Process Restarted")
+                    #self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"][Process id:"+str(process.id)+"]: Killed Process Restarted")
                 elif self.exitTask == False:
                     self.exitTask = True
                     ServerHttpDockingService.saveDockingError(self.docking_id, " Error in target pdbqt or vina parameters")
-                    self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"]: Vina killed, Error in target pdbqt or vina parameters")
+                    #self.info("DockingTask(updateKilledThreadError)[docking_id("+ str(self.docking_id) +"]: Vina killed, Error in target pdbqt or vina parameters")
               
     def restartClosedProcessesThread(self):
         """thread for restaring processes that were killed due to error in vina
         """
-        self.info("DockingTask(restartClosedProcessesThread): Running")
+        #self.info("DockingTask(restartClosedProcessesThread): Running")
         while self.exitTask==False:
             time.sleep(10) # sleep for 180 seconds
             self.processes_lock.acquire()
@@ -455,7 +455,7 @@ class DockingTask(Thread):
     def resultUpdateThread(self):
         """thread will update result to server
         """
-        self.info("DockingTask(resultUpdateThread)[docking_id("+ str(self.docking_id) +"]: Running")
+        #self.info("DockingTask(resultUpdateThread)[docking_id("+ str(self.docking_id) +"]: Running")
         while self.exitTask==False:
             time.sleep(10)
             try:
@@ -518,9 +518,9 @@ class DockingTask(Thread):
             
 
         try:
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Aquiring lock")
+            #self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Aquiring lock")
             self.processes_lock.acquire()
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Updating Cores")
+            #self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Updating Cores")
             self.avaliable_cores = avaliable_cores
             # if self.is_alive() == False:
             #     return
@@ -589,7 +589,7 @@ class DockingTask(Thread):
             # reassign computes
             self.assignComputesToProcesses(computes=computes)
 
-            self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Cores Updated")
+            #self.info("DockingTask(updateAvaliableCores)[docking_id("+ str(self.docking_id) +"]: Cores Updated")
         
         except Exception as e:
             self.exitTask = True

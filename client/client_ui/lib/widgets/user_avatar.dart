@@ -14,7 +14,7 @@ class _UserAvatarState extends State<UserAvatar> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: const Icon(MyIcons.person),
+      icon: const Icon(MyIcons.person, color: Colors.white,),
       itemBuilder: (BuildContext context) {
         return [
 

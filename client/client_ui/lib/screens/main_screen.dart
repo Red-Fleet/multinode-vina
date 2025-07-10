@@ -99,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
     return SelectionArea(
       child: Scaffold(
           appBar: AppBar(
-            title: const Text("Multinode Vina"),
+            title: const Text("Multinode Vina", style: const TextStyle(color: Colors.white)),
             backgroundColor: Colors.black,
             leading:
                 Provider.of<UserModel>(context, listen: true).isAuthenticated ==
@@ -114,7 +114,7 @@ class _MainScreenState extends State<MainScreen> {
                             //if drawer is closed then open the drawer.
                           }
                         },
-                        icon: const Icon(MyIcons.menu),
+                        icon: const Icon(MyIcons.menu, color: Colors.white,),
                       )
                     : null,
             actions:

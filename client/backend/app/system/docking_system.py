@@ -12,16 +12,16 @@ class DockingSystem(Thread):
     def __init__(self, total_cores: int = 1,  group: None = None, target: Callable[..., object] | None = None, name: str | None = None, args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = None, *, daemon: bool | None = None) -> None:
         super().__init__(group, target, name, args, kwargs, daemon=daemon)
 
-        self.info("DockingSystem(__init__): method started")
+        #self.info("DockingSystem(__init__): method started")
         self.total_cores = total_cores
         self.docking_tasks: dict[str, DockingTask] = dict()
         self.docking_tasks_lock = Lock()
         self.notification_received: set[str] = set()
         self.notification_lock: Lock = Lock()
-        self.info("DockingSystem(__init__): method finished")
+        #self.info("DockingSystem(__init__): method finished")
 
     def run(self):
-        self.info("DockingSystem(run): method started")
+        #self.info("DockingSystem(run): method started")
 
         self.notification_thread = Thread(target=self.checkNotificationThread, daemon=True)
         self.notification_thread.start()
@@ -35,10 +35,10 @@ class DockingSystem(Thread):
         while self.start_new_task_thread.is_alive() == True and self.core_assignment_thread.is_alive() == True and self.notification_thread.is_alive() == True:
             time.sleep(DockingSystemConfig.THREADS_ALIVE_CHECK_TIME)
 
-        self.info("DockingSystem(run): method finished")
+        #self.info("DockingSystem(run): method finished")
     
     def startDockingTaskThread(self):
-        self.info("DockingSystem(startDockingTaskThread): thread started")
+        #self.info("DockingSystem(startDockingTaskThread): thread started")
 
         while True:
             try:
@@ -89,17 +89,17 @@ class DockingSystem(Thread):
                     task.updateAvaliableCores(cores[i])
                     
             except Exception as e:
-                print("Closing every thing: ", e)
+                print("Closing every thing: ", e) # this will never be executed as above method is not throwing any exception
                 
             i += 1
         
-        self.info("DockingSystem(coresAssignment): Distribution of cores among DockingTask finished")
+        #self.info("DockingSystem(coresAssignment): Distribution of cores among DockingTask finished")
 
         
     def coreAssignmentThread(self):
         """Thread will assign cores and remove the docking tasks which are finished
         """
-        self.info("DockingSystem(removeEndedTasksThread): thread started")
+        #self.info("DockingSystem(removeEndedTasksThread): thread started")
         while True:
             try:
                 time.sleep(DockingSystemConfig.DOCK_CHECK_TIME)
@@ -117,8 +117,8 @@ class DockingSystem(Thread):
                 
                 self.coresAssignment()
 
-                for process in self.docking_tasks.values():
-                    self.info("#####################:docking_id(" + str(process.docking_id) + ") , cores:" + str(process.avaliable_cores) + ", alive:" + str(process.is_alive()))
+                # for process in self.docking_tasks.values():
+                #     self.info("#####################:docking_id(" + str(process.docking_id) + ") , cores:" + str(process.avaliable_cores) + ", alive:" + str(process.is_alive()))
 
 
             except Exception as e:

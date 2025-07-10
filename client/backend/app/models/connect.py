@@ -4,6 +4,6 @@ class Connect:
         self.username = None
         self.connected = False
     
-        self.address = "http://localhost:5000"
-        self.username = "1"
-        self.connected = True
+        # self.address = "http://localhost:5000"
+        # self.username = "1"
+        # self.connected = True
